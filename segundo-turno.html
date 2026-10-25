@@ -133,12 +133,41 @@ footer{padding:30px 0 50px;color:var(--tinta3);font-size:12px;line-height:1.6}
  .proj,.mapa-w{grid-template-columns:1fr}.reg{grid-template-columns:repeat(3,1fr)}.roteiro{grid-template-columns:1fr 1fr 1fr}.roteiro b{font-size:24px}
  .narra .w{grid-template-columns:1fr}.narra p{font-size:15.5px}.govs{grid-template-columns:1fr}
 }
+
+/* coluna de notícias */
+.app{display:grid;grid-template-columns:minmax(0,1fr) 380px}
+.main{min-width:0}
+aside.feedcol{position:sticky;top:0;height:100vh;background:#0E1A3A;display:flex;flex-direction:column;z-index:25}
+.fc-hd{padding:14px 16px 10px;background:var(--funda)}
+.fc-hd h3{font-family:Montserrat;font-weight:900;font-size:16px;letter-spacing:.02em}
+.fc-hd small{color:var(--tinta3);font-size:11px}
+.alerta{background:var(--ouro);color:var(--campo);padding:12px 16px;display:block;text-decoration:none}
+.alerta b{font-family:Montserrat;font-weight:900;font-size:14px;display:block;margin-bottom:4px}
+.alerta p{font-size:12.5px;line-height:1.4}
+.fc-tabs{display:flex;gap:4px;overflow-x:auto;padding:8px 12px;background:#0E1A3A}
+.fc-tabs button{background:var(--bloco);border:0;color:var(--tinta2);font:600 12px 'IBM Plex Sans';padding:6px 9px;cursor:pointer;white-space:nowrap}
+.fc-tabs button.on{background:#fff;color:var(--campo)}
+.rolo{flex:1;overflow:hidden;position:relative}
+.rolo .trilho{position:absolute;left:0;right:0;top:0}
+.rolo:hover .trilho{animation-play-state:paused}
+.it{display:block;padding:11px 16px;text-decoration:none;color:var(--tinta)}
+.it:nth-child(odd){background:#ffffff06}
+.it:hover{background:var(--bloco2)}
+.it .m{font-size:11px;color:var(--tinta3);display:flex;gap:6px;align-items:center;margin-bottom:3px}
+.it .m .tg{font-weight:700;padding:1px 5px;font-size:10px;text-transform:uppercase;letter-spacing:.04em}
+.it .t{font-size:13.5px;line-height:1.35;font-weight:500}
+.it .x{font-size:12px;color:var(--tinta2);line-height:1.4;margin-top:4px}
+.it.cur{background:var(--bloco)}
+.novo{color:var(--ouro);font-weight:700}
+@media(max-width:1100px){.app{grid-template-columns:1fr}aside.feedcol{position:relative;height:78vh;order:2}}
 </style>
 </head>
 <body>
+<div class="app"><div class="main">
 <header class="top"><div class="w"><span><b>APURAÇÃO 2º TURNO</b>, 25/10/2026</span><span class="vivo"><i></i><span id="hora">conectando ao TSE…</span></span></div>
 <div class="w"><nav class="tabs"><a href="#pres" class="on">Presidente</a><a href="#surpresas">Surpresas</a><a href="#estados">Estados</a><a href="#gov">Governadores</a><a href="#municipios">Municípios</a></nav></div></header>
 
+<div id="pausa" style="display:none;background:var(--ouro);color:var(--campo);font:800 14px Montserrat;padding:10px 16px;text-align:center"></div>
 <div class="duelo" id="duelo"></div>
 <div class="cabo-w"><div class="cabo" id="cabo"></div></div>
 <div class="dif" id="dif"></div>
@@ -186,6 +215,11 @@ footer{padding:30px 0 50px;color:var(--tinta3);font-size:12px;line-height:1.6}
 
 <footer><div class="w">Fonte dos números: TSE, resultados.tse.jus.br (Presidente, eleição 6258; Governador, 6260; 1º turno, 6257 e 6259). Os números principais são lidos direto do TSE pelo seu navegador a cada 30 segundos; os municípios são atualizados a cada poucos minutos. Esperado, surpresa, projeção e faixa são contas do painel, não do TSE. O cálculo parte do 1º turno de 2026; não há dado de 2022 por município no servidor do TSE.</div></footer>
 
+</div>
+<aside class="feedcol"><div class="fc-hd"><h3>O QUE ESTÁ ACONTECENDO</h3><small id="fcH">Notícias, checagens e o que circula nas redes. Toque para abrir.</small></div>
+<a class="alerta" id="alerta" target="_blank" rel="noopener"></a>
+<div class="fc-tabs" id="fcTabs"></div>
+<div class="rolo" id="rolo"><div class="trilho" id="trilho"></div></div></aside></div>
 <div class="det" id="det"><div class="pn"><button class="x" onclick="fecha()">Fechar</button><div id="detC"></div></div></div>
 
 <script>
@@ -274,6 +308,8 @@ function render(){
   const dv=Math.abs(b.L-b.F);
   document.getElementById('dif').innerHTML=n?`<b>${lid==='l'?'Lula':'Flávio'}</b> à frente por <b>${N(dv)}</b> votos (${F(Math.abs(pL-pF),2)} p.p.), brancos ${F(100*b.vb/(b.vv+b.vb+b.vn||1),1)}%, nulos ${F(100*b.vn/(b.vv+b.vb+b.vn||1),1)}%, comparecimento ${F(b.pc,1)}%`:'Aguardando os primeiros votos';
   document.getElementById('hora').textContent='TSE '+b.hg+', atualiza a cada 30 s';
+  const hgm=+b.hg.slice(0,2)*60+ +b.hg.slice(3,5),agora=new Date().getHours()*60+new Date().getMinutes();const pz=document.getElementById('pausa');
+  if(b.pst<99&&agora-hgm>=10&&agora<19*60+20){pz.style.display='block';pz.textContent=`Apuração pausada pelo TSE desde ${b.hg.slice(0,5)}, com ${F(b.pst,2)}% das seções: o STF prorrogou a votação até 19h. A contagem volta depois disso.`}else pz.style.display='none';
   narra(b,pL);grafico(b,pL);projBox();regioes();roteiro();feed();mapa();govs();if(document.getElementById('bus').value)busca();
 }
 function c1em(pst,uf='br'){const c=(C1&&C1[uf])||[];let best=null;for(const p of c){if(p[0]<=pst+0.01)best=p;else break}return best?best[1]:null}
@@ -401,6 +437,33 @@ document.getElementById('bus').addEventListener('input',busca);
 document.querySelectorAll('nav.tabs a').forEach(a=>a.addEventListener('click',()=>{document.querySelectorAll('nav.tabs a').forEach(b=>b.classList.remove('on'));a.classList.add('on')}));
 document.addEventListener('keydown',e=>{if(e.key==='Escape')fecha()});
 document.getElementById('det').addEventListener('click',e=>{if(e.target.id==='det')fecha()});
+
+
+/* ---------------- coluna de notícias ---------------- */
+const TG={circ:['O que circula','#FFC800','#0B1530'],stf:['STF e TSE','#B08AF0','#0B1530'],apur:['Apuração','#56D68B','#0B1530'],gov:['Governos','#F28C28','#0B1530'],chec:['Checagem','#FF8A7A','#0B1530'],redes:['Redes','#4FA8F5','#0B1530'],ext:['Exterior','#8391B8','#0B1530'],geral:['Eleição','#C4CDE6','#0B1530']};
+const TC={Polêmica:'#FF8A7A',Dúvida:'#4FA8F5',Contexto:'#C4CDE6',Risco:'#F28C28',Falso:'#E8333B',Exterior:'#8391B8'};
+let NEWS=null,CTX=null,fcF='tudo',vistos=new Set(),rolY=0,rolH=0;
+const ago=ts=>{const m=Math.max(0,Math.round((Date.now()/1000-ts)/60));return m<1?'agora':m<60?'há '+m+' min':'há '+Math.floor(m/60)+'h'+(m%60?String(m%60).padStart(2,'0'):'')};
+function fcRender(){
+  if(CTX){const a=CTX.alerta;const el=document.getElementById('alerta');el.href=a.u;el.innerHTML=`<b>⚠ ${esc(a.t)}</b><p>${esc(a.x)}</p><p style="margin-top:4px;font-weight:600">${esc(a.s)} ↗</p>`}
+  const tabs=[['tudo','Tudo'],['circ','O que circula'],['stf','STF e TSE'],['apur','Apuração'],['gov','Governos'],['chec','Checagem'],['redes','Redes'],['ext','Exterior']];
+  document.getElementById('fcTabs').innerHTML=tabs.map(([k,t])=>`<button class="${fcF===k?'on':''}" onclick="fcF='${k}';fcRender()">${t}</button>`).join('');
+  let html='';
+  if(CTX&&(fcF==='tudo'||fcF==='circ'))html+=CTX.circula.map(c=>`<a class="it cur" href="${esc(c.u)}" target="_blank" rel="noopener"><div class="m"><span class="tg" style="background:${TC[c.tipo]||'#fff'};color:#0B1530">${esc(c.tipo)}</span><span>${esc(c.s)}</span><span>curadoria ${esc(CTX.h)}</span></div><div class="t">${esc(c.t)}</div><div class="x">${esc(c.x)}</div></a>`).join('');
+  if(NEWS&&fcF!=='circ')html+=NEWS.itens.filter(x=>fcF==='tudo'||x.tags.includes(fcF)).map(x=>{const tg=TG[x.tags.find(t=>t!=='geral')||'geral'];const nv=!vistos.has(x.u)&&vistos.size>0;
+    return `<a class="it" href="${esc(x.u)}" target="_blank" rel="noopener"><div class="m"><span class="tg" style="background:${tg[1]};color:${tg[2]}">${tg[0]}</span><span>${esc(x.s)}</span><span class="${nv?'novo':''}">${nv?'novo, ':''}${ago(x.ts)}</span></div><div class="t">${esc(x.t)}</div></a>`}).join('');
+  const tr=document.getElementById('trilho');tr.innerHTML=html+html;rolH=tr.scrollHeight/2;
+  if(NEWS)NEWS.itens.forEach(x=>vistos.add(x.u));
+  document.getElementById('fcH').textContent=`Notícias, checagens e o que circula. Atualizado ${NEWS?NEWS.h:''}. Passe o dedo ou o mouse para pausar.`;
+}
+async function fcCiclo(){try{NEWS=await pega('t2_news.json')}catch(e){}try{CTX=await pega('t2_contexto.json')}catch(e){}fcRender()}
+let pausa=false;const rolo=document.getElementById('rolo');
+rolo.addEventListener('mouseenter',()=>pausa=true);rolo.addEventListener('mouseleave',()=>pausa=false);
+rolo.addEventListener('touchstart',()=>pausa=true,{passive:true});rolo.addEventListener('touchend',()=>setTimeout(()=>pausa=false,4000));
+rolo.addEventListener('wheel',e=>{rolY=(rolY+e.deltaY+rolH)%rolH;e.preventDefault()},{passive:false});
+let ty=null;rolo.addEventListener('touchmove',e=>{const y=e.touches[0].clientY;if(ty!=null)rolY=(rolY+(ty-y)+rolH)%rolH;ty=y;e.preventDefault()},{passive:false});rolo.addEventListener('touchend',()=>ty=null);
+(function anda(){if(!pausa&&rolH)rolY=(rolY+0.35)%rolH;document.getElementById('trilho').style.transform=`translateY(${-rolY}px)`;requestAnimationFrame(anda)})();
+fcCiclo();setInterval(fcCiclo,60000);
 
 /* ---------------- ciclo ---------------- */
 async function ciclo(){
