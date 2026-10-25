@@ -444,7 +444,7 @@ function grafico(){
   ((MUN.hist||{}).br||[]).forEach(p=>{if(p[1]+p[2])pts.set(p[0],100*p[1]/(p[1]+p[2]))});
   LIVE.forEach(p=>pts.set(p[0],p[1]));
   const H=[...pts.entries()].sort((a,b)=>a[0]-b[0]);
-  const W=760,Hh=330,ml=48,mr=90,mt=20,mb=30;
+  const W=760,Hh=330,ml=48,mr=130,mt=20,mb=30;
   const c1=(C1.br||[]).filter(p=>p[0]>.5);
   const pr=b.pst<99.9&&H.length?MD.pL:null;
   const ys=[44,56].concat(H.map(p=>p[1]),H.map(p=>100-p[1]));
@@ -459,7 +459,7 @@ function grafico(){
   if(H.length){const last=H[H.length-1];
     s+=`<path d="${path(H)}" fill="none" stroke="var(--lula)" stroke-width="3" stroke-linejoin="round"/><path d="${path(H.map(p=>[p[0],100-p[1]]))}" fill="none" stroke="var(--flav)" stroke-width="3" stroke-linejoin="round"/>`;
     const yl=Y(last[1]),yf=Y(100-last[1]);let dl=0;if(Math.abs(yl-yf)<40)dl=(40-Math.abs(yl-yf))/2*(yl<yf?-1:1);
-    const ponta=(x,y,dy,img,cor,v,onc)=>`<g class="clk" onclick="abre('cand','${onc}')"><line x1="${X(x)}" y1="${y}" x2="${X(x)}" y2="${y+dy}" stroke="${cor}"/><g transform="translate(${X(x)},${y+dy})"><circle r="17.5" fill="${cor}"/><image href="${img}" x="-15" y="-15" width="30" height="38" clip-path="url(#cc)" preserveAspectRatio="xMidYMin slice"/></g><text x="${X(x)+24}" y="${y+dy+5}" style="fill:#fff;font-family:Montserrat;font-weight:800;font-size:15px">${F(v,1)}%</text></g>`;
+    const ponta=(x,y,dy,img,cor,v,onc)=>{const px=X(x)+40,py=y+dy;return `<g class="clk" onclick="abre('cand','${onc}')"><line x1="${X(x)}" y1="${y}" x2="${px-17}" y2="${py}" stroke="${cor}" stroke-width="1.2" opacity=".6"/><circle cx="${X(x)}" cy="${y}" r="7" fill="${cor}" opacity=".25"/><circle cx="${X(x)}" cy="${y}" r="4.5" fill="${cor}" stroke="#0A1124" stroke-width="2"/><g transform="translate(${px},${py})"><circle r="17.5" fill="${cor}"/><image href="${img}" x="-15" y="-15" width="30" height="38" clip-path="url(#cc)" preserveAspectRatio="xMidYMin slice"/></g><text x="${px+24}" y="${py+5}" style="fill:#fff;font-family:Montserrat;font-weight:800;font-size:15px">${F(v,1)}%</text></g>`};
     s+=ponta(last[0],yl,dl,'fotos/lula.webp','var(--lula)',last[1],'13')+ponta(last[0],yf,-dl,'fotos/flavio.webp','var(--flav)',100-last[1],'22');
   }else s+=`<text x="${(ml+W-mr)/2}" y="${Hh/2}" text-anchor="middle" style="font-size:13px">Aguardando os primeiros votos</text>`;
   $('graf').innerHTML=s+'</svg>'+(pr!=null?`<div class="expc"><span>Onde a conta do painel espera que termine</span><b style="color:var(--lula2)">Lula ${F(pr,1)}%</b><b style="color:var(--flav2)">Flávio ${F(100-pr,1)}%</b><small>faixa de Lula: ${F(pr-1.64*MD.sdp,1)}% a ${F(pr+1.64*MD.sdp,1)}%</small></div>`:'');
