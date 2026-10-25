@@ -526,11 +526,12 @@ function farol(x){const n=x.n||0;const bg=n?(x.F>x.L?'#2F7BFF':'#E5333B'):'#2C36
 function cel(x){const pst=x.u?100*x.a:x.pst,ok=x.fAt!=null,d=ok?100*(x.fAt-x.f1):0;
   return `<td class="r"><span class="mb"><i style="width:${Math.min(100,pst)}%"></i></span>${F(pst,0)}%</td>
   <td class="r" style="color:var(--flav)">${ok?F(100*x.fAt,1)+'%':'—'}</td><td class="r" style="color:var(--lula2)">${ok?F(100-100*x.fAt,1)+'%':'—'}</td>
-  <td class="r">${F(100*x.f1,1)}%</td><td class="r dif ${ok?(d>0?'p':'n'):''}">${ok?(d>0?'+':'')+F(d,1):'—'}</td><td>${farol(x)}<span class="fart">${x.s.k==='agu'?'aguardando':x.s.t+' '+(x.s.d>0?'+':'')+F(x.s.d,1)}</span>${x.vir?' <span class="selo vir">Virou</span>':''}</td>`}
-const CAB=tab=>`${th('Apurado','pst','r',tab)}${th('Flávio','fAt','r',tab)}${th('Lula','lAt','r',tab)}${th('Flávio 1º t. (entre os dois)','f1','r',tab)}${th('Dif. p.p.','dif','r',tab)}${th('Farol','selo','',tab)}`;
+  <td class="r">${F(100*x.f1,1)}%</td><td class="r dif ${ok?(d>0?'p':'n'):''}">${ok?(d>0?'+':'')+F(d,1):'—'}</td>`}
+const farTd=x=>`<td>${farol(x)}<span class="fart">${x.s.k==='agu'?'aguardando':x.s.t+' '+(x.s.d>0?'+':'')+F(x.s.d,1)}</span>${x.vir?' <span class="selo vir">Virou</span>':''}</td>`;
+const CAB=tab=>`${th('Apurado','pst','r',tab)}${th('Flávio','fAt','r',tab)}${th('Lula','lAt','r',tab)}${th('Flávio 1º t. (entre os dois)','f1','r',tab)}${th('Dif. p.p.','dif','r',tab)}`;
 function tabUF(){const L=srt(UFS.map(u=>MD.UP[u]),'uf');
-  $('desUF').innerHTML=`<div class="tw"><table><thead><tr>${th('Estado','nm','','uf')}${th('Eleitores','te','r','uf')}${CAB('uf')}</tr></thead><tbody>
-   ${L.map(x=>`<tr class="${x.s.k}" onclick="abre('uf','${x.u}')"><td><b style="font-weight:600">${UFN[x.u]}</b><span class="sub">${x.u.toUpperCase()}</span></td><td class="r">${MI(x.te)}</td>${cel(x)}</tr>`).join('')}</tbody></table></div>`}
+  $('desUF').innerHTML=`<div class="tw"><table><thead><tr>${th('Farol','selo','','uf')}${th('Estado','nm','','uf')}${th('Eleitores','te','r','uf')}${CAB('uf')}</tr></thead><tbody>
+   ${L.map(x=>`<tr class="${x.s.k}" onclick="abre('uf','${x.u}')">${farTd(x)}<td><b style="font-weight:600">${UFN[x.u]}</b><span class="sub">${x.u.toUpperCase()}</span></td><td class="r">${MI(x.te)}</td>${cel(x)}</tr>`).join('')}</tbody></table></div>`}
 function munFiltro(){const o=TB.mun;let A=Object.values(M);
   if(o.uf)A=A.filter(x=>x.uf===o.uf);if(o.reg)A=A.filter(x=>RUF[x.uf]===o.reg);
   if(o.selo==='vir')A=A.filter(x=>x.vir);else if(o.selo)A=A.filter(x=>x.s.k===o.selo);
@@ -550,8 +551,8 @@ function munTab(){
   $('fUF').value=o.uf;$('fReg').value=o.reg;$('fSelo').value=o.selo;
   const A=srt(munFiltro(),'mun');
   $('mCont').textContent=`${N(A.length)} cidade${A.length===1?'':'s'}${A.length>o.lim?`, mostrando ${N(o.lim)}`:''}. Tamanho medido pelos votos válidos do 1º turno.`;
-  $('mTab').innerHTML=`<thead><tr>${th('Cidade','nm','','mun')}${th('Votos 1º t.','vv','r','mun')}${CAB('mun')}</tr></thead><tbody>
-   ${A.slice(0,o.lim).map(x=>`<tr class="${x.s.k}" onclick="abre('mun','${x.k}')"><td><b style="font-weight:600">${esc(cap(x.nm))}</b><span class="sub">${x.uf.toUpperCase()}${x.cap?', capital':''}</span></td><td class="r">${MI(x.vv)}</td>${cel(x)}</tr>`).join('')}</tbody>`;
+  $('mTab').innerHTML=`<thead><tr>${th('Farol','selo','','mun')}${th('Cidade','nm','','mun')}${th('Votos 1º t.','vv','r','mun')}${CAB('mun')}</tr></thead><tbody>
+   ${A.slice(0,o.lim).map(x=>`<tr class="${x.s.k}" onclick="abre('mun','${x.k}')">${farTd(x)}<td><b style="font-weight:600">${esc(cap(x.nm))}</b><span class="sub">${x.uf.toUpperCase()}${x.cap?', capital':''}</span></td><td class="r">${MI(x.vv)}</td>${cel(x)}</tr>`).join('')}</tbody>`;
   $('mMais').style.display=A.length>o.lim?'block':'none';
 }
 function aba(v){document.querySelectorAll('#segD button').forEach(b=>b.classList.toggle('on',b.dataset.v===v));$('desUF').style.display=v==='uf'?'':'none';$('desMun').style.display=v==='mun'?'':'none'}
