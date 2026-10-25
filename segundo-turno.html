@@ -80,6 +80,10 @@ section.sec{scroll-margin-top:52px;padding-top:40px;padding-bottom:44px;border-t
 .agora p{font-size:15.5px;line-height:1.6}
 .agora p b{font-weight:600}
 .agora small{display:block;color:var(--tx3);font-size:11.5px;margin-top:8px}
+.claud{display:grid;grid-template-columns:56px 1fr;gap:16px;margin-top:12px;padding:18px 20px;background:#FBF9F3;color:#14182B;border-radius:var(--r)}
+.claud img{width:56px;height:56px;border-radius:50%;object-fit:cover;background:#E6E1D5}
+.claud .ch{display:flex;justify-content:space-between;gap:10px;align-items:baseline}.claud .ch b{font-family:var(--f1);font-weight:800;font-size:14px;color:#C8232C}.claud .ch span{font-family:var(--f3);font-size:12px;color:#7A7F8E}
+.claud p{font-size:15px;line-height:1.6;margin-top:6px}
 /* gráfico */
 .graf svg{display:block;width:100%;height:auto;overflow:visible}
 .graf text{font-family:var(--f3);font-size:11px;fill:var(--tx3)}
@@ -111,7 +115,7 @@ section.sec{scroll-margin-top:52px;padding-top:40px;padding-bottom:44px;border-t
 .selo{display:inline-block;font-family:var(--f1);font-weight:700;font-size:11px;letter-spacing:.03em;padding:3px 7px;border-radius:var(--r);white-space:nowrap}
 .selo.sup{background:repeating-linear-gradient(135deg,#2F7BFF 0 5px,#1C56C9 5px 10px);color:#fff}
 .selo.dec{background:repeating-linear-gradient(135deg,#E5333B 0 5px,#A81E27 5px 10px);color:#fff}
-tr.sup td:first-child{box-shadow:inset 4px 0 0 #2F7BFF}tr.dec td:first-child{box-shadow:inset 4px 0 0 #E5333B}
+.far{display:inline-block;width:18px;height:18px;border-radius:3px;vertical-align:middle;margin-right:8px}.fart{font-size:12px;color:var(--tx2)}
 .mapa .lst{pointer-events:none}
 .nac{margin-top:10px}
 .selo.exp{background:#3A4568;color:#E4E8F5}
@@ -166,6 +170,7 @@ td .sub{color:var(--tx3);font-size:12px;margin-left:6px}
 .gc{display:grid;grid-template-columns:52px 1fr;gap:10px;align-items:center}
 .gc.b{grid-template-columns:1fr 52px;text-align:right}.gc.b img{order:2}
 .gc img{width:52px;height:65px;object-fit:cover;border-radius:var(--r);background:var(--sf2)}
+.gb .bar i+i{border-left:2px solid var(--sf)}
 .gc .n{font-family:var(--f1);font-weight:700;font-size:13px;line-height:1.15}
 .gc .p{font-size:11.5px;color:var(--tx3)}
 .gb{position:relative;margin-top:16px}
@@ -254,16 +259,16 @@ footer a{color:var(--tx2)}
 }
 
 /* feed claro */
-aside.feed{background:#F6F4EF;color:#14182B;border-left:1px solid #E2DED4}
-aside.feed .fh{border-bottom:1px solid #E2DED4;padding:14px 16px 10px}
-aside.feed .fh h3{color:#14182B;font-size:13px}
-aside.feed .fh small{color:#6B7080}
+aside.feed{background:#FBF9F3;color:#14182B;border-left:1px solid #E6E1D5}
+aside.feed .fh{border-bottom:1px solid #E6E1D5;padding:0 16px;height:52px;display:flex;align-items:center;justify-content:space-between;gap:8px}
+aside.feed .fh h3{color:#C8232C;font-size:12.5px;letter-spacing:.04em}
+aside.feed .fh small{color:#7A7F8E;margin:0;font-size:11.5px;white-space:nowrap}
 aside.feed .lista{scrollbar-color:#D5D0C4 transparent}
 aside.feed .ni{border-bottom:1px solid #E7E3DA;padding:11px 16px}
-aside.feed .ni:hover{background:#EDEAE2}
+aside.feed .ni:hover{background:#F2EEE4}
 aside.feed .ni.fresca{background:#FFF1C9}
 aside.feed .ni .m{color:#7A7F8E}
-aside.feed .ni .m b{color:#14182B}
+aside.feed .ni .m b{color:#C8232C}
 aside.feed .ni .t{font-size:13px;color:#14182B}
 aside.feed .ni .x{font-size:12px;color:#4A4F60;line-height:1.4;margin-top:3px}
 aside.feed .ni.ctx{background:#EFECE4}
@@ -289,35 +294,36 @@ aside.feed .novas{background:#14182B;color:#fff}
   <div class="barra" id="barra"><i style="width:50%;background:var(--lula)"></i><i style="width:50%;background:var(--flav)"></i></div>
   <div class="meio"><span>50%</span></div>
   <div class="stats" id="stats"></div>
-  <div class="agora"><div class="n">AGORA</div><div><p id="narra">Lendo os dados do TSE…</p><small>Números do TSE. Leitura e projeção são conta do painel, a partir do 1º turno de 2026.</small></div></div>
+  <div class="agora"><div class="n">AGORA<br><span id="agH" style="font-family:var(--f3);font-weight:500;letter-spacing:0;font-size:12px;color:var(--tx2)"></span></div><div><p id="narra">Lendo os dados do TSE…</p></div></div>
+  <div class="claud" id="claud" style="display:none"><img src="fotos/claudinho.webp" alt="" onerror="this.style.visibility='hidden'"><div><div class="ch"><b>A opinião do Claudinho</b><span id="clH"></span></div><p id="clT"></p></div></div>
 </div>
 
 <div class="resto">
-<section class="sec wrap" id="s-graf"><div class="sh"><span class="n">01</span><h2>A apuração, urna a urna</h2><p>Percentual de cada um nos votos válidos à medida que as urnas são apuradas. Abaixo, onde a conta do painel espera que a apuração termine.</p></div>
+<section class="sec wrap" id="s-graf"><div class="sh"><span class="n">01</span><h2>A apuração, urna a urna</h2><p>% dos votos válidos conforme as urnas são apuradas.</p></div>
   <div class="body graf"><div id="graf"></div>
   <div class="leg"><span><i style="background:var(--lula)"></i>Lula</span><span><i style="background:var(--flav)"></i>Flávio</span></div></div>
 </section>
 
-<section class="sec wrap" id="s-mapa"><div class="sh"><span class="n">02</span><h2>Estado por estado</h2><p>Cor de quem lidera em cada estado, mais forte quanto maior a vantagem. As listras mostram quem cresceu em relação ao 1º turno: azuis, Flávio; vermelhas, Lula. Passe o mouse ou toque para ver os números.</p></div>
+<section class="sec wrap" id="s-mapa"><div class="sh"><span class="n">02</span><h2>Estado por estado</h2><p>Cor: quem lidera. Listras: quem cresceu sobre o 1º turno.</p></div>
   <div class="body mapa-g"><div class="mapa" id="mapa"></div>
    <div><div class="resumo" id="resumo"></div>
     <div class="escala" style="margin-top:18px"><div class="g"></div><div class="r"><span>Lula lidera com folga</span><span>empate</span><span>Flávio lidera com folga</span></div></div>
     <div class="proj" id="proj" style="margin-top:16px"></div>
-    <p class="nota"><b>Listras</b> mostram quem cresceu em relação ao 1º turno: listras azuis, Flávio está melhor do que no 1º turno; listras vermelhas, Lula está melhor. Para a conta ser justa, o 1º turno é recalculado só com os votos dados aos dois (os votos dos outros candidatos saem da base), e comparado com a divisão de agora entre os dois. Cresce quem ganhou mais de 2 pontos. Conta do painel.</p></div>
+    <p class="nota"><b>Listras</b> mostram quem cresceu em relação ao 1º turno: listras azuis, Flávio está melhor do que no 1º turno; listras vermelhas, Lula está melhor. Para a conta ser justa, o 1º turno é recalculado só com os votos dados aos dois (os votos dos outros candidatos saem da base), e comparado com a divisão de agora entre os dois. Conta do painel.</p></div>
   </div>
 </section>
 
-<section class="sec wrap" id="s-falta"><div class="sh"><span class="n">03</span><h2>O que ainda falta apurar</h2><p>Cada barra é o tamanho do voto da região. A parte cheia já foi contada; a parte riscada é o que falta, na cor de para onde pende pelo 1º turno. Toque numa região para ver as cidades.</p></div>
+<section class="sec wrap" id="s-falta"><div class="sh"><span class="n">03</span><h2>O que ainda falta apurar</h2><p>Cheio: já contado. Riscado: o que falta, na cor de para onde pende.</p></div>
   <div class="body"><div class="falta" id="falta"></div>
   <div class="flg"><span><i style="background:var(--lula)"></i>Lula, apurado</span><span><i style="background:var(--flav)"></i>Flávio, apurado</span><span><i style="background-color:var(--lulaE);background-image:repeating-linear-gradient(135deg,rgba(255,255,255,.22) 0 2px,transparent 2px 7px)"></i>falta, pende para Lula</span><span><i style="background-color:var(--flavE);background-image:repeating-linear-gradient(135deg,rgba(255,255,255,.22) 0 2px,transparent 2px 7px)"></i>falta, pende para Flávio</span></div></div>
 </section>
 
-<section class="sec wrap" id="s-des"><div class="sh"><span class="n">04</span><h2>Destrinchamento</h2><p>Todos os estados e todas as cidades, do maior eleitorado para o menor, com o 1º turno do Flávio como régua. Clique no título da coluna para ordenar e numa linha para abrir.</p></div>
+<section class="sec wrap" id="s-des"><div class="sh"><span class="n">04</span><h2>Destrinchamento</h2><p>Do maior eleitorado para o menor. Clique para ordenar ou abrir.</p></div>
   <div class="body"><div class="seg" id="segD"><button class="on" data-v="uf">Estados</button><button data-v="mun">Cidades</button></div>
   <div id="desUF"></div><div id="desMun" style="display:none"></div></div>
 </section>
 
-<section class="sec wrap" id="s-gov"><div class="sh"><span class="n">05</span><h2>Governadores em 2º turno</h2><p>Acre, Amazonas, Distrito Federal, Espírito Santo, Rio Grande do Norte e Tocantins. A marca branca na barra é o resultado do 1º turno entre os dois.</p></div>
+<section class="sec wrap" id="s-gov"><div class="sh"><span class="n">05</span><h2>Governadores em 2º turno</h2><p>Cor pelo campo político do partido (espectro Action). Marca branca: 1º turno.</p></div>
   <div class="body"><div class="govs" id="govs"></div></div>
 </section>
 
@@ -326,7 +332,7 @@ aside.feed .novas{background:#14182B;color:#fff}
 </div>
 
 <aside class="feed" id="feed">
-  <div class="fh"><h3>O QUE ESTÁ ACONTECENDO</h3><small id="fhH">Notícias e o que circula, mais recente no topo</small></div>
+  <div class="fh"><h3>NOTÍCIAS</h3><small id="fhH"></small></div>
   <div class="lista" id="lista"><button class="novas" id="novas" onclick="document.getElementById('lista').scrollTo({top:0,behavior:'smooth'})"></button><div id="itens"></div></div>
 </aside>
 </div>
@@ -365,7 +371,7 @@ function lerGov(d){const cs=[];d.carg[0].agr.forEach(a=>a.par.forEach(p=>p.cand.
 /* ---------- sinal: Flávio contra o próprio 1º turno no lugar ---------- */
 function selo(fAt,fEsp,ok){
   if(!ok||fAt==null)return {k:'agu',t:'Aguardando'};
-  const d=100*(fAt-fEsp);if(d>2)return {k:'sup',t:'Flávio cresce',d};if(d<-2)return {k:'dec',t:'Lula cresce',d};return {k:'exp',t:'Igual ao 1º turno',d};
+  const d=100*(fAt-fEsp);if(d>0.5)return {k:'sup',t:'Flávio cresce',d};if(d<-0.5)return {k:'dec',t:'Lula cresce',d};return {k:'exp',t:'Igual ao 1º turno',d};
 }
 const seloH=s=>`<span class="selo ${s.k}">${s.t}</span>`;
 
@@ -429,7 +435,7 @@ function narra(){
   if(tot>0&&b.pst<99.5){const top=Object.entries(R).sort((a,b)=>b[1].rem-a[1].rem)[0];const lr=100*Object.values(R).reduce((s,x)=>s+x.rl,0)/tot;
     fr.push(`O que falta pende para <b>${lr>=50?'Lula':'Flávio'}</b>; ${F(100*top[1].rem/tot,0)}% do que falta está no ${top[0]}.`)}
   if(b.pst<99.9)fr.push(`Projeção do painel: Lula <b>${F(md.pL,1)}%</b>, numa faixa de ${F(md.pL-1.64*md.sdp,1)}% a ${F(md.pL+1.64*md.sdp,1)}%.`);
-  $('narra').innerHTML=fr.join(' ');
+  $('narra').innerHTML=fr.join(' ');$('agH').textContent=new Date().toTimeString().slice(0,5);
 }
 
 /* ---------- gráfico ---------- */
@@ -515,11 +521,13 @@ function val(x,k){switch(k){case 'nm':return x.u?UFN[x.u]:sem(x.nm);case 'te':re
 function th(t,k,cls,tab){const o=TB[tab];return `<th class="${cls||''} ${o.ord===k?'on':''}" onclick="ordena('${tab}','${k}')">${t}${o.ord===k?`<span class="ar">${o.dir<0?'↓':'↑'}</span>`:''}</th>`}
 function ordena(tab,k){const o=TB[tab];if(o.ord===k)o.dir*=-1;else{o.ord=k;o.dir=(k==='nm'||k==='selo')?1:-1}tab==='uf'?tabUF():munTab()}
 function srt(arr,tab){const o=TB[tab];return arr.sort((a,b)=>{const A=val(a,o.ord),B=val(b,o.ord);return (A>B?1:A<B?-1:0)*o.dir})}
+function farol(x){const n=x.n||0;const bg=n?(x.F>x.L?'#2F7BFF':'#E5333B'):'#2C3657';const st=x.s.k==='sup'?'repeating-linear-gradient(135deg,transparent 0 3px,#C9DCFF 3px 5px)':x.s.k==='dec'?'repeating-linear-gradient(135deg,transparent 0 3px,#FFC2C5 3px 5px)':'none';
+  return `<span class="far" style="background:${st},${bg}" title="${x.s.t}"></span>`}
 function cel(x){const pst=x.u?100*x.a:x.pst,ok=x.fAt!=null,d=ok?100*(x.fAt-x.f1):0;
   return `<td class="r"><span class="mb"><i style="width:${Math.min(100,pst)}%"></i></span>${F(pst,0)}%</td>
   <td class="r" style="color:var(--flav)">${ok?F(100*x.fAt,1)+'%':'—'}</td><td class="r" style="color:var(--lula2)">${ok?F(100-100*x.fAt,1)+'%':'—'}</td>
-  <td class="r">${F(100*x.f1,1)}%</td><td class="r dif ${ok?(d>0?'p':'n'):''}">${ok?(d>0?'+':'')+F(d,1):'—'}</td><td>${seloH(x.s)}${x.vir?' <span class="selo vir">Virou</span>':''}</td>`}
-const CAB=tab=>`${th('Apurado','pst','r',tab)}${th('Flávio','fAt','r',tab)}${th('Lula','lAt','r',tab)}${th('Flávio 1º t. (entre os dois)','f1','r',tab)}${th('Dif. p.p.','dif','r',tab)}${th('Sinal','selo','',tab)}`;
+  <td class="r">${F(100*x.f1,1)}%</td><td class="r dif ${ok?(d>0?'p':'n'):''}">${ok?(d>0?'+':'')+F(d,1):'—'}</td><td>${farol(x)}<span class="fart">${x.s.k==='agu'?'aguardando':x.s.t+' '+(x.s.d>0?'+':'')+F(x.s.d,1)}</span>${x.vir?' <span class="selo vir">Virou</span>':''}</td>`}
+const CAB=tab=>`${th('Apurado','pst','r',tab)}${th('Flávio','fAt','r',tab)}${th('Lula','lAt','r',tab)}${th('Flávio 1º t. (entre os dois)','f1','r',tab)}${th('Dif. p.p.','dif','r',tab)}${th('Farol','selo','',tab)}`;
 function tabUF(){const L=srt(UFS.map(u=>MD.UP[u]),'uf');
   $('desUF').innerHTML=`<div class="tw"><table><thead><tr>${th('Estado','nm','','uf')}${th('Eleitores','te','r','uf')}${CAB('uf')}</tr></thead><tbody>
    ${L.map(x=>`<tr class="${x.s.k}" onclick="abre('uf','${x.u}')"><td><b style="font-weight:600">${UFN[x.u]}</b><span class="sub">${x.u.toUpperCase()}</span></td><td class="r">${MI(x.te)}</td>${cel(x)}</tr>`).join('')}</tbody></table></div>`}
@@ -553,6 +561,9 @@ function filtraReg(r){Object.assign(TB.mun,{reg:r==='Exterior'?'':r,uf:'',selo:'
 function filtraSelo(){TB.uf.ord='selo';TB.uf.dir=1;aba('uf');tabUF();vaiDes()}
 
 /* ---------- governadores ---------- */
+const CAMPO={PT:'E',PSOL:'E','PC do B':'E',PCdoB:'E',PSB:'CE',PDT:'CE',PV:'CE',REDE:'CE',SOLIDARIEDADE:'CE',CIDADANIA:'CE',PSD:'C',MDB:'C',PSDB:'C',AVANTE:'C',UNIÃO:'CD',PP:'CD',REPUBLICANOS:'CD',PODE:'CD',PRD:'CD',PL:'D',NOVO:'D',MISSÃO:'D'};
+const CORC={E:'#E5333B',CE:'#F07F84',C:'#9AA2B8',CD:'#6FA0FF',D:'#2F7BFF'},NOMEC={E:'esquerda',CE:'centro-esquerda',C:'centro',CD:'centro-direita',D:'direita'};
+function corPart(sg,alt){const c=CAMPO[String(sg).toUpperCase()]||CAMPO[sg]||'C';let h=CORC[c];if(alt&&c!=='E'&&c!=='D')h=c==='CD'?'#3F5FA8':c==='C'?'#6B7390':'#B4505A';if(alt&&(c==='E'||c==='D'))h=c==='E'?'#A81E27':'#1C4FB0';return h}
 function fotoGov(c,u){return FOTO[c.sq]?`fotos/${FOTO[c.sq]}.webp`:`${TSE}/6260/fotos/${u}/${c.sq}.jpeg`}
 function govProj(u,g){const [a,b]=g.cs;const t=a.v+b.v,sh=t?a.v/t:.5;let pa=0,pb=0;
   for(const k in BASE.mun){const bm=BASE.mun[k];if(bm.uf!==u)continue;const gm=(MUN.g||{})[k];const pm=gm?gm[2]/100:0;const rem=bm.vv*(MD?MD.rho:.97)*(1-pm);
@@ -560,14 +571,14 @@ function govProj(u,g){const [a,b]=g.cs;const t=a.v+b.v,sh=t?a.v/t:.5;let pa=0,pb
   return 100*(a.v+pa)/(t+pa+pb||1)}
 function govs(){
   $('govs').innerHTML=GOV.map(u=>{const g=GV[u];if(!g||g.cs.length<2)return '';
-    const [a,b]=g.cs;const t=a.v+b.v,pA=t?100*a.v/t:50,pB=t?100-pA:50;
+    const [a,b]=g.cs;const t=a.v+b.v,pA=t?100*a.v/t:50,pB=t?100-pA:50;const ca=corPart(a.sg),cb=corPart(b.sg,CAMPO[String(a.sg).toUpperCase()]===CAMPO[String(b.sg).toUpperCase()]);const na=NOMEC[CAMPO[String(a.sg).toUpperCase()]||'C'],nb=NOMEC[CAMPO[String(b.sg).toUpperCase()]||'C'];
     const g1=GV1[u],t1=g1?(g1[a.n]||0)+(g1[b.n]||0):0,m1=t1?100*(g1[a.n]||0)/t1:null;
     const pj=t&&g.pst<99.9?govProj(u,g):null;
     return `<div class="gv" onclick="abre('uf','${u}')"><div class="hd"><h3>${UFN[u]}</h3><span>${F(g.pst,1)}% apurado</span></div>
-     <div class="pr"><div class="gc"><img loading="lazy" src="${fotoGov(a,u)}" alt=""><div><div class="n">${esc(cap(a.nm))}</div><div class="p">${a.n}, ${esc(a.sg)}</div></div></div>
-      <div class="gc b"><img loading="lazy" src="${fotoGov(b,u)}" alt=""><div><div class="n">${esc(cap(b.nm))}</div><div class="p">${b.n}, ${esc(b.sg)}</div></div></div></div>
-     <div class="gb"><div class="pcts"><b class="num">${t?F(pA,1)+'%':'—'}</b><b class="num" style="color:var(--tx3)">${t?F(pB,1)+'%':'—'}</b></div>
-      <div class="bar"><i style="width:${pA}%;background:#E3E8F7"></i><i style="width:${pB}%;background:#56618C"></i></div>${m1!=null?`<span class="m1" style="left:calc(${m1}% - 1px)"></span>`:''}</div>
+     <div class="pr"><div class="gc"><img loading="lazy" src="${fotoGov(a,u)}" alt=""><div><div class="n">${esc(cap(a.nm))}</div><div class="p">${a.n}, ${esc(a.sg)}, ${na}</div></div></div>
+      <div class="gc b"><img loading="lazy" src="${fotoGov(b,u)}" alt=""><div><div class="n">${esc(cap(b.nm))}</div><div class="p">${b.n}, ${esc(b.sg)}, ${nb}</div></div></div></div>
+     <div class="gb"><div class="pcts"><b class="num" style="color:${ca}">${t?F(pA,1)+'%':'—'}</b><b class="num" style="color:${cb}">${t?F(pB,1)+'%':'—'}</b></div>
+      <div class="bar"><i style="width:${pA}%;background:${ca}"></i><i style="width:${pB}%;background:${cb}"></i></div>${m1!=null?`<span class="m1" style="left:calc(${m1}% - 1px)"></span>`:''}</div>
      <div class="ft">${t?`${esc(cap(a.nm))} à frente por ${N(a.v-b.v)} votos.`:'Aguardando votos.'}${m1!=null?` No 1º turno, entre os dois: ${F(m1,0)}% a ${F(100-m1,0)}%.`:''}${pj!=null?` Projeção do painel: ${esc(cap(pj>=50?a.nm:b.nm))} com ${F(Math.max(pj,100-pj),1)}%.`:''}</div></div>`}).join('');
 }
 
@@ -623,12 +634,12 @@ const UFRX=UFS.map(u=>[u,new RegExp('\\b'+UFN[u]+'\\b'+(UFX[u]?'|'+UFX[u]:''),'i
 function fcRender(){
   if(!NEWS&&!CTX)return;
   let h='';
-  if(CTX)h+=CTX.circula.map(c=>`<a class="ni ctx" href="${esc(c.u)}" target="_blank" rel="noopener"><div class="m"><b>Contexto</b><span>${esc(c.s)}</span></div><div class="t">${esc(c.t)}</div><div class="x">${esc(c.x)}</div></a>`).join('');
   if(NEWS)h+=NEWS.itens.slice().sort((a,b)=>b.ts-a.ts).map(x=>{const uf=UFRX.find(([u,r])=>r.test(x.t));
     return `<a class="ni ${frescas.has(x.u)?'fresca':''}" href="${esc(x.u)}" target="_blank" rel="noopener"><div class="m"><b>${esc(x.s)}</b><span>${ago(x.ts)}</span></div><div class="t">${esc(x.t)}</div>${uf?`<span class="uf" onclick="event.preventDefault();event.stopPropagation();abre('uf','${uf[0]}')">${UFN[uf[0]]} no painel →</span>`:''}</a>`}).join('');
   $('itens').innerHTML=h;
-  if(NEWS)$('fhH').textContent=`Mais recente no topo, atualizado às ${NEWS.h}`;
+  if(NEWS)$('fhH').textContent=`atualizado ${NEWS.h}`;
 }
+async function opiniao(){try{const o=await pega('t2_opiniao.json');if(o&&o.txt){$('claud').style.display='grid';$('clT').innerHTML=esc(o.txt).replace(/\*\*(.+?)\*\*/g,'<b>$1</b>');$('clH').textContent='atualizado '+o.h}}catch(e){}}
 async function fcCiclo(){
   try{const n=await pega('t2_news.json');
     if(vistos){const nov=n.itens.filter(x=>!vistos.has(x.u));nov.forEach(x=>frescas.add(x.u));
@@ -670,7 +681,7 @@ function rodape(){$('rodape').innerHTML=`<p><b style="color:var(--tx2)">Fontes.<
  <p style="margin-top:10px"><b style="color:var(--tx2)">Contas do painel.</b> Sinal, projeção e faixa não são do TSE. A régua é o 1º turno de 2026 no mesmo lugar; não há dado de 2022 por município no servidor do TSE.</p>
  <p style="margin-top:10px"><b style="color:var(--tx2)">Fotos</b> (Wikimedia Commons): ${CRED.map(([n,c,f])=>`<a href="https://commons.wikimedia.org/wiki/File:${f}" target="_blank" rel="noopener">${n}</a> (${c})`).join(', ')}.</p>`}
 (async()=>{
-  rodape();fcCiclo();setInterval(fcCiclo,30000);
+  rodape();fcCiclo();setInterval(fcCiclo,30000);opiniao();setInterval(opiniao,60000);
   [BASE,C1,MAPA]=await Promise.all([pega('t2_base.json'),pega('t2_curva1.json').catch(()=>({})),pega('t2_mapa.json').catch(()=>null)]);
   await Promise.all(GOV.map(async u=>{try{const d=await pega(`${TSE}/6259/dados/${u}/${u}-c0003-e006259-u.json`);const v={};d.carg[0].agr.forEach(a=>a.par.forEach(p=>p.cand.forEach(c=>v[c.n]=+c.vap)));GV1[u]=v}catch(e){}}));
   await ciclo();rotaHash();setInterval(ciclo,20000);munVivo();setInterval(munVivo,45000);
