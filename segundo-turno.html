@@ -123,7 +123,7 @@ section.sec{scroll-margin-top:52px;padding-top:40px;padding-bottom:44px;border-t
 .selo.vir{background:#fff;color:var(--bg)}
 /* falta */
 .falta{display:grid;gap:12px}
-.fr{display:grid;grid-template-columns:120px 1fr 220px;gap:16px;align-items:center;cursor:pointer;padding:6px 8px;margin:0 -8px;border-radius:var(--r)}
+.fr{display:grid;grid-template-columns:26px 150px 1fr 220px;gap:16px;align-items:center;cursor:pointer;padding:6px 8px;margin:0 -8px;border-radius:var(--r)}
 .fr:hover{background:var(--sf)}
 .fr h4{font-family:var(--f1);font-weight:700;font-size:15px}
 .fr h4 small{display:block;font-family:var(--f3);font-weight:500;font-size:11.5px;color:var(--tx3)}
@@ -238,7 +238,7 @@ details.blk[open] summary::after{content:"–"}
 .cmp .bar i{display:block;height:100%}
 footer{padding:36px var(--gut) 60px;border-top:1px solid var(--ln);font-size:12px;color:var(--tx3);line-height:1.65}
 footer a{color:var(--tx2)}
-@media(max-width:1180px){:root{--gut:22px}.app{grid-template-columns:minmax(0,1fr) 280px}.cand .pc{font-size:52px}.fr{grid-template-columns:110px 1fr 180px}}
+@media(max-width:1180px){:root{--gut:22px}.app{grid-template-columns:minmax(0,1fr) 280px}.cand .pc{font-size:52px}.fr{grid-template-columns:26px 130px 1fr 180px}}
 @media(max-width:980px){
   .app{display:flex;flex-direction:column}.main{display:contents}
   header.top{order:0}.placar{order:1}aside.feed{display:none!important;order:2;position:relative;height:620px;border-top:1px solid var(--ln)}.resto{order:3}
@@ -252,7 +252,7 @@ footer a{color:var(--tx2)}
   .foto{width:84px;height:105px}.cand .nm{font-size:16px}.cand .pc{font-size:38px}.cand .vt{font-size:12px}
   .stats{grid-template-columns:repeat(3,1fr)}.stats div:nth-child(n+4){display:none}
   .body{padding-left:0}.sh{grid-template-columns:30px 1fr}.sh h2{font-size:21px}.sh p{grid-column:1/3}
-  .fr{grid-template-columns:1fr;gap:6px}
+  .fr{grid-template-columns:26px 1fr;gap:6px 10px}.fr>div:nth-child(n+3){grid-column:2}
   .agora{grid-template-columns:1fr;padding:14px 16px}.agora .n{padding-bottom:6px}
   .govs{grid-template-columns:1fr}
   .det .pc{padding:18px 16px 0}.det .ph{padding:12px 16px}
@@ -505,10 +505,11 @@ document.addEventListener('click',e=>{const t=$('tip');if(t.classList.contains('
 
 /* ---------- o que falta ---------- */
 function falta(){
-  const R={};Object.values(MD.UP).forEach(x=>{const r=RUF[x.u];const o=R[r]=R[r]||{L:0,F:0,rem:0,rl:0,ts:0,st:0};o.L+=x.L;o.F+=x.F;o.rem+=x.rem;o.rl+=x.rem*x.pRem;o.ts+=x.ts;o.st+=x.st});
+  const R={};Object.values(MD.UP).forEach(x=>{const r=RUF[x.u];const o=R[r]=R[r]||{L:0,F:0,rem:0,rl:0,ts:0,st:0};o.L+=x.L;o.F+=x.F;o.L1=(o.L1||0)+BASE.uf[x.u].L;o.F1=(o.F1||0)+BASE.uf[x.u].F;o.rem+=x.rem;o.rl+=x.rem*x.pRem;o.ts+=x.ts;o.st+=x.st});
   const mx=Math.max(...Object.values(R).map(o=>o.L+o.F+o.rem));
   $('falta').innerHTML=Object.keys(REG).map(r=>{const o=R[r];if(!o)return '';const t=o.L+o.F+o.rem||1,a=o.ts?100*o.st/o.ts:0,pl=o.rem?o.rl/o.rem:.5;
-    return `<div class="fr" onclick="filtraReg('${r}')"><h4>${r}<small>${F(a,0)}% apurado</small></h4>
+    const nn=o.L+o.F,fx={n:nn,L:o.L,F:o.F,s:selo(nn?o.F/nn:null,o.F1/(o.L1+o.F1),a>=1&&nn>0)};
+    return `<div class="fr" onclick="filtraReg('${r}')"><div>${farol(fx)}</div><h4>${r}<small>${F(a,0)}% apurado, ${fx.s.k==='agu'?'aguardando':fx.s.t+' '+(fx.s.d>0?'+':'')+F(fx.s.d,1)}</small></h4>
      <div><div class="fb" style="width:${Math.max(6,100*t/mx)}%"><i style="width:${100*o.L/t}%;background:var(--lula)"></i><i style="width:${100*o.F/t}%;background:var(--flav)"></i><i class="rest" style="width:${100*o.rem/t}%;background-color:${pl>=.5?'var(--lulaE)':'var(--flavE)'}"></i></div></div>
      <div class="q">${o.rem>1000?`Faltam <b>${MI(o.rem)}</b> votos, que pendem para <b style="color:${pl>=.5?'var(--lula2)':'var(--flav)'}">${pl>=.5?'Lula':'Flávio'} (${F(100*Math.max(pl,1-pl),0)}%)</b>`:'Praticamente tudo apurado'}</div></div>`}).join('');
 }
