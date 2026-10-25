@@ -99,7 +99,7 @@ section.sec{scroll-margin-top:52px;padding-top:40px;padding-bottom:44px;border-t
 .tip .l2{display:flex;justify-content:space-between;font-size:13px;margin:3px 0}
 .tip .bt{display:block;margin-top:10px;width:100%;padding:8px;background:var(--tx);color:var(--bg);font:700 13px var(--f1);border-radius:var(--r)}
 .resumo{display:grid;gap:10px}
-.rs{display:grid;grid-template-columns:44px 1fr;align-items:center;gap:12px;padding:12px 14px;background:var(--sf);border-radius:var(--r)}
+.rs{position:relative;display:grid;grid-template-columns:44px 1fr;align-items:center;gap:12px;padding:12px 14px;background:var(--sf);border-radius:var(--r)}
 .rs:hover{background:var(--sf2)}
 .rs .q{font-size:30px;line-height:1}
 .rs span{font-size:13px;color:var(--tx2);line-height:1.35}.rs span b{font-weight:600}
@@ -109,8 +109,11 @@ section.sec{scroll-margin-top:52px;padding-top:40px;padding-bottom:44px;border-t
 .proj b{color:var(--tx)}
 /* selos */
 .selo{display:inline-block;font-family:var(--f1);font-weight:700;font-size:11px;letter-spacing:.03em;padding:3px 7px;border-radius:var(--r);white-space:nowrap}
-.selo.sup{background:var(--flav);color:#fff}
-.selo.dec{background:var(--lula);color:#fff}
+.selo.sup{background:repeating-linear-gradient(135deg,#2F7BFF 0 5px,#1C56C9 5px 10px);color:#fff}
+.selo.dec{background:repeating-linear-gradient(135deg,#E5333B 0 5px,#A81E27 5px 10px);color:#fff}
+tr.sup td:first-child{box-shadow:inset 4px 0 0 #2F7BFF}tr.dec td:first-child{box-shadow:inset 4px 0 0 #E5333B}
+.mapa .lst{pointer-events:none}
+.nac{margin-top:10px}
 .selo.exp{background:#3A4568;color:#E4E8F5}
 .selo.agu{background:transparent;color:var(--tx3);box-shadow:inset 0 0 0 1px var(--ln)}
 .selo.vir{background:#fff;color:var(--bg)}
@@ -261,7 +264,7 @@ footer a{color:var(--tx2)}
 <div class="placar" id="placar">
   <div class="duelo">
     <div class="cand l clk" id="cL" onclick="abre('cand','13')"><div class="foto"><img src="fotos/lula.webp" alt="Lula"></div><div><div class="nm">Lula</div><div class="pt">13, PT</div><div class="pc num" id="pcL">0,00%</div><div class="vt" id="vtL"></div><span class="lid">À frente</span></div></div>
-    <div class="centro"><div class="ap num" id="apN">0%</div><small>urnas apuradas</small></div>
+    <div class="centro"><div class="ap num" id="apN">0%</div><small>urnas apuradas</small><div class="nac" id="nac"></div></div>
     <div class="cand f clk" id="cF" onclick="abre('cand','22')"><div class="foto"><img src="fotos/flavio.webp" alt="Flávio Bolsonaro"></div><div><div class="nm">Flávio Bolsonaro</div><div class="pt">22, PL</div><div class="pc num" id="pcF">0,00%</div><div class="vt" id="vtF"></div><span class="lid">À frente</span></div></div>
   </div>
   <div class="barra" id="barra"><i style="width:50%;background:var(--lula)"></i><i style="width:50%;background:var(--flav)"></i></div>
@@ -276,12 +279,12 @@ footer a{color:var(--tx2)}
   <div class="leg"><span><i style="background:var(--lula)"></i>Lula</span><span><i style="background:var(--flav)"></i>Flávio</span></div></div>
 </section>
 
-<section class="sec wrap" id="s-mapa"><div class="sh"><span class="n">02</span><h2>Estado por estado</h2><p>Cor de quem lidera em cada estado, mais forte quanto maior a vantagem. Passe o mouse ou toque para ver se o Flávio está superando, decepcionando ou na expectativa.</p></div>
+<section class="sec wrap" id="s-mapa"><div class="sh"><span class="n">02</span><h2>Estado por estado</h2><p>Cor de quem lidera em cada estado, mais forte quanto maior a vantagem. As listras mostram quem cresceu em relação ao 1º turno: azuis, Flávio; vermelhas, Lula. Passe o mouse ou toque para ver os números.</p></div>
   <div class="body mapa-g"><div class="mapa" id="mapa"></div>
    <div><div class="resumo" id="resumo"></div>
     <div class="escala" style="margin-top:18px"><div class="g"></div><div class="r"><span>Lula lidera com folga</span><span>empate</span><span>Flávio lidera com folga</span></div></div>
     <div class="proj" id="proj" style="margin-top:16px"></div>
-    <p class="nota">Sinal: Flávio <b>superando</b> quando tem mais de 2 p.p. acima do seu 1º turno no lugar (votos entre os dois), <b>decepcionando</b> quando tem mais de 2 p.p. abaixo, <b>na expectativa</b> no meio. Conta do painel.</p></div>
+    <p class="nota"><b>Listras</b> mostram quem cresceu em relação ao 1º turno: listras azuis, Flávio está melhor do que no 1º turno; listras vermelhas, Lula está melhor. Para a conta ser justa, o 1º turno é recalculado só com os votos dados aos dois (os votos dos outros candidatos saem da base), e comparado com a divisão de agora entre os dois. Cresce quem ganhou mais de 2 pontos. Conta do painel.</p></div>
   </div>
 </section>
 
@@ -346,7 +349,7 @@ function lerGov(d){const cs=[];d.carg[0].agr.forEach(a=>a.par.forEach(p=>p.cand.
 /* ---------- sinal: Flávio contra o próprio 1º turno no lugar ---------- */
 function selo(fAt,fEsp,ok){
   if(!ok||fAt==null)return {k:'agu',t:'Aguardando'};
-  const d=100*(fAt-fEsp);if(d>2)return {k:'sup',t:'Superando',d};if(d<-2)return {k:'dec',t:'Decepcionando',d};return {k:'exp',t:'Na expectativa',d};
+  const d=100*(fAt-fEsp);if(d>2)return {k:'sup',t:'Flávio cresce',d};if(d<-2)return {k:'dec',t:'Lula cresce',d};return {k:'exp',t:'Igual ao 1º turno',d};
 }
 const seloH=s=>`<span class="selo ${s.k}">${s.t}</span>`;
 
@@ -394,6 +397,7 @@ function placar(){
   $('stats').innerHTML=[[n?N(Math.abs(b.L-b.F)):'0','votos de diferença'],[N(b.st)+' de '+N(b.ts),'seções apuradas'],[F(b.pc,1)+'%','comparecimento'],[F(100*b.vb/tot,1)+'%','brancos'],[F(100*b.vn/tot,1)+'%','nulos']].map(([x,y])=>`<div><b>${x}</b><span>${y}</span></div>`).join('');
   const st=estadoApur();const e=$('etq');e.className='etq '+(st.k==='pausa'?'pausa':st.k==='vivo'?'vivo':'');e.textContent=st.t;
   $('hora').textContent='TSE '+b.hg.slice(0,5);
+  {const bb=BASE.uf.br,f1=bb.F/(bb.L+bb.F),sn=selo(n?b.F/n:null,f1,b.pst>=1);$('nac').innerHTML=seloH(sn)+(sn.d!=null?`<small style="margin-top:6px">${sn.d>0?'+':''}${F(sn.d,1)} p.p. para Flávio sobre o 1º turno</small>`:'')}
 }
 function c1em(pst,uf='br'){let best=null;for(const p of (C1[uf]||[])){if(p[0]<=pst+0.01)best=p;else break}return best?best[1]:null}
 function narra(){
@@ -403,7 +407,7 @@ function narra(){
   else fr.push(`Com <b>${F(b.pst,1)}% das urnas</b> apuradas, <b>${lid}</b> lidera com ${F(Math.max(pL,100-pL),2)}% dos votos válidos.`);
   const c1=c1em(b.pst);if(c1!=null&&b.pst>1)fr.push(`No 1º turno, nesta mesma altura, Lula tinha ${F(c1,1)}% dos votos dados aos dois; hoje tem ${F(pL,1)}%.`);
   const ss=Object.values(md.UP).filter(x=>x.u!=='zz'&&x.s.k!=='agu');
-  if(ss.length){const c={sup:0,dec:0,exp:0};ss.forEach(x=>c[x.s.k]++);fr.push(`Flávio supera o 1º turno em <b>${c.sup}</b> estado${c.sup===1?'':'s'}, decepciona em <b>${c.dec}</b> e está na expectativa em <b>${c.exp}</b>.`)}
+  if(ss.length){const c={sup:0,dec:0,exp:0};ss.forEach(x=>c[x.s.k]++);fr.push(`Comparando só os votos dados aos dois, Flávio cresce sobre o 1º turno em <b>${c.sup}</b> estado${c.sup===1?'':'s'}, Lula cresce em <b>${c.dec}</b> e <b>${c.exp}</b> estão iguais.`)}
   const R={};Object.values(md.UP).forEach(x=>{const r=RUF[x.u];(R[r]=R[r]||{rem:0,rl:0}).rem+=x.rem;R[r].rl+=x.rem*x.pRem});
   const tot=Object.values(R).reduce((s,x)=>s+x.rem,0);
   if(tot>0&&b.pst<99.5){const top=Object.entries(R).sort((a,b)=>b[1].rem-a[1].rem)[0];const lr=100*Object.values(R).reduce((s,x)=>s+x.rl,0)/tot;
@@ -446,28 +450,30 @@ function corUF(x){if(!x||!x.n)return '#2C3657';const m=Math.min(1,Math.abs(x.L-x
 function mapa(){
   if(!MAPA)return;const el=$('mapa');
   if(!el.dataset.ok){let s=`<svg viewBox="0 0 1040 ${MAPA.h+30}" role="img" aria-label="Mapa do Brasil por estado">`;
+    s+=`<defs><pattern id="pF" width="12" height="12" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="5" height="12" fill="#9CC2FF"/></pattern><pattern id="pL" width="12" height="12" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="5" height="12" fill="#FF9097"/></pattern></defs>`;
     for(const u in MAPA.uf)s+=`<path id="m-${u}" d="${MAPA.uf[u].d}" data-u="${u}"/>`;
+    for(const u in MAPA.uf)s+=`<path class="lst" id="l-${u}" d="${MAPA.uf[u].d}" fill="none" stroke="none"/>`;
     for(const u in MAPA.uf){const m=MAPA.uf[u],o=OFF[u];if(o)s+=`<line class="ld" x1="${m.cx}" y1="${m.cy}" x2="${o[0]-6}" y2="${o[1]-5}"/>`;
       const [x,y]=o||[m.cx,m.cy];const big=m.a>20000;
       s+=`<text id="t-${u}" x="${x}" y="${o?y:y-8}" text-anchor="${o?'start':'middle'}"><tspan font-size="${o?19:big?26:19}">${u.toUpperCase()}</tspan><tspan class="v" x="${x}" dy="${o?19:big?24:19}" font-size="${o?16:big?19:15}" font-weight="600" font-family="IBM Plex Mono"></tspan></text>`}
     el.innerHTML=s+'</svg>';el.dataset.ok=1;
     const hov=matchMedia('(hover:hover)');
-    el.querySelectorAll('path').forEach(p=>{const u=p.dataset.u;
+    el.querySelectorAll('path[data-u]').forEach(p=>{const u=p.dataset.u;
       p.addEventListener('mousemove',e=>{if(hov.matches)tipUF(u,e.clientX,e.clientY,false)});
       p.addEventListener('mouseleave',()=>{if(hov.matches)tipOff()});
       p.addEventListener('click',e=>{e.stopPropagation();if(hov.matches){tipOff();abre('uf',u)}else tipUF(u,e.clientX,e.clientY,true)})})}
-  for(const u in MAPA.uf){const x=MD.UP[u];$('m-'+u).setAttribute('fill',corUF(x));const t=$('t-'+u);
+  for(const u in MAPA.uf){const x=MD.UP[u];$('m-'+u).setAttribute('fill',corUF(x));$('l-'+u).setAttribute('fill',x&&x.s.k==='sup'?'url(#pF)':x&&x.s.k==='dec'?'url(#pL)':'none');const t=$('t-'+u);
     const o=OFF[u];const forte=x&&x.n&&Math.abs(x.L-x.F)/x.n>.04;t.style.fill=o?'#C3CBE3':'#fff';
     t.querySelector('.v').textContent=x&&x.n?(x.F>x.L?'F ':'L ')+F(100*Math.max(x.F,x.L)/x.n,0)+'%':''}
   const c={sup:0,dec:0,exp:0,agu:0};UFS.forEach(u=>c[MD.UP[u].s.k]++);
-  $('resumo').innerHTML=[['sup','Flávio superando','o 1º turno','var(--flav)'],['exp','Flávio na expectativa','','#E4E8F5'],['dec','Flávio decepcionando','abaixo do 1º turno','var(--lula2)'],['agu','aguardando apuração','','var(--tx3)']].map(([k,t,s,cor])=>`<div class="rs clk" onclick="filtraSelo()"><b class="num q" style="color:${cor}">${c[k]}</b><span>estado${c[k]===1?'':'s'} com <b style="color:var(--tx)">${t}</b> ${s}</span></div>`).join('');
+  $('resumo').innerHTML=[['sup','Flávio crescendo','sobre o 1º turno','var(--flav2)'],['dec','Lula crescendo','sobre o 1º turno','var(--lula2)'],['exp','igual','ao 1º turno','#E4E8F5'],['agu','aguardando apuração','','var(--tx3)']].map(([k,t,s,cor])=>`<div class="rs clk" onclick="filtraSelo()"><b class="num q" style="color:${cor}">${c[k]}</b><span>estado${c[k]===1?'':'s'} com <b style="color:var(--tx)">${t}</b> ${s}</span><i class="selo ${k}" style="position:absolute;right:12px;width:22px;height:14px;padding:0"></i></div>`).join('');
   const b=PR.br;$('proj').innerHTML=b.pst<99.9&&b.L+b.F?`Projeção do painel para o fim: <b>Lula ${F(MD.pL,1)}%</b> e <b>Flávio ${F(100-MD.pL,1)}%</b>, com Lula numa faixa de ${F(MD.pL-1.64*MD.sdp,1)}% a ${F(MD.pL+1.64*MD.sdp,1)}%. Supõe que o que falta vota como votou no 1º turno, corrigido pelo movimento da apuração.`:b.pst>=99.9?'Apuração concluída.':'A projeção aparece quando houver votos.';
 }
 function tipUF(u,x,y,toque){const d=MD.UP[u];if(!d)return;const tip=$('tip');
   tip.innerHTML=`<h4>${UFN[u]}</h4><div style="margin-bottom:8px">${seloH(d.s)}</div>
    <div class="l2"><span style="color:var(--lula2)">Lula</span><b>${d.n?F(100*d.L/d.n,1)+'%':'—'}</b></div>
    <div class="l2"><span style="color:var(--flav)">Flávio</span><b>${d.n?F(100*d.F/d.n,1)+'%':'—'}</b></div>
-   <div class="l2" style="color:var(--tx3)"><span>Flávio no 1º turno</span><span>${F(100*d.f1,1)}%</span></div>
+   <div class="l2" style="color:var(--tx3)"><span>Flávio no 1º turno (entre os dois)</span><span>${F(100*d.f1,1)}%</span></div>
    <div class="l2" style="color:var(--tx3)"><span>Apurado</span><span>${F(100*d.a,1)}%</span></div>${toque?`<button class="bt" onclick="tipOff();abre('uf','${u}')">Abrir ${UFN[u]}</button>`:''}`;
   tip.classList.add('on');tip.classList.toggle('toque',toque);
   const w=230,h=tip.offsetHeight;tip.style.left=Math.min(innerWidth-w-10,Math.max(10,x+14))+'px';tip.style.top=Math.min(innerHeight-h-10,Math.max(60,y+14))+'px';
@@ -497,10 +503,10 @@ function cel(x){const pst=x.u?100*x.a:x.pst,ok=x.fAt!=null,d=ok?100*(x.fAt-x.f1)
   return `<td class="r"><span class="mb"><i style="width:${Math.min(100,pst)}%"></i></span>${F(pst,0)}%</td>
   <td class="r" style="color:var(--flav)">${ok?F(100*x.fAt,1)+'%':'—'}</td><td class="r" style="color:var(--lula2)">${ok?F(100-100*x.fAt,1)+'%':'—'}</td>
   <td class="r">${F(100*x.f1,1)}%</td><td class="r dif ${ok?(d>0?'p':'n'):''}">${ok?(d>0?'+':'')+F(d,1):'—'}</td><td>${seloH(x.s)}${x.vir?' <span class="selo vir">Virou</span>':''}</td>`}
-const CAB=tab=>`${th('Apurado','pst','r',tab)}${th('Flávio','fAt','r',tab)}${th('Lula','lAt','r',tab)}${th('Flávio no 1º t.','f1','r',tab)}${th('Dif. p.p.','dif','r',tab)}${th('Sinal','selo','',tab)}`;
+const CAB=tab=>`${th('Apurado','pst','r',tab)}${th('Flávio','fAt','r',tab)}${th('Lula','lAt','r',tab)}${th('Flávio 1º t. (entre os dois)','f1','r',tab)}${th('Dif. p.p.','dif','r',tab)}${th('Sinal','selo','',tab)}`;
 function tabUF(){const L=srt(UFS.map(u=>MD.UP[u]),'uf');
   $('desUF').innerHTML=`<div class="tw"><table><thead><tr>${th('Estado','nm','','uf')}${th('Eleitores','te','r','uf')}${CAB('uf')}</tr></thead><tbody>
-   ${L.map(x=>`<tr onclick="abre('uf','${x.u}')"><td><b style="font-weight:600">${UFN[x.u]}</b><span class="sub">${x.u.toUpperCase()}</span></td><td class="r">${MI(x.te)}</td>${cel(x)}</tr>`).join('')}</tbody></table></div>`}
+   ${L.map(x=>`<tr class="${x.s.k}" onclick="abre('uf','${x.u}')"><td><b style="font-weight:600">${UFN[x.u]}</b><span class="sub">${x.u.toUpperCase()}</span></td><td class="r">${MI(x.te)}</td>${cel(x)}</tr>`).join('')}</tbody></table></div>`}
 function munFiltro(){const o=TB.mun;let A=Object.values(M);
   if(o.uf)A=A.filter(x=>x.uf===o.uf);if(o.reg)A=A.filter(x=>RUF[x.uf]===o.reg);
   if(o.selo==='vir')A=A.filter(x=>x.vir);else if(o.selo)A=A.filter(x=>x.s.k===o.selo);
@@ -511,7 +517,7 @@ function munTab(){
   if(!el.dataset.ok){el.innerHTML=`<div class="filtros"><input id="fQ" placeholder="Buscar cidade" autocomplete="off">
     <select id="fUF"><option value="">Todos os estados</option>${UFS.slice().sort((a,b)=>UFN[a].localeCompare(UFN[b])).map(u=>`<option value="${u}">${UFN[u]}</option>`).join('')}</select>
     <select id="fReg"><option value="">Todas as regiões</option>${Object.keys(REG).filter(r=>r!=='Exterior').map(r=>`<option>${r}</option>`).join('')}</select>
-    <select id="fSelo"><option value="">Todos os sinais</option><option value="sup">Superando</option><option value="exp">Na expectativa</option><option value="dec">Decepcionando</option><option value="vir">Virou</option><option value="agu">Aguardando</option></select>
+    <select id="fSelo"><option value="">Todos os sinais</option><option value="sup">Flávio cresce</option><option value="dec">Lula cresce</option><option value="exp">Igual ao 1º turno</option><option value="vir">Virou</option><option value="agu">Aguardando</option></select>
     <select id="fPorte"><option value="">Todos os portes</option><option value="200000-1e9">Mais de 200 mil votos</option><option value="50000-200000">50 a 200 mil</option><option value="10000-50000">10 a 50 mil</option><option value="0-10000">Até 10 mil</option></select></div>
     <p class="cont" id="mCont"></p><div class="tw"><table id="mTab"></table></div><button class="mais" id="mMais">Mostrar mais 50</button>`;el.dataset.ok=1;
     const on=(id,ev,f)=>$(id).addEventListener(ev,e=>{f(e.target.value);o.lim=50;munTab()});
@@ -521,7 +527,7 @@ function munTab(){
   const A=srt(munFiltro(),'mun');
   $('mCont').textContent=`${N(A.length)} cidade${A.length===1?'':'s'}${A.length>o.lim?`, mostrando ${N(o.lim)}`:''}. Tamanho medido pelos votos válidos do 1º turno.`;
   $('mTab').innerHTML=`<thead><tr>${th('Cidade','nm','','mun')}${th('Votos 1º t.','vv','r','mun')}${CAB('mun')}</tr></thead><tbody>
-   ${A.slice(0,o.lim).map(x=>`<tr onclick="abre('mun','${x.k}')"><td><b style="font-weight:600">${esc(cap(x.nm))}</b><span class="sub">${x.uf.toUpperCase()}${x.cap?', capital':''}</span></td><td class="r">${MI(x.vv)}</td>${cel(x)}</tr>`).join('')}</tbody>`;
+   ${A.slice(0,o.lim).map(x=>`<tr class="${x.s.k}" onclick="abre('mun','${x.k}')"><td><b style="font-weight:600">${esc(cap(x.nm))}</b><span class="sub">${x.uf.toUpperCase()}${x.cap?', capital':''}</span></td><td class="r">${MI(x.vv)}</td>${cel(x)}</tr>`).join('')}</tbody>`;
   $('mMais').style.display=A.length>o.lim?'block':'none';
 }
 function aba(v){document.querySelectorAll('#segD button').forEach(b=>b.classList.toggle('on',b.dataset.v===v));$('desUF').style.display=v==='uf'?'':'none';$('desMun').style.display=v==='mun'?'':'none'}
@@ -551,7 +557,7 @@ function govs(){
 
 /* ---------- detalhe ---------- */
 let detAtual=null;
-function cmpBars(fAt,f1){return `<div class="cmp"><div><div class="lb"><span>1º turno (a régua)</span><span>Flávio ${F(100*f1,1)}%</span></div><div class="bar"><i style="width:${100*f1}%;background:var(--flavE)"></i><i style="width:${100-100*f1}%;background:var(--lulaE)"></i></div></div>
+function cmpBars(fAt,f1){return `<div class="cmp"><div><div class="lb"><span>1º turno, só os votos dos dois</span><span>Flávio ${F(100*f1,1)}%</span></div><div class="bar"><i style="width:${100*f1}%;background:var(--flavE)"></i><i style="width:${100-100*f1}%;background:var(--lulaE)"></i></div></div>
   <div><div class="lb"><span>Agora</span><span>${fAt==null?'aguardando':'Flávio '+F(100*fAt,1)+'%'}</span></div><div class="bar">${fAt==null?'':`<i style="width:${100*fAt}%;background:var(--flav)"></i><i style="width:${100-100*fAt}%;background:var(--lula)"></i>`}</div></div></div>`}
 function mini(pts,ref){const W=560,H=120,X=x=>W*x/100;const ys=pts.map(p=>p[1]).concat(ref);const y0=Math.min(...ys)-3,y1=Math.max(...ys)+3,Y=y=>H-8-(H-16)*(y-y0)/(y1-y0);
   return `<svg viewBox="0 0 ${W} ${H}" style="width:100%;height:auto"><line x1="0" x2="${W}" y1="${Y(ref)}" y2="${Y(ref)}" stroke="#5B6590" stroke-dasharray="3 3"/><text x="${W}" y="${Y(ref)-5}" text-anchor="end" style="font:11px 'IBM Plex Mono';fill:#8590B3">1º turno ${F(ref,1)}%</text>
@@ -570,9 +576,9 @@ function abre(tipo,id,semHash){
      ${hist.length>1?`<h3>Flávio ao longo da apuração</h3>${mini(hist,100*x.f1)}`:''}
      <p class="nota">Projeção do painel para o estado: Lula ${F(100*x.projL/(x.projL+x.projF||1),1)}%, Flávio ${F(100*x.projF/(x.projL+x.projF||1),1)}%.</p>
      ${GOV.includes(id)&&GV[id]?govDet(id):''}
-     <h3>Cidades: ${c.sup} superando, ${c.exp} na expectativa, ${c.dec} decepcionando, ${c.agu} aguardando</h3>
+     <h3>Cidades: Flávio cresce em ${c.sup}, Lula cresce em ${c.dec}, igual em ${c.exp}, ${c.agu} aguardando</h3>
      <div class="tw"><table><thead><tr><th>Cidade</th><th class="r">Apurado</th><th class="r">Flávio</th><th class="r">1º t.</th><th>Sinal</th></tr></thead><tbody>
-     ${ms.slice(0,60).map(r=>`<tr onclick="abre('mun','${r.k}')"><td>${esc(cap(r.nm))}</td><td class="r">${F(r.pst,0)}%</td><td class="r" style="color:var(--flav)">${r.fAt==null?'—':F(100*r.fAt,1)+'%'}</td><td class="r">${F(100*r.f1,1)}%</td><td>${seloH(r.s)}</td></tr>`).join('')}</tbody></table></div>
+     ${ms.slice(0,60).map(r=>`<tr class="${r.s.k}" onclick="abre('mun','${r.k}')"><td>${esc(cap(r.nm))}</td><td class="r">${F(r.pst,0)}%</td><td class="r" style="color:var(--flav)">${r.fAt==null?'—':F(100*r.fAt,1)+'%'}</td><td class="r">${F(100*r.f1,1)}%</td><td>${seloH(r.s)}</td></tr>`).join('')}</tbody></table></div>
      ${ms.length>60?`<button class="mais" onclick="fecha();Object.assign(TB.mun,{uf:'${id}',reg:'',selo:'',q:'',lim:100});aba('mun');munTab();vaiDes()">Ver as ${N(ms.length)} cidades na tabela</button>`:''}`}
   else if(tipo==='mun'){const r=M[id];if(!r)return;$('detK').textContent='Cidade';
     h=`<h2>${esc(cap(r.nm))}</h2><div class="ss">${seloH(r.s)}${r.vir?' <span class="selo vir">Virou</span>':''}&nbsp; <a class="clk" style="text-decoration:underline" onclick="abre('uf','${r.uf}')">${UFN[r.uf]}</a>${r.cap?', capital':''}, ${F(r.pst,0)}% apurado</div>
