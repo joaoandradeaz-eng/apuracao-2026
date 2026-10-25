@@ -12,8 +12,8 @@
 :root{
   --bg:#0A1124;--sf:#111A33;--sf2:#16213F;--ln:#243156;--ln2:#1A2547;
   --tx:#FFFFFF;--tx2:#C3CBE3;--tx3:#8590B3;
-  --lula:#3A7BFF;--lula2:#8DB4FF;--lulaE:#16306B;
-  --flav:#F5C400;--flav2:#FFE170;--flavE:#5C4A06;
+  --lula:#E5333B;--lula2:#FF8A8F;--lulaE:#5E1A20;
+  --flav:#2F7BFF;--flav2:#8DB6FF;--flavE:#16306B;
   --neu:#2C3657;
   --gut:28px;--r:4px;
   --f1:Montserrat,system-ui,sans-serif;--f2:'IBM Plex Sans',system-ui,sans-serif;--f3:'IBM Plex Mono',ui-monospace,monospace;
@@ -61,7 +61,7 @@ section.sec{scroll-margin-top:52px;padding-top:40px;padding-bottom:44px;border-t
 .cand.l .pc{color:var(--lula2)}.cand.f .pc{color:var(--flav)}
 .cand .vt{font-family:var(--f3);font-size:13px;color:var(--tx2);margin-top:4px}
 .cand .lid{display:inline-block;font-family:var(--f1);font-weight:700;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;padding:3px 7px;border-radius:var(--r);margin-top:8px;visibility:hidden}
-.cand.l .lid{background:var(--lula);color:#fff}.cand.f .lid{background:var(--flav);color:#1a1400}
+.cand.l .lid{background:var(--lula);color:#fff}.cand.f .lid{background:var(--flav);color:#fff}
 .cand.on .lid{visibility:visible}
 .centro{text-align:center;padding-bottom:6px}
 .centro .ap{font-size:34px;line-height:1}
@@ -102,13 +102,13 @@ section.sec{scroll-margin-top:52px;padding-top:40px;padding-bottom:44px;border-t
 .rs:hover{background:var(--sf2)}
 .rs .q{font-size:30px;line-height:1}
 .rs span{font-size:13px;color:var(--tx2);line-height:1.35}.rs span b{font-weight:600}
-.escala .g{height:10px;border-radius:2px;background:linear-gradient(90deg,#3A7BFF,#2A4E9E,#2C3657,#8C7410,#F5C400)}
+.escala .g{height:10px;border-radius:2px;background:linear-gradient(90deg,#E5333B,#8A2B3A,#2C3657,#2A4E9E,#2F7BFF)}
 .escala .r{display:flex;justify-content:space-between;font-size:11.5px;color:var(--tx3);margin-top:5px}
 .proj{padding:12px 14px;border:1px solid var(--ln);border-radius:var(--r);font-size:13px;color:var(--tx2);line-height:1.5}
 .proj b{color:var(--tx)}
 /* selos */
 .selo{display:inline-block;font-family:var(--f1);font-weight:700;font-size:11px;letter-spacing:.03em;padding:3px 7px;border-radius:var(--r);white-space:nowrap}
-.selo.sup{background:var(--flav);color:#1a1400}
+.selo.sup{background:var(--flav);color:#fff}
 .selo.dec{background:var(--lula);color:#fff}
 .selo.exp{background:#3A4568;color:#E4E8F5}
 .selo.agu{background:transparent;color:var(--tx3);box-shadow:inset 0 0 0 1px var(--ln)}
@@ -445,7 +445,7 @@ function grafico(){
 /* ---------- mapa ---------- */
 const OFF={rn:[935,236],pb:[935,282],pe:[935,328],al:[935,374],se:[935,420],es:[862,604],rj:[818,688],df:[692,452]};
 function corUF(x){if(!x||!x.n)return '#2C3657';const m=Math.min(1,Math.abs(x.L-x.F)/x.n/0.22);const a=[44,54,87];
-  const b=x.F>x.L?[245,196,0]:[58,123,255];const q=.3+.7*m;return `rgb(${a.map((v,i)=>Math.round(v+(b[i]-v)*q)).join(',')})`}
+  const b=x.F>x.L?[47,123,255]:[229,51,59];const q=.3+.7*m;return `rgb(${a.map((v,i)=>Math.round(v+(b[i]-v)*q)).join(',')})`}
 function mapa(){
   if(!MAPA)return;const el=$('mapa');
   if(!el.dataset.ok){let s=`<svg viewBox="0 0 1040 ${MAPA.h+30}" role="img" aria-label="Mapa do Brasil por estado">`;
@@ -460,7 +460,7 @@ function mapa(){
       p.addEventListener('mouseleave',()=>{if(hov.matches)tipOff()});
       p.addEventListener('click',e=>{e.stopPropagation();if(hov.matches){tipOff();abre('uf',u)}else tipUF(u,e.clientX,e.clientY,true)})})}
   for(const u in MAPA.uf){const x=MD.UP[u];$('m-'+u).setAttribute('fill',corUF(x));const t=$('t-'+u);
-    const o=OFF[u];const forte=x&&x.n&&Math.abs(x.L-x.F)/x.n>.04;t.style.fill=o?'#C3CBE3':(x&&x.n&&x.F>x.L&&forte?'#1a1400':'#fff');
+    const o=OFF[u];const forte=x&&x.n&&Math.abs(x.L-x.F)/x.n>.04;t.style.fill=o?'#C3CBE3':'#fff';
     t.querySelector('.v').textContent=x&&x.n?(x.F>x.L?'F ':'L ')+F(100*Math.max(x.F,x.L)/x.n,0)+'%':''}
   const c={sup:0,dec:0,exp:0,agu:0};UFS.forEach(u=>c[MD.UP[u].s.k]++);
   $('resumo').innerHTML=[['sup','Flávio superando','o 1º turno','var(--flav)'],['exp','Flávio na expectativa','','#E4E8F5'],['dec','Flávio decepcionando','abaixo do 1º turno','var(--lula2)'],['agu','aguardando apuração','','var(--tx3)']].map(([k,t,s,cor])=>`<div class="rs clk" onclick="filtraSelo()"><b class="num q" style="color:${cor}">${c[k]}</b><span>estado${c[k]===1?'':'s'} com <b style="color:var(--tx)">${t}</b> ${s}</span></div>`).join('');
