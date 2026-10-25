@@ -25,7 +25,7 @@ a{color:inherit}
 button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .num{font-family:var(--f1);font-weight:800;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
 .clk{cursor:pointer}
-.app{display:grid;grid-template-columns:minmax(0,1fr) 380px;min-height:100vh}
+.app{display:grid;grid-template-columns:minmax(0,1fr) 300px;min-height:100vh}
 .main{min-width:0;border-right:1px solid var(--ln)}
 .wrap{padding:0 var(--gut)}
 header.top{position:sticky;top:0;z-index:30;background:rgba(10,17,36,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--ln)}
@@ -233,7 +233,7 @@ details.blk[open] summary::after{content:"–"}
 .cmp .bar i{display:block;height:100%}
 footer{padding:36px var(--gut) 60px;border-top:1px solid var(--ln);font-size:12px;color:var(--tx3);line-height:1.65}
 footer a{color:var(--tx2)}
-@media(max-width:1180px){:root{--gut:22px}.app{grid-template-columns:minmax(0,1fr) 330px}.cand .pc{font-size:52px}.fr{grid-template-columns:110px 1fr 180px}}
+@media(max-width:1180px){:root{--gut:22px}.app{grid-template-columns:minmax(0,1fr) 280px}.cand .pc{font-size:52px}.fr{grid-template-columns:110px 1fr 180px}}
 @media(max-width:980px){
   .app{display:flex;flex-direction:column}.main{display:contents}
   header.top{order:0}.placar{order:1}aside.feed{order:2;position:relative;height:620px;border-top:1px solid var(--ln)}.resto{order:3}
@@ -252,6 +252,25 @@ footer a{color:var(--tx2)}
   .govs{grid-template-columns:1fr}
   .det .pc{padding:18px 16px 0}.det .ph{padding:12px 16px}
 }
+
+/* feed claro */
+aside.feed{background:#F6F4EF;color:#14182B;border-left:1px solid #E2DED4}
+aside.feed .fh{border-bottom:1px solid #E2DED4;padding:14px 16px 10px}
+aside.feed .fh h3{color:#14182B;font-size:13px}
+aside.feed .fh small{color:#6B7080}
+aside.feed .lista{scrollbar-color:#D5D0C4 transparent}
+aside.feed .ni{border-bottom:1px solid #E7E3DA;padding:11px 16px}
+aside.feed .ni:hover{background:#EDEAE2}
+aside.feed .ni.fresca{background:#FFF1C9}
+aside.feed .ni .m{color:#7A7F8E}
+aside.feed .ni .m b{color:#14182B}
+aside.feed .ni .t{font-size:13px;color:#14182B}
+aside.feed .ni .x{font-size:12px;color:#4A4F60;line-height:1.4;margin-top:3px}
+aside.feed .ni.ctx{background:#EFECE4}
+aside.feed .ni.ctx .m b{color:#B4232B;text-transform:uppercase;font-size:10.5px;letter-spacing:.05em}
+aside.feed .ni .uf{color:#14182B;border-color:#CFCABD}
+aside.feed .ni .uf:hover{background:#14182B;color:#fff}
+aside.feed .novas{background:#14182B;color:#fff}
 </style>
 </head>
 <body>
@@ -308,9 +327,6 @@ footer a{color:var(--tx2)}
 
 <aside class="feed" id="feed">
   <div class="fh"><h3>O QUE ESTÁ ACONTECENDO</h3><small id="fhH">Notícias e o que circula, mais recente no topo</small></div>
-  <details class="blk" id="bTerm" open><summary>Mais falado na última hora</summary><div class="in" id="term"></div></details>
-  <details class="blk"><summary>Contexto</summary><div class="in" id="ctx"></div></details>
-  <div class="chips" id="chips"></div>
   <div class="lista" id="lista"><button class="novas" id="novas" onclick="document.getElementById('lista').scrollTo({top:0,behavior:'smooth'})"></button><div id="itens"></div></div>
 </aside>
 </div>
@@ -605,15 +621,13 @@ const ago=ts=>{const m=Math.max(0,Math.round((Date.now()/1000-ts)/60));return m<
 const UFX={ba:'Salvador|baian',pe:'Recife|pernambuc',ce:'Fortaleza|cearense',sp:'paulista',rj:'carioca|fluminense',mg:'mineir|Belo Horizonte',rs:'gaúch|Porto Alegre',am:'Manaus|amazonense',pa:'Belém|paraense',df:'Brasília|\\bDF\\b',es:'capixaba|Vitória',rn:'potiguar|Natal\\b',to:'tocantinense|Palmas',ac:'acrean|Rio Branco'};
 const UFRX=UFS.map(u=>[u,new RegExp('\\b'+UFN[u]+'\\b'+(UFX[u]?'|'+UFX[u]:''),'i')]);
 function fcRender(){
-  if(NEWS&&NEWS.temas){const T=NEWS.temas.filter(t=>t.tot).slice(0,6),mx=Math.max(1,...T.map(t=>t.h1));
-    $('term').innerHTML=T.map(t=>`<div class="tm"><div class="l"><b style="font-weight:600">${esc(t.n)}</b><span>${t.fontes} veículo${t.fontes===1?'':'s'}</span></div><div class="b"><i style="width:${100*t.h1/mx}%"></i></div></div>`).join('')+'<p class="nota" style="margin-top:10px">Veículos que publicaram sobre o tema na última hora, pelo Google Notícias.</p>'}
-  if(CTX)$('ctx').innerHTML=CTX.circula.map(c=>`<a class="cx" href="${esc(c.u)}" target="_blank" rel="noopener"><div class="k">${esc(c.tipo)}, ${esc(c.s)}</div><div class="t">${esc(c.t)}</div><div class="x">${esc(c.x)}</div></a>`).join('')+`<p class="nota">Curadoria do painel, ${esc(CTX.h)}.</p>`;
-  $('chips').innerHTML=[['tudo','Tudo']].concat(Object.entries(TG).filter(([k])=>k!=='geral')).map(([k,t])=>`<button class="${fcF===k?'on':''}" onclick="fcF='${k}';fcRender()">${t}</button>`).join('');
-  if(!NEWS)return;
-  const L=NEWS.itens.filter(x=>fcF==='tudo'||x.tags.includes(fcF)).slice().sort((a,b)=>b.ts-a.ts);
-  $('itens').innerHTML=L.map(x=>{const uf=UFRX.find(([u,r])=>r.test(x.t));const tg=TG[x.tags.find(t=>t!=='geral')||'geral'];
-    return `<a class="ni ${frescas.has(x.u)?'fresca':''}" href="${esc(x.u)}" target="_blank" rel="noopener"><div class="m"><b>${esc(x.s)}</b><span>${ago(x.ts)}</span><span>${tg}</span></div><div class="t">${esc(x.t)}</div>${uf?`<span class="uf" onclick="event.preventDefault();event.stopPropagation();abre('uf','${uf[0]}')">${UFN[uf[0]]} no painel →</span>`:''}</a>`}).join('');
-  $('fhH').textContent=`Mais recente no topo, atualizado às ${NEWS.h}`;
+  if(!NEWS&&!CTX)return;
+  let h='';
+  if(CTX)h+=CTX.circula.map(c=>`<a class="ni ctx" href="${esc(c.u)}" target="_blank" rel="noopener"><div class="m"><b>Contexto</b><span>${esc(c.s)}</span></div><div class="t">${esc(c.t)}</div><div class="x">${esc(c.x)}</div></a>`).join('');
+  if(NEWS)h+=NEWS.itens.slice().sort((a,b)=>b.ts-a.ts).map(x=>{const uf=UFRX.find(([u,r])=>r.test(x.t));
+    return `<a class="ni ${frescas.has(x.u)?'fresca':''}" href="${esc(x.u)}" target="_blank" rel="noopener"><div class="m"><b>${esc(x.s)}</b><span>${ago(x.ts)}</span></div><div class="t">${esc(x.t)}</div>${uf?`<span class="uf" onclick="event.preventDefault();event.stopPropagation();abre('uf','${uf[0]}')">${UFN[uf[0]]} no painel →</span>`:''}</a>`}).join('');
+  $('itens').innerHTML=h;
+  if(NEWS)$('fhH').textContent=`Mais recente no topo, atualizado às ${NEWS.h}`;
 }
 async function fcCiclo(){
   try{const n=await pega('t2_news.json');
@@ -656,7 +670,6 @@ function rodape(){$('rodape').innerHTML=`<p><b style="color:var(--tx2)">Fontes.<
  <p style="margin-top:10px"><b style="color:var(--tx2)">Contas do painel.</b> Sinal, projeção e faixa não são do TSE. A régua é o 1º turno de 2026 no mesmo lugar; não há dado de 2022 por município no servidor do TSE.</p>
  <p style="margin-top:10px"><b style="color:var(--tx2)">Fotos</b> (Wikimedia Commons): ${CRED.map(([n,c,f])=>`<a href="https://commons.wikimedia.org/wiki/File:${f}" target="_blank" rel="noopener">${n}</a> (${c})`).join(', ')}.</p>`}
 (async()=>{
-  if(innerWidth<980)$('bTerm').open=false;
   rodape();fcCiclo();setInterval(fcCiclo,30000);
   [BASE,C1,MAPA]=await Promise.all([pega('t2_base.json'),pega('t2_curva1.json').catch(()=>({})),pega('t2_mapa.json').catch(()=>null)]);
   await Promise.all(GOV.map(async u=>{try{const d=await pega(`${TSE}/6259/dados/${u}/${u}-c0003-e006259-u.json`);const v={};d.carg[0].agr.forEach(a=>a.par.forEach(p=>p.cand.forEach(c=>v[c.n]=+c.vap)));GV1[u]=v}catch(e){}}));
