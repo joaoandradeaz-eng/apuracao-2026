@@ -132,7 +132,7 @@ section.sec{scroll-margin-top:52px;padding-top:40px;padding-bottom:44px;border-t
 .fr h4{font-family:var(--f1);font-weight:700;font-size:15px}
 .fr h4 small{display:block;font-family:var(--f3);font-weight:500;font-size:11.5px;color:var(--tx3)}
 .fb{height:28px;display:flex;border-radius:2px;overflow:hidden;background:var(--ln2)}
-.fb i{display:block;height:100%}
+.fb i{display:block;height:100%;position:relative;overflow:hidden}.fp{display:flex;gap:14px;font:800 14px var(--f1);margin-bottom:5px}.fp span{font:12px var(--f2);color:var(--tx3)}.fb em{position:absolute;left:8px;top:50%;transform:translateY(-50%);font:800 13px var(--f1);font-style:normal;color:#fff;white-space:nowrap}
 .fb i.rest{background-image:repeating-linear-gradient(135deg,rgba(255,255,255,.22) 0 2px,transparent 2px 7px)}
 .fr .q{font-size:12.5px;color:var(--tx2);line-height:1.35}
 .fr .q b{color:var(--tx);font-weight:600}
@@ -516,7 +516,7 @@ function falta(){
   $('falta').innerHTML=Object.keys(REG).map(r=>{const o=R[r];if(!o)return '';const t=o.L+o.F+o.rem||1,a=o.ts?100*o.st/o.ts:0,pl=o.rem?o.rl/o.rem:.5;
     const nn=o.L+o.F,fx={n:nn,L:o.L,F:o.F,s:selo(nn?o.F/nn:null,o.F1/(o.L1+o.F1),a>=1&&nn>0)};
     return `<div class="fr" onclick="filtraReg('${r}')"><div>${farol(fx)}</div><h4>${r}<small>${F(a,0)}% apurado, ${fx.s.k==='agu'?'aguardando':fx.s.t+' '+(fx.s.d>0?'+':'')+F(fx.s.d,1)}</small></h4>
-     <div><div class="fb" style="width:${Math.max(6,100*t/mx)}%"><i style="width:${100*o.L/t}%;background:var(--lula)"></i><i style="width:${100*o.F/t}%;background:var(--flav)"></i><i class="rest" style="width:${100*o.rem/t}%;background-color:${pl>=.5?'var(--lulaE)':'var(--flavE)'}"></i></div></div>
+     <div><div class="fp">${nn?`<b style="color:var(--lula2)">Lula ${F(100*o.L/nn,1)}%</b><b style="color:var(--flav2)">Flávio ${F(100*o.F/nn,1)}%</b>`:'<span>sem votos apurados</span>'}</div><div class="fb" style="width:${Math.max(6,100*t/mx)}%"><i style="width:${100*o.L/t}%;background:var(--lula)"></i><i style="width:${100*o.F/t}%;background:var(--flav)"></i><i class="rest" style="width:${100*o.rem/t}%;background-color:${pl>=.5?'var(--lulaE)':'var(--flavE)'}"></i></div></div>
      <div class="q">${o.rem>1000?`Faltam <b>${MI(o.rem)}</b> votos, que pendem para <b style="color:${pl>=.5?'var(--lula2)':'var(--flav)'}">${pl>=.5?'Lula':'Flávio'} (${F(100*Math.max(pl,1-pl),0)}%)</b>`:'Praticamente tudo apurado'}</div></div>`}).join('');
 }
 
