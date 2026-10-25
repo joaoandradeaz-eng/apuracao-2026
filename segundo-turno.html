@@ -236,7 +236,7 @@ const N=x=>Math.round(x||0).toLocaleString('pt-BR');
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const cap=s=>String(s).toLowerCase().replace(/(^|[\s.\-'])([a-zà-ú])/g,(m,a,b)=>a+b.toUpperCase()).replace(/\b(D[aeo]s?|E)\b/g,m=>m.toLowerCase());
 const clip=(x,a=.02,b=.98)=>Math.max(a,Math.min(b,x));
-const pega=async u=>{const r=await fetch(u+(u.includes('?')?'&':'?')+'t='+Math.floor(Date.now()/20000),{cache:'no-store'});if(!r.ok)throw r.status;return r.json()};
+const pega=async u=>{const r=await fetch(u+(u.includes('?')?'&':'?')+'t='+(u.startsWith('http')?Math.floor(Date.now()/15000):Date.now()),{cache:'no-store'});if(!r.ok)throw r.status;return r.json()};
 function mixc(t){ // t: Lula share 0..1 -> color
   const a=[47,123,255],m=[59,69,102],b=[232,51,59];const k=Math.max(-1,Math.min(1,(t-.5)/.15));
   const [x,y]=k<0?[m,a]:[m,b];const q=Math.abs(k);return `rgb(${x.map((v,i)=>Math.round(v+(y[i]-v)*q)).join(',')})`;
