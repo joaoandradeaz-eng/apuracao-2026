@@ -445,10 +445,20 @@ const TC={Polêmica:'#FF8A7A',Dúvida:'#4FA8F5',Contexto:'#C4CDE6',Risco:'#F28C2
 let NEWS=null,CTX=null,fcF='tudo',vistos=new Set(),rolY=0,rolH=0;
 const ago=ts=>{const m=Math.max(0,Math.round((Date.now()/1000-ts)/60));return m<1?'agora':m<60?'há '+m+' min':'há '+Math.floor(m/60)+'h'+(m%60?String(m%60).padStart(2,'0'):'')};
 function fcRender(){
-  if(CTX){const a=CTX.alerta;const el=document.getElementById('alerta');el.href=a.u;el.innerHTML=`<b>⚠ ${esc(a.t)}</b><p>${esc(a.x)}</p><p style="margin-top:4px;font-weight:600">${esc(a.s)} ↗</p>`}
+  // alerta: estado da apuração vem do próprio TSE; o texto curado entra como contexto
+  {const b=PR.br,el=document.getElementById('alerta');let t,x,u='https://resultados.tse.jus.br/',fo='TSE';
+   if(b){const hgm=+b.hg.slice(0,2)*60+ +b.hg.slice(3,5),ag=new Date().getHours()*60+new Date().getMinutes();
+     if(b.pst>=99.99){t='Apuração concluída';x=`O TSE totalizou ${F(b.pst,2)}% das seções.`}
+     else if(ag-hgm>=10&&ag<19*60+20){t='Votação prorrogada até 19h e apuração pausada';x=CTX?CTX.alerta.x:'';u=CTX?CTX.alerta.u:u;fo=CTX?CTX.alerta.s:fo}
+     else{t=`Apuração em andamento: ${F(b.pst,2)}% das seções`;x=`Última atualização do TSE às ${b.hg.slice(0,5)}. ${(b.L>=b.F?'Lula':'Flávio')} à frente por ${N(Math.abs(b.L-b.F))} votos.`}}
+   else if(CTX){t=CTX.alerta.t;x=CTX.alerta.x;u=CTX.alerta.u;fo=CTX.alerta.s}
+   if(t){el.href=u;el.innerHTML=`<b>⚠ ${esc(t)}</b><p>${esc(x)}</p><p style="margin-top:4px;font-weight:600">${esc(fo)} ↗</p>`}}
+  if(false){const a=CTX.alerta;const el=document.getElementById('alerta');el.href=a.u;el.innerHTML=`<b>⚠ ${esc(a.t)}</b><p>${esc(a.x)}</p><p style="margin-top:4px;font-weight:600">${esc(a.s)} ↗</p>`}
   const tabs=[['tudo','Tudo'],['circ','O que circula'],['stf','STF e TSE'],['apur','Apuração'],['gov','Governos'],['chec','Checagem'],['redes','Redes'],['ext','Exterior']];
   document.getElementById('fcTabs').innerHTML=tabs.map(([k,t])=>`<button class="${fcF===k?'on':''}" onclick="fcF='${k}';fcRender()">${t}</button>`).join('');
   let html='';
+  if(NEWS&&NEWS.temas&&(fcF==='tudo'||fcF==='circ')){const mx=Math.max(1,...NEWS.temas.map(t=>t.h1));
+    html+=`<div class="it cur" style="cursor:default"><div class="m"><span class="tg" style="background:var(--ouro);color:#0B1530">Termômetro</span><span>assuntos mais falados na última hora, por número de veículos</span></div>${NEWS.temas.filter(t=>t.tot).slice(0,6).map(t=>`<div style="margin-top:8px"><div style="display:flex;justify-content:space-between;font-size:12.5px;font-weight:600"><span>${esc(t.n)}</span><span class="mono" style="color:var(--tinta3)">${t.fontes} veíc.</span></div><div style="height:6px;background:var(--funda);margin-top:3px"><i style="display:block;height:100%;width:${100*t.h1/mx}%;background:var(--ouro)"></i></div>${t.ult[0]?`<a href="${esc(t.ult[0].u)}" target="_blank" rel="noopener" style="display:block;color:var(--tinta2);font-size:12px;margin-top:3px;text-decoration:none">${esc(t.ult[0].t)} (${esc(t.ult[0].s)}, ${ago(t.ult[0].ts)})</a>`:''}</div>`).join('')}</div>`}
   if(CTX&&(fcF==='tudo'||fcF==='circ'))html+=CTX.circula.map(c=>`<a class="it cur" href="${esc(c.u)}" target="_blank" rel="noopener"><div class="m"><span class="tg" style="background:${TC[c.tipo]||'#fff'};color:#0B1530">${esc(c.tipo)}</span><span>${esc(c.s)}</span><span>curadoria ${esc(CTX.h)}</span></div><div class="t">${esc(c.t)}</div><div class="x">${esc(c.x)}</div></a>`).join('');
   if(NEWS&&fcF!=='circ')html+=NEWS.itens.filter(x=>fcF==='tudo'||x.tags.includes(fcF)).map(x=>{const tg=TG[x.tags.find(t=>t!=='geral')||'geral'];const nv=!vistos.has(x.u)&&vistos.size>0;
     return `<a class="it" href="${esc(x.u)}" target="_blank" rel="noopener"><div class="m"><span class="tg" style="background:${tg[1]};color:${tg[2]}">${tg[0]}</span><span>${esc(x.s)}</span><span class="${nv?'novo':''}">${nv?'novo, ':''}${ago(x.ts)}</span></div><div class="t">${esc(x.t)}</div></a>`}).join('');
@@ -463,7 +473,7 @@ rolo.addEventListener('touchstart',()=>pausa=true,{passive:true});rolo.addEventL
 rolo.addEventListener('wheel',e=>{rolY=(rolY+e.deltaY+rolH)%rolH;e.preventDefault()},{passive:false});
 let ty=null;rolo.addEventListener('touchmove',e=>{const y=e.touches[0].clientY;if(ty!=null)rolY=(rolY+(ty-y)+rolH)%rolH;ty=y;e.preventDefault()},{passive:false});rolo.addEventListener('touchend',()=>ty=null);
 (function anda(){if(!pausa&&rolH)rolY=(rolY+0.25)%rolH;document.getElementById('trilho').style.transform=`translateY(${-rolY}px)`;requestAnimationFrame(anda)})();
-fcCiclo();setInterval(fcCiclo,60000);
+fcCiclo();setInterval(fcCiclo,30000);
 
 /* ---------------- ciclo ---------------- */
 async function ciclo(){
