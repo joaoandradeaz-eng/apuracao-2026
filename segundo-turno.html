@@ -113,8 +113,8 @@ section.sec{scroll-margin-top:52px;padding-top:40px;padding-bottom:44px;border-t
 .proj b{color:var(--tx)}
 /* selos */
 .selo{display:inline-block;font-family:var(--f1);font-weight:700;font-size:11px;letter-spacing:.03em;padding:3px 7px;border-radius:var(--r);white-space:nowrap}
-.selo.sup{background:repeating-linear-gradient(135deg,#2F7BFF 0 5px,#1C56C9 5px 10px);color:#fff}
-.selo.dec{background:repeating-linear-gradient(135deg,#E5333B 0 5px,#A81E27 5px 10px);color:#fff}
+.selo.sup{background:#2F7BFF;color:#fff}
+.selo.dec{background:#E5333B;color:#fff}
 .far{display:inline-block;width:18px;height:18px;border-radius:3px;vertical-align:middle;margin-right:8px}.fart{font-size:12px;color:var(--tx2)}
 .mapa .lst{pointer-events:none}
 .nac{margin-top:10px}
@@ -304,12 +304,12 @@ aside.feed .novas{background:#14182B;color:#fff}
   <div class="leg"><span><i style="background:var(--lula)"></i>Lula</span><span><i style="background:var(--flav)"></i>Flávio</span></div></div>
 </section>
 
-<section class="sec wrap" id="s-mapa"><div class="sh"><span class="n">02</span><h2>Estado por estado</h2><p>Cor: quem lidera. Listras: quem cresceu sobre o 1º turno.</p></div>
+<section class="sec wrap" id="s-mapa"><div class="sh"><span class="n">02</span><h2>Estado por estado</h2><p>Cor: quem lidera. Estrelas: Lula cresceu sobre o 1º turno. PL: Flávio cresceu.</p></div>
   <div class="body mapa-g"><div class="mapa" id="mapa"></div>
    <div><div class="resumo" id="resumo"></div>
     <div class="escala" style="margin-top:18px"><div class="g"></div><div class="r"><span>Lula lidera com folga</span><span>empate</span><span>Flávio lidera com folga</span></div></div>
     <div class="proj" id="proj" style="margin-top:16px"></div>
-    <p class="nota"><b>Listras</b> mostram quem cresceu em relação ao 1º turno: listras azuis, Flávio está melhor do que no 1º turno; listras vermelhas, Lula está melhor. Para a conta ser justa, o 1º turno é recalculado só com os votos dados aos dois (os votos dos outros candidatos saem da base), e comparado com a divisão de agora entre os dois. Conta do painel.</p></div>
+    <p class="nota"><b>Mosaico</b> mostra quem cresceu em relação ao 1º turno: estrelas, Lula está melhor do que no 1º turno; PL, Flávio está melhor. Para a conta ser justa, o 1º turno é recalculado só com os votos dados aos dois (os votos dos outros candidatos saem da base), e comparado com a divisão de agora entre os dois. Conta do painel.</p></div>
   </div>
 </section>
 
@@ -472,7 +472,7 @@ function corUF(x){if(!x||!x.n)return '#2C3657';const m=Math.min(1,Math.abs(x.L-x
 function mapa(){
   if(!MAPA)return;const el=$('mapa');
   if(!el.dataset.ok){let s=`<svg viewBox="0 0 1040 ${MAPA.h+30}" role="img" aria-label="Mapa do Brasil por estado">`;
-    s+=`<defs><pattern id="pF" width="12" height="12" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="5" height="12" fill="#9CC2FF"/></pattern><pattern id="pL" width="12" height="12" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="5" height="12" fill="#FF9097"/></pattern></defs>`;
+    s+=`<defs><pattern id="pL" width="22" height="22" patternUnits="userSpaceOnUse"><path d="M6 0.8l1.5 3.3 3.6.4-2.7 2.4.8 3.5L6 8.6 2.8 10.4l.8-3.5L.9 4.5l3.6-.4z" transform="translate(2,2) scale(1.1)" fill="#FFFFFF" opacity=".9"/><path d="M6 0.8l1.5 3.3 3.6.4-2.7 2.4.8 3.5L6 8.6 2.8 10.4l.8-3.5L.9 4.5l3.6-.4z" transform="translate(13,13) scale(.8)" fill="#FFFFFF" opacity=".55"/></pattern><pattern id="pF" width="26" height="20" patternUnits="userSpaceOnUse"><text x="2" y="9" font-family="Montserrat" font-weight="900" font-size="9" fill="#FFFFFF" opacity=".9">PL</text><text x="15" y="19" font-family="Montserrat" font-weight="900" font-size="7" fill="#FFFFFF" opacity=".55">PL</text></pattern></defs>`;
     for(const u in MAPA.uf)s+=`<path id="m-${u}" d="${MAPA.uf[u].d}" data-u="${u}"/>`;
     for(const u in MAPA.uf)s+=`<path class="lst" id="l-${u}" d="${MAPA.uf[u].d}" fill="none" stroke="none"/>`;
     for(const u in MAPA.uf){const m=MAPA.uf[u],o=OFF[u];if(o)s+=`<line class="ld" x1="${m.cx}" y1="${m.cy}" x2="${o[0]-6}" y2="${o[1]-5}"/>`;
@@ -521,7 +521,7 @@ function val(x,k){switch(k){case 'nm':return x.u?UFN[x.u]:sem(x.nm);case 'te':re
 function th(t,k,cls,tab){const o=TB[tab];return `<th class="${cls||''} ${o.ord===k?'on':''}" onclick="ordena('${tab}','${k}')">${t}${o.ord===k?`<span class="ar">${o.dir<0?'↓':'↑'}</span>`:''}</th>`}
 function ordena(tab,k){const o=TB[tab];if(o.ord===k)o.dir*=-1;else{o.ord=k;o.dir=(k==='nm'||k==='selo')?1:-1}tab==='uf'?tabUF():munTab()}
 function srt(arr,tab){const o=TB[tab];return arr.sort((a,b)=>{const A=val(a,o.ord),B=val(b,o.ord);return (A>B?1:A<B?-1:0)*o.dir})}
-function farol(x){const n=x.n||0;const bg=n?(x.F>x.L?'#2F7BFF':'#E5333B'):'#2C3657';const st=x.s.k==='sup'?'repeating-linear-gradient(135deg,transparent 0 3px,#C9DCFF 3px 5px)':x.s.k==='dec'?'repeating-linear-gradient(135deg,transparent 0 3px,#FFC2C5 3px 5px)':'none';
+function farol(x){const n=x.n||0;const bg=n?(x.F>x.L?'#2F7BFF':'#E5333B'):'#2C3657';const st=x.s.k==='sup'?'url(data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2214%22%20height%3D%2211%22%3E%3Ctext%20x%3D%221%22%20y%3D%229%22%20font-family%3D%22Arial%22%20font-weight%3D%22900%22%20font-size%3D%228%22%20fill%3D%22%23fff%22%3EPL%3C/text%3E%3C/svg%3E) 0 0/9px 7px':x.s.k==='dec'?'url(data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2211%22%20height%3D%2211%22%3E%3Cpath%20d%3D%22M6%200.8l1.5%203.3%203.6.4-2.7%202.4.8%203.5L6%208.6%202.8%2010.4l.8-3.5L.9%204.5l3.6-.4z%22%20transform%3D%22scale%28.85%29%20translate%28.5%2C.5%29%22%20fill%3D%22%23fff%22/%3E%3C/svg%3E) 0 0/8px 8px':'none';
   return `<span class="far" style="background:${st},${bg}" title="${x.s.t}"></span>`}
 function cel(x){const pst=x.u?100*x.a:x.pst,ok=x.fAt!=null,d=ok?100*(x.fAt-x.f1):0;
   return `<td class="r"><span class="mb"><i style="width:${Math.min(100,pst)}%"></i></span>${F(pst,0)}%</td>
