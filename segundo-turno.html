@@ -213,7 +213,7 @@ aside.feedcol{position:sticky;top:0;height:100vh;background:#0E1A3A;display:flex
  <div id="busR"></div>
 </div></section>
 
-<footer><div class="w">Fonte dos números: TSE, resultados.tse.jus.br (Presidente, eleição 6258; Governador, 6260; 1º turno, 6257 e 6259). Os números principais são lidos direto do TSE pelo seu navegador a cada 30 segundos; os municípios são atualizados a cada poucos minutos. Esperado, surpresa, projeção e faixa são contas do painel, não do TSE. O cálculo parte do 1º turno de 2026; não há dado de 2022 por município no servidor do TSE.</div></footer>
+<footer><div class="w">Fonte dos números: TSE, resultados.tse.jus.br (Presidente, eleição 6258; Governador, 6260; 1º turno, 6257 e 6259). Os números principais são lidos direto do TSE pelo seu navegador a cada 20 segundos, e os municípios também vêm direto do TSE, a cada 45 segundos. O TSE renova os próprios arquivos a cada minuto, mais ou menos; este é o limite do tempo real. Esperado, surpresa, projeção e faixa são contas do painel, não do TSE. O cálculo parte do 1º turno de 2026; não há dado de 2022 por município no servidor do TSE.</div></footer>
 
 </div>
 <aside class="feedcol"><div class="fc-hd"><h3>O QUE ESTÁ ACONTECENDO</h3><small id="fcH">Notícias, checagens e o que circula nas redes. Toque para abrir.</small></div>
@@ -307,7 +307,7 @@ function render(){
   document.getElementById('cabo').innerHTML=`<div style="width:${pL}%;background:var(--lula)"></div><div style="width:${pF}%;background:var(--flav)"></div>`;
   const dv=Math.abs(b.L-b.F);
   document.getElementById('dif').innerHTML=n?`<b>${lid==='l'?'Lula':'Flávio'}</b> à frente por <b>${N(dv)}</b> votos (${F(Math.abs(pL-pF),2)} p.p.), brancos ${F(100*b.vb/(b.vv+b.vb+b.vn||1),1)}%, nulos ${F(100*b.vn/(b.vv+b.vb+b.vn||1),1)}%, comparecimento ${F(b.pc,1)}%`:'Aguardando os primeiros votos';
-  document.getElementById('hora').textContent='TSE '+b.hg+', atualiza a cada 30 s';
+  document.getElementById('hora').textContent='TSE '+b.hg+', ao vivo';
   const hgm=+b.hg.slice(0,2)*60+ +b.hg.slice(3,5),agora=new Date().getHours()*60+new Date().getMinutes();const pz=document.getElementById('pausa');
   if(b.pst<99&&agora-hgm>=10&&agora<19*60+20){pz.style.display='block';pz.textContent=`Apuração pausada pelo TSE desde ${b.hg.slice(0,5)}, com ${F(b.pst,2)}% das seções: o STF prorrogou a votação até 19h. A contagem volta depois disso.`}else pz.style.display='none';
   narra(b,pL);grafico(b,pL);projBox();regioes();roteiro();feed();mapa();govs();if(document.getElementById('bus').value)busca();
@@ -470,14 +470,32 @@ async function ciclo(){
   const urls=[['br','br']].concat(UFS.map(u=>[u,u]),[['zz','zz']]);
   await Promise.all(urls.map(async([k,u])=>{try{PR[k]=lerPres(await pega(`${TSE}/6258/dados/${u}/${u}-c0001-e006258-u.json`))}catch(e){}}));
   await Promise.all(GOV.map(async u=>{try{GV[u]=lerGov(await pega(`${TSE}/6260/dados/${u}/${u}-c0003-e006260-u.json`))}catch(e){}}));
-  try{MUN=await pega('t2_mun.json')}catch(e){}
+  try{const m=await pega('t2_mun.json');MUN=m;mescla()}catch(e){}
   const b=PR.br;if(b&&b.L+b.F){const p=[b.pst,100*b.L/(b.L+b.F)];if(!LIVE.length||LIVE[LIVE.length-1][0]!==p[0])LIVE.push(p)}
   render();
+}
+/* municípios direto do TSE: lê o resumo de cada UF e baixa só os que andaram */
+const LP={},LG={};let munOcup=false;
+function mescla(){MUN.p=MUN.p||{};MUN.g=MUN.g||{};for(const k in LP)if(!MUN.p[k]||MUN.p[k][3]<LP[k][3])MUN.p[k]=LP[k];for(const k in LG)if(!MUN.g[k]||MUN.g[k][2]<LG[k][2])MUN.g[k]=LG[k]}
+async function munVivo(){
+  if(munOcup||!BASE)return;munOcup=true;
+  try{
+    const fila=[];
+    const abs=UFS.map(u=>['6258',1,u]).concat(GOV.map(u=>['6260',3,u]));
+    await Promise.all(abs.map(async([e,c,u])=>{try{const d=await pega(`${TSE}/${e}/dados/${u}/${u}-e00${e}-ab.json`);
+      d.abr.forEach(a=>{if(a.tpabr!=='mun')return;const pst=num(a.s.pst);if(!pst)return;const k=u+a.cdabr;const tem=e==='6258'?(MUN.p&&MUN.p[k]?MUN.p[k][3]:-1):(MUN.g&&MUN.g[k]?MUN.g[k][2]:-1);
+        if(pst>tem)fila.push([e,c,u,a.cdabr,k])})}catch(x){}}));
+    fila.splice(250);
+    let i=0;await Promise.all(Array.from({length:10},async()=>{while(i<fila.length){const [e,c,u,cd,k]=fila[i++];try{const d=await pega(`${TSE}/${e}/dados/${u}/${u}${cd}-c000${c}-e00${e}-u.json`);
+      const v={};d.carg[0].agr.forEach(a=>a.par.forEach(p=>p.cand.forEach(x=>v[x.n]=+x.vap)));const pst=num(d.s.pst),vv=+d.v.vv;
+      if(e==='6258')LP[k]=[v['13']||0,v['22']||0,vv,pst];else LG[k]=[v,vv,pst]}catch(x){}}}));
+    if(fila.length){mescla();render()}
+  }finally{munOcup=false}
 }
 (async()=>{
   [BASE,C1]=await Promise.all([pega('t2_base.json'),pega('t2_curva1.json').catch(()=>({}))]);
   await Promise.all(GOV.map(async u=>{try{const d=await pega(`${TSE}/6259/dados/${u}/${u}-c0003-e006259-u.json`);const v={};d.carg[0].agr.forEach(a=>a.par.forEach(p=>p.cand.forEach(c=>v[c.n]=+c.vap)));GV1[u]=v}catch(e){}}));
-  await ciclo();setInterval(ciclo,30000);
+  await ciclo();setInterval(ciclo,20000);munVivo();setInterval(munVivo,45000);
 })();
 </script>
 </body>
