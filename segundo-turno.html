@@ -5,507 +5,659 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex">
 <title>Apuração 2º turno 2026</title>
+<meta name="description" content="Lula x Flávio Bolsonaro e os seis governos em 2º turno, ao vivo do TSE, com o que está acima e abaixo do esperado em cada estado e cidade.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600&family=Montserrat:wght@600;700;800;900&display=swap" rel="stylesheet">
 <style>
-:root{--campo:#0B1530;--funda:#070E22;--bloco:#13214A;--bloco2:#1A2B5C;--tinta:#fff;--tinta2:#C4CDE6;--tinta3:#8391B8;
---lula:#E8333B;--lula2:#FF8A8F;--flav:#2F7BFF;--flav2:#8DB6FF;--ouro:#FFC800;--sim:#56D68B}
-*{box-sizing:border-box;margin:0;padding:0}
-html,body{background:var(--campo);color:var(--tinta);font-family:'IBM Plex Sans',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
-body{overflow-x:hidden}
-.mono{font-family:'IBM Plex Mono',monospace}
-h1,h2,h3,.mont{font-family:Montserrat,sans-serif;letter-spacing:-.01em}
-.w{max-width:1180px;margin:0 auto;padding:0 16px}
-header.top{background:var(--funda);padding:10px 0;position:sticky;top:0;z-index:20}
-header.top .w{display:flex;justify-content:space-between;align-items:center;gap:12px;font-size:13px;color:var(--tinta2)}
-header.top b{color:var(--tinta);font-family:Montserrat;font-weight:800;font-size:14px;letter-spacing:.02em}
-.vivo{display:inline-flex;align-items:center;gap:6px}.vivo i{width:8px;height:8px;border-radius:50%;background:var(--lula);animation:pis 1.4s infinite}
-@keyframes pis{50%{opacity:.25}}
-nav.tabs{display:flex;gap:4px;overflow-x:auto;padding:10px 0 0}
-nav.tabs a{color:var(--tinta2);text-decoration:none;font-family:Montserrat;font-weight:700;font-size:13px;padding:8px 14px;background:var(--bloco);white-space:nowrap}
-nav.tabs a.on{background:var(--tinta);color:var(--campo)}
-/* placar */
-.duelo{position:relative;display:grid;grid-template-columns:1fr 1fr;min-height:420px;overflow:hidden;background:var(--funda)}
-.lado{position:relative;display:flex;flex-direction:column;justify-content:flex-end;padding:22px 22px 26px;min-height:420px}
-.lado img.foto{position:absolute;bottom:0;height:100%;max-height:440px;object-fit:cover;object-position:top;filter:saturate(1.05) contrast(1.05);opacity:.95;transition:transform .6s}
-.lado.l img.foto{left:0}.lado.f img.foto{right:0}
-.lado.l{background:linear-gradient(0deg,rgba(232,51,59,.0),rgba(232,51,59,.0)),var(--lula);}
-.lado.f{background:var(--flav);text-align:right;align-items:flex-end}
-.lado .veu{position:absolute;inset:0;background:linear-gradient(0deg,rgba(7,14,34,.92) 0,rgba(7,14,34,.35) 45%,rgba(7,14,34,0) 70%)}
-.lado .tx{position:relative;z-index:2}
-.lado .nome{font-family:Montserrat;font-weight:900;font-size:clamp(22px,4vw,44px);text-transform:uppercase;line-height:.95}
-.lado .part{font-size:13px;color:#ffffffcc;margin:4px 0 6px}
-.lado .pc{font-family:Montserrat;font-weight:900;font-size:clamp(54px,11vw,128px);line-height:.9;letter-spacing:-.04em}
-.lado .vt{font-family:'IBM Plex Mono';font-size:14px;color:#ffffffd0;margin-top:6px}
-.lado.lid .nome::after{content:" ▲";color:var(--ouro);font-size:.6em;vertical-align:middle}
-.vs{position:absolute;left:50%;top:22px;transform:translateX(-50%);z-index:3;text-align:center;font-family:Montserrat;font-weight:800}
-.vs .ap{font-size:clamp(28px,5vw,52px);line-height:1}.vs small{display:block;font-size:11px;letter-spacing:.12em;color:var(--tinta2);font-weight:700}
-.cabo{height:22px;display:flex;background:var(--funda)}.cabo div{transition:width .8s}
-.cabo .meio{position:absolute}
-.cabo-w{position:relative}.cabo-w::after{content:"";position:absolute;left:50%;top:-6px;bottom:-6px;width:2px;background:#fff}
-.dif{text-align:center;font-family:Montserrat;font-weight:800;font-size:15px;padding:10px 0;color:var(--tinta2)}
-.dif b{color:#fff}
-/* narrativa */
-.narra{background:var(--tinta);color:var(--campo);padding:18px 0}
-.narra .w{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:start}
-.narra .rot{font-family:Montserrat;font-weight:900;font-size:12px;letter-spacing:.1em;background:var(--campo);color:#fff;padding:6px 8px}
-.narra p{font-size:17px;line-height:1.5}.narra p b{font-weight:600}
-.narra .conta{font-size:12px;color:#55607e;margin-top:6px}
-section{padding:34px 0}
-.sec-t{font-family:Montserrat;font-weight:900;font-size:clamp(22px,3.4vw,32px);line-height:1.05;margin-bottom:6px}
-.sec-s{color:var(--tinta2);font-size:14px;margin-bottom:18px;max-width:760px}
-.rot-c{font-size:11px;color:var(--tinta3);margin-top:8px}
-/* projeção */
-.proj{display:grid;grid-template-columns:1.25fr 1fr;gap:16px}
-.cx{background:var(--bloco);padding:18px}
-.big{font-family:Montserrat;font-weight:900;font-size:clamp(34px,6vw,58px);line-height:1}
-.faixa{position:relative;height:36px;background:var(--funda);margin:14px 0 6px}
-.faixa .band{position:absolute;top:0;bottom:0;background:#ffffff26}
-.faixa .pt{position:absolute;top:-4px;bottom:-4px;width:4px;background:#fff}
-.faixa .c50{position:absolute;left:50%;top:-8px;bottom:-8px;width:2px;background:var(--ouro)}
-.faixa .lb{position:absolute;top:8px;font-size:12px;font-family:'IBM Plex Mono'}
-.cen{display:flex;gap:3px;margin-top:12px}.cen i{flex:1;height:26px}
-svg text{font-family:'IBM Plex Mono';font-size:11px;fill:var(--tinta3)}
-/* falta */
-.reg{display:grid;grid-template-columns:repeat(6,1fr);gap:8px}
-.rg{background:var(--bloco);padding:12px}
-.rg h4{font-family:Montserrat;font-weight:800;font-size:14px}
-.rg .bar{height:8px;background:var(--funda);margin:8px 0 6px}.rg .bar i{display:block;height:100%;background:#fff}
-.rg small{font-size:12px;color:var(--tinta2);display:block;line-height:1.4}
-.lean{display:inline-block;font-weight:600;padding:0 5px}
-/* mapa uf */
-.mapa{display:grid;grid-template-columns:repeat(8,1fr);gap:5px;max-width:620px}
-.uf{aspect-ratio:1;display:flex;flex-direction:column;justify-content:center;align-items:center;cursor:pointer;position:relative;font-family:Montserrat;font-weight:800;transition:transform .15s}
-.uf:hover{transform:scale(1.07)}
-.uf b{font-size:clamp(12px,2vw,17px)}.uf span{font-size:10px;font-family:'IBM Plex Mono';opacity:.9}
-.uf .sur{position:absolute;top:3px;right:4px;width:9px;height:9px;background:var(--ouro);border-radius:50%}
-.uf.sel{outline:3px solid #fff;outline-offset:1px}
-.mapa-w{display:grid;grid-template-columns:auto 1fr;gap:24px;align-items:start}
-.leg{display:flex;align-items:center;justify-content:center;gap:10px;font-size:12px;color:var(--tinta2);margin-top:10px;max-width:620px}
-.leg .g{height:10px;width:180px;background:linear-gradient(90deg,var(--flav),#3b4566,var(--lula))}
-/* surpresas */
-.feed{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:10px}
-.sp{background:var(--bloco);padding:14px;position:relative;cursor:pointer}
-.sp.vir{background:var(--bloco2)}
-.sp .tag{display:inline-block;font-family:Montserrat;font-weight:800;font-size:11px;letter-spacing:.05em;padding:3px 7px;margin-bottom:8px;text-transform:uppercase}
-.sp h4{font-family:Montserrat;font-weight:800;font-size:18px;line-height:1.1}
-.sp .uf2{font-size:12px;color:var(--tinta3)}
-.sp .cmp{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:10px;font-size:12px;color:var(--tinta2)}
-.sp .cmp b{display:block;font-family:Montserrat;font-size:20px;color:#fff}
-.sp .ap{font-size:11px;color:var(--tinta3);margin-top:8px}
-.sp .forca{position:absolute;right:12px;top:12px;font-family:Montserrat;font-weight:900;font-size:24px;color:var(--ouro)}
-.chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
-.chips button{background:var(--bloco);color:var(--tinta2);border:0;font:600 13px 'IBM Plex Sans';padding:7px 12px;cursor:pointer}
-.chips button.on{background:#fff;color:var(--campo)}
-.roteiro{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:18px}
-.roteiro div{background:var(--bloco);padding:14px}.roteiro b{font-family:Montserrat;font-weight:900;font-size:34px;display:block}
-.roteiro small{color:var(--tinta2);font-size:13px}
-/* gov */
-.govs{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:12px}
-.gv{background:var(--bloco);cursor:pointer;overflow:hidden}
-.gv .hd{display:flex;justify-content:space-between;padding:12px 14px 0;font-family:Montserrat;font-weight:800}
-.gv .hd small{font-family:'IBM Plex Mono';font-weight:500;color:var(--tinta2);font-size:12px}
-.gv .par{display:grid;grid-template-columns:1fr 1fr}
-.gv .c{position:relative;height:190px;display:flex;flex-direction:column;justify-content:flex-end;padding:10px 12px;overflow:hidden}
-.gv .c img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top}
-.gv .c .veu{position:absolute;inset:0;background:linear-gradient(0deg,rgba(7,14,34,.95),rgba(7,14,34,0) 65%)}
-.gv .c .t{position:relative}
-.gv .c .n{font-family:Montserrat;font-weight:800;font-size:15px;line-height:1.05}
-.gv .c .p{font-family:Montserrat;font-weight:900;font-size:40px;line-height:1}
-.gv .c .s{font-size:11px;color:var(--tinta2)}
-.gv .ft{padding:10px 14px 14px;font-size:13px;color:var(--tinta2);line-height:1.45}
-.gv .ft b{color:#fff}
-.gv .bb{height:8px;display:flex}
-/* detalhe */
-.det{position:fixed;inset:0;background:rgba(4,8,20,.7);z-index:50;display:none;justify-content:flex-end}
-.det.on{display:flex}
-.det .pn{width:min(620px,100%);height:100%;overflow-y:auto;background:var(--campo);padding:22px 18px 60px}
-.det .x{float:right;background:#fff;color:var(--campo);border:0;font:800 14px Montserrat;padding:8px 12px;cursor:pointer}
-table{width:100%;border-collapse:collapse;font-size:13px}
-td,th{padding:7px 6px;text-align:left}th{font-weight:600;color:var(--tinta3);font-size:11px;text-transform:uppercase}
-tr:nth-child(even) td{background:#ffffff08}
-td.r,th.r{text-align:right;font-family:'IBM Plex Mono'}
-input.bus{width:100%;background:var(--bloco);border:0;color:#fff;font:15px 'IBM Plex Sans';padding:12px;margin:10px 0}
-.esp{font-size:12px;padding:1px 6px;font-weight:600}
-footer{padding:30px 0 50px;color:var(--tinta3);font-size:12px;line-height:1.6}
-@media(max-width:760px){
- .duelo,.lado{min-height:330px}.lado .pc{font-size:clamp(34px,11vw,48px)}.lado .nome{font-size:19px}.lado .vt{font-size:12px}.vs{top:12px}.lado{padding:14px 12px 18px}.lado img.foto{max-height:330px;opacity:.75}
- .proj,.mapa-w{grid-template-columns:1fr}.reg{grid-template-columns:repeat(3,1fr)}.roteiro{grid-template-columns:1fr 1fr 1fr}.roteiro b{font-size:24px}
- .narra .w{grid-template-columns:1fr}.narra p{font-size:15.5px}.govs{grid-template-columns:1fr}
+:root{
+  --bg:#0A1124;--sf:#111A33;--sf2:#16213F;--ln:#243156;--ln2:#1A2547;
+  --tx:#FFFFFF;--tx2:#C3CBE3;--tx3:#8590B3;
+  --lula:#3A7BFF;--lula2:#8DB4FF;--lulaE:#16306B;
+  --flav:#F5C400;--flav2:#FFE170;--flavE:#5C4A06;
+  --neu:#2C3657;
+  --gut:28px;--r:4px;
+  --f1:Montserrat,system-ui,sans-serif;--f2:'IBM Plex Sans',system-ui,sans-serif;--f3:'IBM Plex Mono',ui-monospace,monospace;
 }
-
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--bg)}
+body{background:var(--bg);color:var(--tx);font:15px/1.5 var(--f2);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+.num{font-family:var(--f1);font-weight:800;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.clk{cursor:pointer}
+.app{display:grid;grid-template-columns:minmax(0,1fr) 380px;min-height:100vh}
+.main{min-width:0;border-right:1px solid var(--ln)}
+.wrap{padding:0 var(--gut)}
+header.top{position:sticky;top:0;z-index:30;background:rgba(10,17,36,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--ln)}
+header.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;height:52px}
+.marca{font-family:var(--f1);font-weight:800;font-size:14px;letter-spacing:.04em}
+.marca small{font-family:var(--f2);font-weight:500;color:var(--tx3);letter-spacing:0;margin-left:8px;font-size:13px}
+.estado{display:flex;align-items:center;gap:10px;font-size:12.5px;color:var(--tx2)}
+.etq{font-family:var(--f1);font-weight:700;font-size:11px;letter-spacing:.06em;text-transform:uppercase;padding:4px 8px;border:1px solid var(--ln);border-radius:var(--r);white-space:nowrap}
+.etq.pausa{color:var(--flav2);border-color:#5C4A06}
+.etq.vivo{color:#7CE3A1;border-color:#1F5A37}
+.dot{width:7px;height:7px;border-radius:50%;background:#56D68B;display:inline-block;animation:pisca 1.6s infinite}
+@keyframes pisca{50%{opacity:.25}}
+section.sec{scroll-margin-top:52px;padding-top:40px;padding-bottom:44px;border-top:1px solid var(--ln)}
+.sh{display:grid;grid-template-columns:44px 1fr;gap:0 12px;margin-bottom:22px}
+.sh .n{font-family:var(--f3);font-size:12px;color:var(--tx3);padding-top:6px}
+.sh h2{font-family:var(--f1);font-weight:800;font-size:24px;line-height:1.15;letter-spacing:-.01em}
+.sh p{grid-column:2;color:var(--tx2);font-size:14px;margin-top:6px;max-width:720px}
+.body{padding-left:56px}
+.nota{font-size:12px;color:var(--tx3);margin-top:14px;line-height:1.5}
+/* placar */
+.placar{padding:28px var(--gut) 30px}
+.duelo{display:grid;grid-template-columns:1fr auto 1fr;align-items:end;gap:20px}
+.cand{display:grid;grid-template-columns:112px 1fr;gap:18px;align-items:end}
+.cand.f{grid-template-columns:1fr 112px;text-align:right}
+.cand.f .foto{order:2}
+.foto{width:112px;height:140px;border-radius:var(--r);overflow:hidden;background:var(--sf);position:relative}
+.foto img{width:100%;height:100%;object-fit:cover;display:block}
+.foto::after{content:"";position:absolute;left:0;right:0;bottom:0;height:4px}
+.cand.l .foto::after{background:var(--lula)}.cand.f .foto::after{background:var(--flav)}
+.cand .nm{font-family:var(--f1);font-weight:800;font-size:20px;line-height:1.1}
+.cand .pt{font-size:12.5px;color:var(--tx3);margin-top:2px}
+.cand .pc{font-size:64px;line-height:1;margin-top:8px}
+.cand.l .pc{color:var(--lula2)}.cand.f .pc{color:var(--flav)}
+.cand .vt{font-family:var(--f3);font-size:13px;color:var(--tx2);margin-top:4px}
+.cand .lid{display:inline-block;font-family:var(--f1);font-weight:700;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;padding:3px 7px;border-radius:var(--r);margin-top:8px;visibility:hidden}
+.cand.l .lid{background:var(--lula);color:#fff}.cand.f .lid{background:var(--flav);color:#1a1400}
+.cand.on .lid{visibility:visible}
+.centro{text-align:center;padding-bottom:6px}
+.centro .ap{font-size:34px;line-height:1}
+.centro small{display:block;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--tx3);margin-top:4px}
+.barra{position:relative;height:14px;margin:24px 0 0;display:flex;border-radius:2px;overflow:hidden;background:var(--neu)}
+.barra i{display:block;height:100%;transition:width .9s cubic-bezier(.2,.7,.2,1)}
+.meio{position:relative;height:0}
+.meio::before{content:"";position:absolute;left:50%;top:-20px;height:26px;width:2px;background:#fff;transform:translateX(-1px)}
+.meio span{position:absolute;left:50%;top:8px;transform:translateX(-50%);font-size:11px;color:var(--tx3);font-family:var(--f3)}
+.stats{display:grid;grid-template-columns:repeat(5,1fr);margin-top:30px;border-top:1px solid var(--ln)}
+.stats div{padding:12px 0 0}
+.stats b{display:block;font-family:var(--f1);font-weight:700;font-size:17px}
+.stats span{font-size:12px;color:var(--tx3)}
+.agora{display:grid;grid-template-columns:44px 1fr;gap:0 12px;margin-top:26px;padding:18px 20px;background:var(--sf);border-left:3px solid var(--tx3);border-radius:var(--r)}
+.agora .n{font-family:var(--f1);font-weight:800;font-size:11px;letter-spacing:.08em;color:var(--tx3);padding-top:3px}
+.agora p{font-size:15.5px;line-height:1.6}
+.agora p b{font-weight:600}
+.agora small{display:block;color:var(--tx3);font-size:11.5px;margin-top:8px}
+/* gráfico */
+.graf svg{display:block;width:100%;height:auto;overflow:visible}
+.graf text{font-family:var(--f3);font-size:11px;fill:var(--tx3)}
+.leg{display:flex;flex-wrap:wrap;justify-content:center;gap:18px;margin-top:12px;font-size:12.5px;color:var(--tx2)}
+.leg i{display:inline-block;width:18px;height:3px;vertical-align:middle;margin-right:6px;border-radius:2px}
+/* mapa */
+.mapa-g{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(250px,1fr);gap:28px;align-items:start}
+.mapa svg{width:100%;height:auto;display:block}
+.mapa path{stroke:var(--bg);stroke-width:1.2;cursor:pointer;transition:filter .15s}
+.mapa path:hover,.mapa path.hl{filter:brightness(1.18);stroke:#fff;stroke-width:1.6}
+.mapa text{pointer-events:none;font-family:var(--f1);font-weight:800}
+.mapa .ld{stroke:var(--tx3);stroke-width:.8}
+.tip{position:fixed;z-index:60;pointer-events:none;background:#0D1630;border:1px solid var(--ln);border-radius:6px;padding:12px 14px;width:230px;display:none;box-shadow:0 10px 30px rgba(0,0,0,.4)}
+.tip.on{display:block}.tip.toque{pointer-events:auto}
+.tip h4{font-family:var(--f1);font-weight:800;font-size:15px;margin-bottom:6px}
+.tip .l2{display:flex;justify-content:space-between;font-size:13px;margin:3px 0}
+.tip .bt{display:block;margin-top:10px;width:100%;padding:8px;background:var(--tx);color:var(--bg);font:700 13px var(--f1);border-radius:var(--r)}
+.resumo{display:grid;gap:10px}
+.rs{display:grid;grid-template-columns:44px 1fr;align-items:center;gap:12px;padding:12px 14px;background:var(--sf);border-radius:var(--r)}
+.rs:hover{background:var(--sf2)}
+.rs .q{font-size:30px;line-height:1}
+.rs span{font-size:13px;color:var(--tx2);line-height:1.35}.rs span b{font-weight:600}
+.escala .g{height:10px;border-radius:2px;background:linear-gradient(90deg,#3A7BFF,#2A4E9E,#2C3657,#8C7410,#F5C400)}
+.escala .r{display:flex;justify-content:space-between;font-size:11.5px;color:var(--tx3);margin-top:5px}
+.proj{padding:12px 14px;border:1px solid var(--ln);border-radius:var(--r);font-size:13px;color:var(--tx2);line-height:1.5}
+.proj b{color:var(--tx)}
+/* selos */
+.selo{display:inline-block;font-family:var(--f1);font-weight:700;font-size:11px;letter-spacing:.03em;padding:3px 7px;border-radius:var(--r);white-space:nowrap}
+.selo.sup{background:var(--flav);color:#1a1400}
+.selo.dec{background:var(--lula);color:#fff}
+.selo.exp{background:#3A4568;color:#E4E8F5}
+.selo.agu{background:transparent;color:var(--tx3);box-shadow:inset 0 0 0 1px var(--ln)}
+.selo.vir{background:#fff;color:var(--bg)}
+/* falta */
+.falta{display:grid;gap:12px}
+.fr{display:grid;grid-template-columns:120px 1fr 220px;gap:16px;align-items:center;cursor:pointer;padding:6px 8px;margin:0 -8px;border-radius:var(--r)}
+.fr:hover{background:var(--sf)}
+.fr h4{font-family:var(--f1);font-weight:700;font-size:15px}
+.fr h4 small{display:block;font-family:var(--f3);font-weight:500;font-size:11.5px;color:var(--tx3)}
+.fb{height:28px;display:flex;border-radius:2px;overflow:hidden;background:var(--ln2)}
+.fb i{display:block;height:100%}
+.fb i.rest{background-image:repeating-linear-gradient(135deg,rgba(255,255,255,.22) 0 2px,transparent 2px 7px)}
+.fr .q{font-size:12.5px;color:var(--tx2);line-height:1.35}
+.fr .q b{color:var(--tx);font-weight:600}
+.flg{display:flex;flex-wrap:wrap;gap:16px;justify-content:center;font-size:12px;color:var(--tx3);margin-top:18px}
+.flg i{display:inline-block;width:14px;height:10px;vertical-align:middle;margin-right:6px;border-radius:2px}
+/* tabelas */
+.seg{display:inline-flex;border:1px solid var(--ln);border-radius:var(--r);overflow:hidden;margin-bottom:16px}
+.seg button{padding:8px 16px;font:700 13px var(--f1);color:var(--tx2)}
+.seg button.on{background:var(--tx);color:var(--bg)}
+.filtros{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+.filtros select,.filtros input{background:var(--sf);border:1px solid var(--ln);color:var(--tx);font:13px var(--f2);padding:8px 10px;border-radius:var(--r);max-width:100%}
+.filtros input{flex:1;min-width:180px}
+.tw{overflow-x:auto;border:1px solid var(--ln);border-radius:var(--r)}
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+th{background:var(--sf2);text-align:left;font:600 11px var(--f2);letter-spacing:.04em;text-transform:uppercase;color:var(--tx3);padding:10px 12px;white-space:nowrap;cursor:pointer;user-select:none;border-bottom:1px solid var(--ln)}
+th.r,td.r{text-align:right}
+th.on{color:var(--tx)}
+th .ar{opacity:.7;margin-left:3px}
+td{padding:9px 12px;border-bottom:1px solid var(--ln2);white-space:nowrap}
+tbody tr:last-child td{border-bottom:0}
+tbody tr{cursor:pointer}
+tbody tr:hover td{background:#18234A}
+td.r{font-family:var(--f3);font-size:13px}
+td .sub{color:var(--tx3);font-size:12px;margin-left:6px}
+.mb{display:inline-block;width:54px;height:6px;background:var(--ln2);border-radius:2px;vertical-align:middle;margin-right:8px;overflow:hidden}
+.mb i{display:block;height:100%;background:var(--tx2)}
+.dif.p{color:var(--flav)}.dif.n{color:var(--lula2)}
+.mais{display:block;margin:14px auto 0;padding:9px 18px;border:1px solid var(--ln);border-radius:var(--r);font:700 13px var(--f1);color:var(--tx2)}
+.mais:hover{background:var(--sf)}
+.cont{font-size:12.5px;color:var(--tx3);margin:0 0 10px}
+/* governadores */
+.govs{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
+.gv{background:var(--sf);border:1px solid var(--ln);border-radius:6px;padding:16px 16px 18px;cursor:pointer;transition:border-color .15s}
+.gv:hover{border-color:var(--tx3)}
+.gv .hd{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-bottom:14px}.gv .hd span{white-space:nowrap}
+.gv .hd h3{font-family:var(--f1);font-weight:800;font-size:16px}
+.gv .hd span{font-family:var(--f3);font-size:12px;color:var(--tx3)}
+.gv .pr{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.gc{display:grid;grid-template-columns:52px 1fr;gap:10px;align-items:center}
+.gc.b{grid-template-columns:1fr 52px;text-align:right}.gc.b img{order:2}
+.gc img{width:52px;height:65px;object-fit:cover;border-radius:var(--r);background:var(--sf2)}
+.gc .n{font-family:var(--f1);font-weight:700;font-size:13px;line-height:1.15}
+.gc .p{font-size:11.5px;color:var(--tx3)}
+.gb{position:relative;margin-top:16px}
+.gb .pcts{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px}
+.gb .pcts b{font-size:28px;line-height:1}
+.gb .bar{height:10px;display:flex;border-radius:2px;overflow:hidden;background:var(--neu)}
+.gb .bar i{display:block;height:100%;transition:width .9s}
+.gb .m1{position:absolute;bottom:-4px;width:2px;height:18px;background:#fff}
+.gb .m1::after{content:"1º t.";position:absolute;top:20px;left:50%;transform:translateX(-50%);font:10px var(--f3);color:var(--tx3);white-space:nowrap}
+.gv .ft{margin-top:26px;font-size:12.5px;color:var(--tx2);line-height:1.45}
 /* coluna de notícias */
-.app{display:grid;grid-template-columns:minmax(0,1fr) 380px}
-.main{min-width:0}
-aside.feedcol{position:sticky;top:0;height:100vh;background:#0E1A3A;display:flex;flex-direction:column;z-index:25}
-.fc-hd{padding:14px 16px 10px;background:var(--funda)}
-.fc-hd h3{font-family:Montserrat;font-weight:900;font-size:16px;letter-spacing:.02em}
-.fc-hd small{color:var(--tinta3);font-size:11px}
-.alerta{background:var(--ouro);color:var(--campo);padding:12px 16px;display:block;text-decoration:none}
-.alerta b{font-family:Montserrat;font-weight:900;font-size:14px;display:block;margin-bottom:4px}
-.alerta p{font-size:12.5px;line-height:1.4}
-.fc-tabs{display:flex;gap:4px;overflow-x:auto;padding:8px 12px;background:#0E1A3A}
-.fc-tabs button{background:var(--bloco);border:0;color:var(--tinta2);font:600 12px 'IBM Plex Sans';padding:6px 9px;cursor:pointer;white-space:nowrap}
-.fc-tabs button.on{background:#fff;color:var(--campo)}
-.rolo{flex:1;overflow:hidden;position:relative}
-.rolo .trilho{position:absolute;left:0;right:0;top:0}
-.rolo:hover .trilho{animation-play-state:paused}
-.it{display:block;padding:11px 16px;text-decoration:none;color:var(--tinta)}
-.it:nth-child(odd){background:#ffffff06}
-.it:hover{background:var(--bloco2)}
-.it .m{font-size:11px;color:var(--tinta3);display:flex;gap:6px;align-items:center;margin-bottom:3px}
-.it .m .tg{font-weight:700;padding:1px 5px;font-size:10px;text-transform:uppercase;letter-spacing:.04em}
-.it .t{font-size:13.5px;line-height:1.35;font-weight:500}
-.it .x{font-size:12px;color:var(--tinta2);line-height:1.4;margin-top:4px}
-.it.cur{background:var(--bloco)}
-.novo{color:var(--ouro);font-weight:700}
-@media(max-width:1100px){.app{grid-template-columns:1fr}aside.feedcol{position:relative;height:78vh;order:2}}
+aside.feed{position:sticky;top:0;height:100vh;display:flex;flex-direction:column;background:#0C1429;min-width:0}
+.fh{padding:16px 18px 12px;border-bottom:1px solid var(--ln)}
+.fh h3{font-family:var(--f1);font-weight:800;font-size:15px;letter-spacing:.02em}
+.fh small{display:block;font-size:12px;color:var(--tx3);margin-top:2px}
+details.blk{border-bottom:1px solid var(--ln)}
+details.blk summary{list-style:none;cursor:pointer;padding:11px 18px;font:700 11.5px var(--f1);letter-spacing:.06em;text-transform:uppercase;color:var(--tx2);display:flex;justify-content:space-between}
+details.blk summary::-webkit-details-marker{display:none}
+details.blk summary::after{content:"+";font-size:15px;color:var(--tx3)}
+details.blk[open] summary::after{content:"–"}
+.blk .in{padding:0 18px 14px;max-height:300px;overflow-y:auto}
+.tm{margin-top:8px}
+.tm .l{display:flex;justify-content:space-between;font-size:12.5px;gap:8px}
+.tm .l span{font-family:var(--f3);color:var(--tx3);font-size:11.5px;white-space:nowrap}
+.tm .b{height:4px;background:var(--ln2);margin-top:4px;border-radius:2px}.tm .b i{display:block;height:100%;background:var(--tx2);border-radius:2px}
+.cx{display:block;text-decoration:none;padding:9px 0;border-top:1px solid var(--ln2)}
+.cx:first-child{border-top:0}
+.cx .k{font:700 10.5px var(--f1);letter-spacing:.05em;text-transform:uppercase;color:var(--tx3)}
+.cx .t{font-size:13px;font-weight:600;line-height:1.35;margin-top:2px}
+.cx .x{font-size:12px;color:var(--tx2);line-height:1.4;margin-top:2px}
+.chips{display:flex;gap:6px;padding:10px 18px;overflow-x:auto;border-bottom:1px solid var(--ln);scrollbar-width:none;flex-shrink:0}
+.chips::-webkit-scrollbar{display:none}
+.chips button{white-space:nowrap;font:600 12px var(--f2);color:var(--tx2);padding:5px 10px;border:1px solid var(--ln);border-radius:20px}
+.chips button.on{background:var(--tx);color:var(--bg);border-color:var(--tx)}
+.lista{flex:1;overflow-y:auto;position:relative;scrollbar-width:thin;scrollbar-color:var(--ln) transparent}
+.novas{position:sticky;top:8px;z-index:2;display:none;margin:8px auto 0;padding:6px 12px;background:var(--tx);color:var(--bg);font:700 12px var(--f1);border-radius:20px}
+.novas.on{display:table}
+.ni{display:block;text-decoration:none;padding:12px 18px;border-bottom:1px solid var(--ln2);transition:background 2.5s}
+.ni:hover{background:var(--sf)}
+.ni.fresca{background:#1E2B55}
+.ni .m{display:flex;gap:8px;align-items:center;font-size:11.5px;color:var(--tx3);margin-bottom:3px}
+.ni .m b{color:var(--tx2);font-weight:600}
+.ni .t{font-size:13.5px;line-height:1.38;font-weight:500}
+.ni .uf{display:inline-block;margin-top:6px;font:600 11px var(--f2);color:var(--tx2);border:1px solid var(--ln);border-radius:20px;padding:2px 8px}
+.ni .uf:hover{background:var(--tx);color:var(--bg)}
+/* detalhe */
+.det{position:fixed;inset:0;z-index:70;display:none}
+.det.on{display:block}
+.det .fundo{position:absolute;inset:0;background:rgba(3,7,18,.65)}
+.det .pn{position:absolute;top:0;right:0;bottom:0;width:min(640px,100%);background:var(--bg);border-left:1px solid var(--ln);overflow-y:auto;padding:0 0 60px}
+.det .ph{position:sticky;top:0;z-index:2;background:var(--bg);border-bottom:1px solid var(--ln);display:flex;justify-content:space-between;align-items:center;padding:14px 24px}
+.det .ph span{font-size:12px;color:var(--tx3);text-transform:uppercase;letter-spacing:.08em;font-weight:600}
+.det .ph button{font:700 13px var(--f1);padding:7px 12px;border:1px solid var(--ln);border-radius:var(--r)}
+.det .pc{padding:22px 24px 0}
+.det h2{font-family:var(--f1);font-weight:800;font-size:28px;line-height:1.1}
+.det .ss{color:var(--tx2);font-size:14px;margin-top:8px}
+.det h3{font-family:var(--f1);font-weight:700;font-size:15px;margin:26px 0 12px;padding-top:18px;border-top:1px solid var(--ln)}
+.dpl{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px}
+.dpl div{background:var(--sf);border-radius:var(--r);padding:12px 14px}
+.dpl b{display:block;font-size:34px;line-height:1}
+.dpl span{font-size:12px;color:var(--tx3)}
+.cmp{display:grid;gap:12px}
+.cmp .lb{display:flex;justify-content:space-between;font-size:12.5px;color:var(--tx2);margin-bottom:4px}
+.cmp .bar{height:12px;display:flex;border-radius:2px;overflow:hidden;background:var(--neu)}
+.cmp .bar i{display:block;height:100%}
+footer{padding:36px var(--gut) 60px;border-top:1px solid var(--ln);font-size:12px;color:var(--tx3);line-height:1.65}
+footer a{color:var(--tx2)}
+@media(max-width:1180px){:root{--gut:22px}.app{grid-template-columns:minmax(0,1fr) 330px}.cand .pc{font-size:52px}.fr{grid-template-columns:110px 1fr 180px}}
+@media(max-width:980px){
+  .app{display:flex;flex-direction:column}.main{display:contents}
+  header.top{order:0}.placar{order:1}aside.feed{order:2;position:relative;height:620px;border-top:1px solid var(--ln)}.resto{order:3}
+  .mapa-g{grid-template-columns:1fr}
+}
+@media(max-width:640px){
+  :root{--gut:16px}
+  .marca small{display:none}.estado #hora{display:none}
+  .duelo{grid-template-columns:1fr 1fr;gap:12px}.centro{grid-column:1/3;grid-row:1;padding:0 0 10px}
+  .cand,.cand.f{grid-template-columns:1fr;gap:10px}.cand.f .foto{order:0;margin-left:auto}
+  .foto{width:84px;height:105px}.cand .nm{font-size:16px}.cand .pc{font-size:38px}.cand .vt{font-size:12px}
+  .stats{grid-template-columns:repeat(3,1fr)}.stats div:nth-child(n+4){display:none}
+  .body{padding-left:0}.sh{grid-template-columns:30px 1fr}.sh h2{font-size:21px}.sh p{grid-column:1/3}
+  .fr{grid-template-columns:1fr;gap:6px}
+  .agora{grid-template-columns:1fr;padding:14px 16px}.agora .n{padding-bottom:6px}
+  .govs{grid-template-columns:1fr}
+  .det .pc{padding:18px 16px 0}.det .ph{padding:12px 16px}
+}
 </style>
 </head>
 <body>
 <div class="app"><div class="main">
-<header class="top"><div class="w"><span><b>APURAÇÃO 2º TURNO</b>, 25/10/2026</span><span class="vivo"><i></i><span id="hora">conectando ao TSE…</span></span></div>
-<div class="w"><nav class="tabs"><a href="#pres" class="on">Presidente</a><a href="#surpresas">Surpresas</a><a href="#estados">Estados</a><a href="#gov">Governadores</a><a href="#municipios">Municípios</a></nav></div></header>
+<header class="top"><div class="wrap">
+  <div class="marca">APURAÇÃO 2º TURNO<small>domingo, 25 de outubro de 2026</small></div>
+  <div class="estado"><span class="etq" id="etq">conectando</span><span><span class="dot"></span> <span id="hora">TSE</span></span></div>
+</div></header>
 
-<div id="pausa" style="display:none;background:var(--ouro);color:var(--campo);font:800 14px Montserrat;padding:10px 16px;text-align:center"></div>
-<div class="duelo" id="duelo"></div>
-<div class="cabo-w"><div class="cabo" id="cabo"></div></div>
-<div class="dif" id="dif"></div>
-
-<div class="narra"><div class="w"><span class="rot">AGORA</span><div><p id="narra">Carregando os dados do TSE…</p><div class="conta">Números: TSE. Interpretações e projeções: conta do painel, a partir do 1º turno de 2026.</div></div></div></div>
-
-<section id="pres"><div class="w">
- <h2 class="sec-t">Para onde vai a apuração</h2>
- <p class="sec-s">A projeção olha o que ainda falta apurar, município por município, e supõe que cada lugar vota como votou no 1º turno, corrigido pelo movimento que a apuração já está mostrando. Se o Nordeste chega por último, a linha já conta com isso.</p>
- <div class="proj">
-  <div class="cx"><div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;font-size:13px;color:var(--tinta2)"><span>Votos de Lula entre os dois, à medida que as urnas são apuradas</span><span id="legC"></span></div><div id="graf"></div></div>
-  <div class="cx" id="projBox"></div>
- </div>
- <div style="margin-top:26px"><h3 class="sec-t" style="font-size:22px">O que ainda falta apurar</h3><p class="sec-s">De cada região, quanto já foi contado e para que lado pende o que falta, pelo voto do 1º turno.</p><div class="reg" id="reg"></div></div>
-</div></section>
-
-<section id="surpresas" style="background:var(--funda)"><div class="w">
- <h2 class="sec-t">Fora do roteiro</h2>
- <p class="sec-s">Cada município tem um resultado esperado, tirado do seu 1º turno e do movimento geral da apuração. Aqui aparecem os que fogem dele, com peso igual para cidade pequena e capital. Só entra quem já tem voto suficiente apurado.</p>
- <div class="roteiro" id="roteiro"></div>
- <div class="chips" id="chipsS"></div>
- <div class="feed" id="feed"></div>
- <p class="rot-c">Força da surpresa (0 a 10): o quanto o resultado se afasta do esperado, descontado o tamanho da amostra. Conta do painel.</p>
-</div></section>
-
-<section id="estados"><div class="w">
- <h2 class="sec-t">Estado por estado</h2>
- <p class="sec-s">Cor pela vantagem atual. O ponto amarelo marca estado fora do esperado. Toque num estado para abrir.</p>
- <div class="mapa-w"><div><div class="mapa" id="mapa"></div><div class="leg"><span>Flávio</span><span class="g"></span><span>Lula</span></div></div><div id="ufLista"></div></div>
-</div></section>
-
-<section id="gov" style="background:var(--funda)"><div class="w">
- <h2 class="sec-t">Governadores em 2º turno</h2>
- <p class="sec-s">Seis disputas: Acre, Amazonas, Distrito Federal, Espírito Santo, Rio Grande do Norte e Tocantins.</p>
- <div class="govs" id="govs"></div>
- <p class="rot-c">Projeção de governador: o que falta em cada município vota como o que já foi apurado nele; onde nada foi apurado, como a média do estado. Conta do painel.</p>
-</div></section>
-
-<section id="municipios"><div class="w">
- <h2 class="sec-t">Qualquer município</h2>
- <p class="sec-s">Busque sua cidade: resultado de agora, o esperado e o 1º turno.</p>
- <input class="bus" id="bus" placeholder="Digite o nome do município">
- <div id="busR"></div>
-</div></section>
-
-<footer><div class="w">Fonte dos números: TSE, resultados.tse.jus.br (Presidente, eleição 6258; Governador, 6260; 1º turno, 6257 e 6259). Os números principais são lidos direto do TSE pelo seu navegador a cada 20 segundos, e os municípios também vêm direto do TSE, a cada 45 segundos. O TSE renova os próprios arquivos a cada minuto, mais ou menos; este é o limite do tempo real. Esperado, surpresa, projeção e faixa são contas do painel, não do TSE. O cálculo parte do 1º turno de 2026; não há dado de 2022 por município no servidor do TSE.</div></footer>
-
+<div class="placar" id="placar">
+  <div class="duelo">
+    <div class="cand l clk" id="cL" onclick="abre('cand','13')"><div class="foto"><img src="fotos/lula.webp" alt="Lula"></div><div><div class="nm">Lula</div><div class="pt">13, PT</div><div class="pc num" id="pcL">0,00%</div><div class="vt" id="vtL"></div><span class="lid">À frente</span></div></div>
+    <div class="centro"><div class="ap num" id="apN">0%</div><small>urnas apuradas</small></div>
+    <div class="cand f clk" id="cF" onclick="abre('cand','22')"><div class="foto"><img src="fotos/flavio.webp" alt="Flávio Bolsonaro"></div><div><div class="nm">Flávio Bolsonaro</div><div class="pt">22, PL</div><div class="pc num" id="pcF">0,00%</div><div class="vt" id="vtF"></div><span class="lid">À frente</span></div></div>
+  </div>
+  <div class="barra" id="barra"><i style="width:50%;background:var(--lula)"></i><i style="width:50%;background:var(--flav)"></i></div>
+  <div class="meio"><span>50%</span></div>
+  <div class="stats" id="stats"></div>
+  <div class="agora"><div class="n">AGORA</div><div><p id="narra">Lendo os dados do TSE…</p><small>Números do TSE. Leitura e projeção são conta do painel, a partir do 1º turno de 2026.</small></div></div>
 </div>
-<aside class="feedcol"><div class="fc-hd"><h3>O QUE ESTÁ ACONTECENDO</h3><small id="fcH">Notícias, checagens e o que circula nas redes. Toque para abrir.</small></div>
-<a class="alerta" id="alerta" target="_blank" rel="noopener"></a>
-<div class="fc-tabs" id="fcTabs"></div>
-<div class="rolo" id="rolo"><div class="trilho" id="trilho"></div></div></aside></div>
-<div class="det" id="det"><div class="pn"><button class="x" onclick="fecha()">Fechar</button><div id="detC"></div></div></div>
+
+<div class="resto">
+<section class="sec wrap" id="s-graf"><div class="sh"><span class="n">01</span><h2>A apuração, urna a urna</h2><p>Percentual de cada um nos votos válidos à medida que as urnas são apuradas. O pontilhado é a projeção do painel até o fim.</p></div>
+  <div class="body graf"><div id="graf"></div>
+  <div class="leg"><span><i style="background:var(--lula)"></i>Lula</span><span><i style="background:var(--flav)"></i>Flávio</span><span><i style="background:repeating-linear-gradient(90deg,#C3CBE3 0 4px,transparent 4px 7px)"></i>projeção (conta do painel)</span><span><i style="background:repeating-linear-gradient(90deg,#5B6590 0 2px,transparent 2px 5px)"></i>Lula no 1º turno, na mesma altura</span></div></div>
+</section>
+
+<section class="sec wrap" id="s-mapa"><div class="sh"><span class="n">02</span><h2>Estado por estado</h2><p>Cor de quem lidera em cada estado, mais forte quanto maior a vantagem. Passe o mouse ou toque para ver se o Flávio está superando, decepcionando ou na expectativa.</p></div>
+  <div class="body mapa-g"><div class="mapa" id="mapa"></div>
+   <div><div class="resumo" id="resumo"></div>
+    <div class="escala" style="margin-top:18px"><div class="g"></div><div class="r"><span>Lula lidera com folga</span><span>empate</span><span>Flávio lidera com folga</span></div></div>
+    <div class="proj" id="proj" style="margin-top:16px"></div>
+    <p class="nota">Sinal: Flávio <b>superando</b> quando tem mais de 2 p.p. acima do seu 1º turno no lugar (votos entre os dois), <b>decepcionando</b> quando tem mais de 2 p.p. abaixo, <b>na expectativa</b> no meio. Conta do painel.</p></div>
+  </div>
+</section>
+
+<section class="sec wrap" id="s-falta"><div class="sh"><span class="n">03</span><h2>O que ainda falta apurar</h2><p>Cada barra é o tamanho do voto da região. A parte cheia já foi contada; a parte riscada é o que falta, na cor de para onde pende pelo 1º turno. Toque numa região para ver as cidades.</p></div>
+  <div class="body"><div class="falta" id="falta"></div>
+  <div class="flg"><span><i style="background:var(--lula)"></i>Lula, apurado</span><span><i style="background:var(--flav)"></i>Flávio, apurado</span><span><i style="background-color:var(--lulaE);background-image:repeating-linear-gradient(135deg,rgba(255,255,255,.22) 0 2px,transparent 2px 7px)"></i>falta, pende para Lula</span><span><i style="background-color:var(--flavE);background-image:repeating-linear-gradient(135deg,rgba(255,255,255,.22) 0 2px,transparent 2px 7px)"></i>falta, pende para Flávio</span></div></div>
+</section>
+
+<section class="sec wrap" id="s-des"><div class="sh"><span class="n">04</span><h2>Destrinchamento</h2><p>Todos os estados e todas as cidades, do maior eleitorado para o menor, com o 1º turno do Flávio como régua. Clique no título da coluna para ordenar e numa linha para abrir.</p></div>
+  <div class="body"><div class="seg" id="segD"><button class="on" data-v="uf">Estados</button><button data-v="mun">Cidades</button></div>
+  <div id="desUF"></div><div id="desMun" style="display:none"></div></div>
+</section>
+
+<section class="sec wrap" id="s-gov"><div class="sh"><span class="n">05</span><h2>Governadores em 2º turno</h2><p>Acre, Amazonas, Distrito Federal, Espírito Santo, Rio Grande do Norte e Tocantins. A marca branca na barra é o resultado do 1º turno entre os dois.</p></div>
+  <div class="body"><div class="govs" id="govs"></div></div>
+</section>
+
+<footer id="rodape"></footer>
+</div>
+</div>
+
+<aside class="feed" id="feed">
+  <div class="fh"><h3>O QUE ESTÁ ACONTECENDO</h3><small id="fhH">Notícias e o que circula, mais recente no topo</small></div>
+  <details class="blk" id="bTerm" open><summary>Mais falado na última hora</summary><div class="in" id="term"></div></details>
+  <details class="blk"><summary>Contexto</summary><div class="in" id="ctx"></div></details>
+  <div class="chips" id="chips"></div>
+  <div class="lista" id="lista"><button class="novas" id="novas" onclick="document.getElementById('lista').scrollTo({top:0,behavior:'smooth'})"></button><div id="itens"></div></div>
+</aside>
+</div>
+
+<div class="tip" id="tip"></div>
+<div class="det" id="det"><div class="fundo" onclick="fecha()"></div><div class="pn"><div class="ph"><span id="detK"></span><button onclick="fecha()">Fechar</button></div><div class="pc" id="detC"></div></div></div>
 
 <script>
 const TSE='https://resultados.tse.jus.br/oficial/ele2026';
 const UFN={ac:'Acre',al:'Alagoas',am:'Amazonas',ap:'Amapá',ba:'Bahia',ce:'Ceará',df:'Distrito Federal',es:'Espírito Santo',go:'Goiás',ma:'Maranhão',mg:'Minas Gerais',ms:'Mato Grosso do Sul',mt:'Mato Grosso',pa:'Pará',pb:'Paraíba',pe:'Pernambuco',pi:'Piauí',pr:'Paraná',rj:'Rio de Janeiro',rn:'Rio Grande do Norte',rs:'Rio Grande do Sul',ro:'Rondônia',rr:'Roraima',sc:'Santa Catarina',se:'Sergipe',sp:'São Paulo',to:'Tocantins',zz:'Exterior'};
 const UFS=Object.keys(UFN).filter(u=>u!=='zz');
-const REG={'Norte':'ac am ap pa ro rr to','Nordeste':'al ba ce ma pb pe pi rn se','Centro-Oeste':'df go ms mt','Sudeste':'es mg rj sp','Sul':'pr rs sc','Exterior':'zz'};
+const REG={'Sudeste':'es mg rj sp','Nordeste':'al ba ce ma pb pe pi rn se','Sul':'pr rs sc','Norte':'ac am ap pa ro rr to','Centro-Oeste':'df go ms mt','Exterior':'zz'};
 const RUF={};Object.entries(REG).forEach(([r,s])=>s.split(' ').forEach(u=>RUF[u]=r));
-const GRID={rr:[2,0],ap:[4,0],am:[1,1],pa:[3,1],ma:[4,1],ce:[5,1],rn:[6,1],ac:[0,2],ro:[1,2],mt:[2,2],to:[3,2],pi:[4,2],pe:[5,2],pb:[6,2],ms:[2,3],go:[3,3],df:[4,3],ba:[5,3],al:[6,3],sp:[3,4],mg:[4,4],es:[5,4],se:[6,4],pr:[3,5],rj:[4,5],rs:[2,6],sc:[3,6]};
 const GOV=['ac','am','df','es','rn','to'];
+const FOTO={'10002544107':'mailza','10002532492':'alan','40002532272':'omar','40002541626':'carmo','70002553055':'celina','70002552496':'grass','80002552682':'pazolini','80002552172':'ferraco','200002534001':'cadu','200002535255':'allyson','270002544544':'vicentinho','270002544599':'dorinha'};
+const CRED=[['Lula','Ricardo Stuckert/PR, CC BY 2.0','Foto_oficial_de_Luiz_In%C3%A1cio_Lula_da_Silva_(ombros)_denoise.jpg'],['Flávio Bolsonaro','Agência Senado','Foto_oficial_do_senador_Fl%C3%A1vio_Bolsonaro_(v._AgSen).jpg'],['Mailza Assis','Agência Senado','Foto_oficial_da_senadora_Mailza_Gomes_(v._AgSen).jpg'],['Alan Rick','Agência Senado','Alan_Rick.jpg'],['Omar Aziz','Senado Federal, CC BY 2.0','Senadores_da_56%C2%AA_Legislatura_-_Omar_Aziz_(46293125674).jpg'],['Maria do Carmo','CC BY 4.0','PROFESSORA_MARIA_DO_CARMO,_Candidata_a_Governadora_nas_Elei%C3%A7%C3%B5es_Amazonas_2026.jpg'],['Celina Leão','Senado Federal, CC BY 2.0','Deputada_Celina_Le%C3%A3o_(2022).jpg'],['Leandro Grass','Café com Política, CC BY 3.0','Leandro_Grass_em_dezembro_de_2018_(cropped).png'],['Lorenzo Pazolini','Assembleia Legislativa do ES, CC BY 2.0','Lorenzo_Pazolini_(sess%C3%A3o)_(cropped).jpg'],['Ricardo Ferraço','PMDB Nacional, CC BY 2.0','Senador_Ricardo_Ferra%C3%A7o_(ES)_(13288647064).jpg'],['Cadu Xavier','CC BY 4.0','Cadu_Xavier_em_2026.jpg'],['Allyson','TSE, CC BY 4.0','AllysonFOTOURNA2026.jpg'],['Vicentinho Júnior','Gustavo Lima, CC BY 3.0','Vicentinho_J%C3%BAnior_em_setembro_de_2015.jpg'],['Professora Dorinha','Agência Senado, CC BY 2.0','Professora_Dorinha_Seabra_Rezende_(Uni%C3%A3o-TO_Plen%C3%A1rio_do_Senado.jpg']];
 const num=x=>parseFloat(String(x).replace(',','.'))||0;
 const F=(x,d=1)=>(x||0).toLocaleString('pt-BR',{minimumFractionDigits:d,maximumFractionDigits:d});
 const N=x=>Math.round(x||0).toLocaleString('pt-BR');
-const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-const cap=s=>String(s).toLowerCase().replace(/(^|[\s.\-'])([a-zà-ú])/g,(m,a,b)=>a+b.toUpperCase()).replace(/\b(D[aeo]s?|E)\b/g,m=>m.toLowerCase());
+const MI=x=>x>=1e6?F(x/1e6,1)+' mi':x>=1e3?F(x/1e3,0)+' mil':N(x);
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const cap=s=>String(s).toLowerCase().replace(/(^|[\s.\-'(])([a-zà-ú])/g,(m,a,b)=>a+b.toUpperCase()).replace(/\b(D[aeo]s?|E)\b/g,m=>m.toLowerCase());
+const sem=s=>String(s).normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase();
 const clip=(x,a=.02,b=.98)=>Math.max(a,Math.min(b,x));
-const pega=async u=>{const r=await fetch(u+(u.includes('?')?'&':'?')+'t='+(u.startsWith('http')?Math.floor(Date.now()/15000):Date.now()),{cache:'no-store'});if(!r.ok)throw r.status;return r.json()};
-function mixc(t){ // t: Lula share 0..1 -> color
-  const a=[47,123,255],m=[59,69,102],b=[232,51,59];const k=Math.max(-1,Math.min(1,(t-.5)/.15));
-  const [x,y]=k<0?[m,a]:[m,b];const q=Math.abs(k);return `rgb(${x.map((v,i)=>Math.round(v+(y[i]-v)*q)).join(',')})`;
-}
-let BASE=null,C1=null,MUN={p:{},g:{},hist:{}},PR={},GV={},GV1={},M={},sFiltro='todas',ufSel=null,LIVE=[];
-function lerPres(d){
-  const v={};let sq={};d.carg[0].agr.forEach(a=>a.par.forEach(p=>p.cand.forEach(c=>{v[c.n]=+c.vap;sq[c.n]={sq:c.sqcand,nm:c.nmu,sg:p.sg,e:c.e,st:c.st}})));
-  return {L:v['13']||0,F:v['22']||0,vv:+d.v.vv,vb:+d.v.vb,vn:+d.v.tvn,pst:num(d.s.pst),st:+d.s.st,ts:+d.s.ts,c:+d.e.c,a:+d.e.a,te:+d.e.te,pc:num(d.e.pc),pa:num(d.e.pa),hg:d.hg,sq,tf:d.tf};
-}
-function lerGov(d){
-  const cs=[];d.carg[0].agr.forEach(a=>a.par.forEach(p=>p.cand.forEach(c=>cs.push({n:c.n,nm:c.nmu,sg:p.sg,sq:c.sqcand,v:+c.vap,p:num(c.pvap),vice:(c.vs||[])[0]?(c.vs[0].nmu||''):'',col:a.com}))));
-  cs.sort((a,b)=>b.v-a.v||a.n-b.n);return {cs,pst:num(d.s.pst),vv:+d.v.vv,hg:d.hg,c:+d.e.c,te:+d.e.te};
-}
+const $=id=>document.getElementById(id);
+let pega=async u=>{const r=await fetch(u+(u.includes('?')?'&':'?')+'t='+(u.startsWith('http')?Math.floor(Date.now()/15000):Date.now()),{cache:'no-store'});if(!r.ok)throw r.status;return r.json()};
 
-/* ---------------- modelo (conta do painel) ---------------- */
+let BASE=null,C1={},MAPA=null,MUN={p:{},g:{},hist:{}},PR={},GV={},GV1={},M={},MD=null,LIVE=[];
+
+/* ---------- leitura ---------- */
+function lerPres(d){const v={};d.carg[0].agr.forEach(a=>a.par.forEach(p=>p.cand.forEach(c=>{v[c.n]=+c.vap})));
+  return {L:v['13']||0,F:v['22']||0,vv:+d.v.vv,vb:+d.v.vb,vn:+d.v.tvn,pst:num(d.s.pst),st:+d.s.st,ts:+d.s.ts,pc:num(d.e.pc),hg:d.hg}}
+function lerGov(d){const cs=[];d.carg[0].agr.forEach(a=>a.par.forEach(p=>p.cand.forEach(c=>cs.push({n:c.n,nm:c.nmu,sg:p.sg,sq:c.sqcand,v:+c.vap}))));
+  cs.sort((a,b)=>b.v-a.v||(+a.n)-(+b.n));return {cs,pst:num(d.s.pst),vv:+d.v.vv,hg:d.hg}}
+
+/* ---------- sinal: Flávio contra o próprio 1º turno no lugar ---------- */
+function selo(fAt,fEsp,ok){
+  if(!ok||fAt==null)return {k:'agu',t:'Aguardando'};
+  const d=100*(fAt-fEsp);if(d>2)return {k:'sup',t:'Superando',d};if(d<-2)return {k:'dec',t:'Decepcionando',d};return {k:'exp',t:'Na expectativa',d};
+}
+const seloH=s=>`<span class="selo ${s.k}">${s.t}</span>`;
+
+/* ---------- modelo (conta do painel) ---------- */
 function modelo(){
-  const B=BASE.mun,P=MUN.p||{};MUN.g=MUN.g||{};
-  // swing nacional a partir dos municípios com voto apurado
+  const B=BASE.mun,P=MUN.p||{};
   let sd=0,sn=0,rv2=0,rv1=0;const UD={};
   for(const k in P){const b=B[k];if(!b)continue;const [L,Fv,vv,pst]=P[k];const n=L+Fv;if(!n)continue;const e=b.L/(b.L+b.F);
-    sd+=L-e*n;sn+=n;const u=b.uf;(UD[u]=UD[u]||{d:0,n:0}).d+=L-e*n;UD[u].n+=n;
-    if(pst>=95){rv2+=vv;rv1+=b.vv}}
-  const dNat=sd/(sn+400000), rho=rv1>50000?rv2/rv1:0.97;
-  const dUF={};UFS.concat('zz').forEach(u=>{const x=UD[u]||{d:0,n:0};const k=25000;dUF[u]=(x.d+k*dNat)/(x.n+k)});
-  // esperado e surpresa por município
-  M={};let dentro=0,fora=0,vir=0;
-  for(const k in B){const b=B[k];const e1=b.L/(b.L+b.F);const ex=clip(e1+dNat);const r={k,...b,e1,ex};
-    const p=P[k];if(p){const [L,Fv,vv,pst]=p;const n=L+Fv;r.L2=L;r.F2=Fv;r.n=n;r.pst=pst;
-      if(n>0){r.s=L/n;const sg=Math.sqrt(ex*(1-ex)/Math.max(n,1))+0.035;r.z=(r.s-ex)/sg;
-        r.ok=(n>=150||pst>=25);r.vir=r.ok&&((ex-.5)*(r.s-.5)<0)&&Math.abs(r.s-.5)>.015&&Math.abs(e1-.5)>.03;
-        r.forca=Math.min(10,Math.abs(r.z)*2.2+(r.vir?3:0));
-        if(r.ok){if(r.vir)vir++;if(Math.abs(r.z)>=2||r.vir)fora++;else dentro++;}}}
-    M[k]=r}
-  // projeção por UF
-  let totL=0,totF=0,v1=0,v2=0;const UP={};
-  UFS.concat('zz').forEach(u=>{const pr=PR[u];const bu=BASE.uf[u];if(!bu)return;
-    const L=pr?pr.L:0,Fv=pr?pr.F:0,a=pr?pr.pst/100:0;const eU=bu.L/(bu.L+bu.F);
-    const n2=(bu.L+bu.F)*rho; // votos dos dois esperados no estado
-    let rem=Math.max(0,n2*(1-a));
-    // composição do que falta, município a município
-    let rw=0,rl=0;for(const k in B){const b=B[k];if(b.uf!==u)continue;const pm=P[k]?P[k][3]/100:0;const rm=(b.L+b.F)*(1-pm);if(rm<=0)continue;rw+=rm;rl+=rm*clip(b.L/(b.L+b.F)+dUF[u])}
-    const pRem=rw>0?rl/rw:clip(eU+dUF[u]);
-    UP[u]={L,F:Fv,a,rem,pRem,eU,d:dUF[u],sAt:(L+Fv)?L/(L+Fv):null,projL:L+rem*pRem,projF:Fv+rem*(1-pRem)};
-    totL+=UP[u].projL;totF+=UP[u].projF;
-    v1+=Math.pow(rem*0.035,2);v2+=rem});
-  const T=totL+totF;const aN=PR.br?PR.br.pst/100:0;
-  const sdp=T?100*Math.sqrt(v1+Math.pow(v2*(0.012+0.03*(1-aN)),2))/T:5;
-  const pL=T?100*totL/T:50;
-  const prob=0.5*(1+erf((pL-50)/(sdp*Math.SQRT2)));
-  return {dNat,rho,dUF,UP,pL,sdp,prob,dentro,fora,vir,remTot:v2,T};
+    sd+=L-e*n;sn+=n;(UD[b.uf]=UD[b.uf]||{d:0,n:0}).d+=L-e*n;UD[b.uf].n+=n;if(pst>=95){rv2+=vv;rv1+=b.vv}}
+  const dNat=sd/(sn+400000),rho=rv1>50000?rv2/rv1:0.97;
+  const dUF={};UFS.concat('zz').forEach(u=>{const x=UD[u]||{d:0,n:0};dUF[u]=(x.d+25000*dNat)/(x.n+25000)});
+  M={};const remM={};
+  for(const k in B){const b=B[k];const f1=b.F/(b.L+b.F||1);const r={k,uf:b.uf,nm:b.nm,cap:b.cap,vv:b.vv,L1:b.L,F1:b.F,f1,pst:0,n:0,L:0,F:0,fAt:null};
+    const p=P[k];if(p){r.L=p[0];r.F=p[1];r.n=p[0]+p[1];r.pst=p[3];if(r.n)r.fAt=r.F/r.n}
+    r.ok=r.n>=150;r.s=selo(r.fAt,f1,r.ok);r.vir=r.ok&&((f1-.5)*(r.fAt-.5)<0)&&Math.abs(r.fAt-.5)>.01;M[k]=r;
+    const rm=(b.L+b.F)*(1-r.pst/100);if(rm>0)(remM[b.uf]=remM[b.uf]||[]).push([rm,b.L/(b.L+b.F||1)])}
+  let tL=0,tF=0,v1=0,v2=0;const UP={};
+  UFS.concat('zz').forEach(u=>{const pr=PR[u],bu=BASE.uf[u];if(!bu)return;
+    const L=pr?pr.L:0,Fv=pr?pr.F:0,a=pr?pr.pst/100:0,eL=bu.L/(bu.L+bu.F);
+    const rem=Math.max(0,(bu.L+bu.F)*rho*(1-a));
+    let rw=0,rl=0;(remM[u]||[]).forEach(([rm,e])=>{rw+=rm;rl+=rm*clip(e+dUF[u])});
+    const pRem=rw>0?rl/rw:clip(eL+dUF[u]);
+    const n=L+Fv,fAt=n?Fv/n:null,f1=bu.F/(bu.L+bu.F);
+    UP[u]={u,L,F:Fv,n,a,rem,pRem,eL,f1,fAt,s:selo(fAt,f1,a>=.05&&n>0),projL:L+rem*pRem,projF:Fv+rem*(1-pRem),te:bu.te,vv1:bu.vv,ts:pr?pr.ts:0,st:pr?pr.st:0};
+    tL+=UP[u].projL;tF+=UP[u].projF;v1+=Math.pow(rem*0.035,2);v2+=rem});
+  const T=tL+tF,aN=PR.br?PR.br.pst/100:0;
+  const sdp=T?100*Math.sqrt(v1+Math.pow(v2*(0.012+0.03*(1-aN)),2))/T:5,pL=T?100*tL/T:50;
+  return {dNat,rho,dUF,UP,pL,sdp,remTot:v2};
 }
-function erf(x){const t=1/(1+.3275911*Math.abs(x));const y=1-(((((1.061405429*t-1.453152027)*t)+1.421413741)*t-.284496736)*t+.254829592)*t*Math.exp(-x*x);return x>=0?y:-y}
 
-/* ---------------- render ---------------- */
-let MD=null;
-function render(){
-  const b=PR.br;if(!b||!BASE)return;MD=modelo();
-  const n=b.L+b.F,pL=n?100*b.L/n:0,pF=n?100*b.F/n:0;const lid=b.L>=b.F?'l':'f';
-  const fL=TSE+'/6258/fotos/br/'+(b.sq['13']||{}).sq+'.jpeg',fF=TSE+'/6258/fotos/br/'+(b.sq['22']||{}).sq+'.jpeg';
-  const du=document.getElementById('duelo');
-  if(!du.dataset.ok){du.innerHTML=`<div class="lado l" id="ladoL"><img class="foto" src="${fL}" alt="Lula"><div class="veu"></div><div class="tx"><div class="nome">Lula</div><div class="part">13, PT</div><div class="pc" id="pcL"></div><div class="vt" id="vtL"></div></div></div>
-   <div class="lado f" id="ladoF"><img class="foto" src="${fF}" alt="Flávio Bolsonaro"><div class="veu"></div><div class="tx"><div class="nome">Flávio Bolsonaro</div><div class="part">22, PL</div><div class="pc" id="pcF"></div><div class="vt" id="vtF"></div></div></div>
-   <div class="vs"><small>URNAS APURADAS</small><div class="ap" id="apN"></div></div>`;du.dataset.ok=1}
-  document.getElementById('pcL').textContent=F(pL,2)+'%';document.getElementById('pcF').textContent=F(pF,2)+'%';
-  document.getElementById('vtL').textContent=N(b.L)+' votos';document.getElementById('vtF').textContent=N(b.F)+' votos';
-  document.getElementById('apN').textContent=F(b.pst,2)+'%';
-  document.getElementById('ladoL').classList.toggle('lid',lid==='l');document.getElementById('ladoF').classList.toggle('lid',lid==='f');
-  document.getElementById('cabo').innerHTML=`<div style="width:${pL}%;background:var(--lula)"></div><div style="width:${pF}%;background:var(--flav)"></div>`;
-  const dv=Math.abs(b.L-b.F);
-  document.getElementById('dif').innerHTML=n?`<b>${lid==='l'?'Lula':'Flávio'}</b> à frente por <b>${N(dv)}</b> votos (${F(Math.abs(pL-pF),2)} p.p.), brancos ${F(100*b.vb/(b.vv+b.vb+b.vn||1),1)}%, nulos ${F(100*b.vn/(b.vv+b.vb+b.vn||1),1)}%, comparecimento ${F(b.pc,1)}%`:'Aguardando os primeiros votos';
-  document.getElementById('hora').textContent='TSE '+b.hg+', ao vivo';
-  const hgm=+b.hg.slice(0,2)*60+ +b.hg.slice(3,5),agora=new Date().getHours()*60+new Date().getMinutes();const pz=document.getElementById('pausa');
-  if(b.pst<99&&agora-hgm>=10&&agora<19*60+20){pz.style.display='block';pz.textContent=`Apuração pausada pelo TSE desde ${b.hg.slice(0,5)}, com ${F(b.pst,2)}% das seções: o STF prorrogou a votação até 19h. A contagem volta depois disso.`}else pz.style.display='none';
-  narra(b,pL);grafico(b,pL);projBox();regioes();roteiro();feed();mapa();govs();if(document.getElementById('bus').value)busca();
+/* ---------- placar e "agora" ---------- */
+function estadoApur(){const b=PR.br;if(!b)return {k:'',t:'conectando'};
+  if(b.pst>=99.99)return {k:'fim',t:'Apuração concluída'};
+  const hgm=+b.hg.slice(0,2)*60+ +b.hg.slice(3,5),ag=new Date().getHours()*60+new Date().getMinutes();
+  if(b.pst>0&&ag-hgm>=10&&ag<19*60+20)return {k:'pausa',t:'Apuração pausada até 19h'};
+  if(!b.pst)return {k:'',t:'Aguardando apuração'};
+  return {k:'vivo',t:'Apuração em andamento'}}
+function placar(){
+  const b=PR.br;const n=b.L+b.F,pL=n?100*b.L/n:0,pF=n?100*b.F/n:0;
+  $('pcL').textContent=F(pL,2)+'%';$('pcF').textContent=F(pF,2)+'%';$('vtL').textContent=N(b.L)+' votos';$('vtF').textContent=N(b.F)+' votos';
+  $('apN').textContent=F(b.pst,2)+'%';
+  $('cL').classList.toggle('on',n>0&&b.L>=b.F);$('cF').classList.toggle('on',n>0&&b.F>b.L);
+  const bi=$('barra').children;bi[0].style.width=(n?pL:50)+'%';bi[1].style.width=(n?pF:50)+'%';
+  const tot=b.vv+b.vb+b.vn||1;
+  $('stats').innerHTML=[[n?N(Math.abs(b.L-b.F)):'0','votos de diferença'],[N(b.st)+' de '+N(b.ts),'seções apuradas'],[F(b.pc,1)+'%','comparecimento'],[F(100*b.vb/tot,1)+'%','brancos'],[F(100*b.vn/tot,1)+'%','nulos']].map(([x,y])=>`<div><b>${x}</b><span>${y}</span></div>`).join('');
+  const st=estadoApur();const e=$('etq');e.className='etq '+(st.k==='pausa'?'pausa':st.k==='vivo'?'vivo':'');e.textContent=st.t;
+  $('hora').textContent='TSE '+b.hg.slice(0,5);
 }
-function c1em(pst,uf='br'){const c=(C1&&C1[uf])||[];let best=null;for(const p of c){if(p[0]<=pst+0.01)best=p;else break}return best?best[1]:null}
-function narra(b,pL){
-  const md=MD,fr=[],lid=pL>=50?'Lula':'Flávio';
-  fr.push(`Com <b>${F(b.pst,1)}% das urnas</b> apuradas, <b>${lid}</b> lidera com ${F(Math.max(pL,100-pL),2)}% dos votos válidos.`);
-  const c1=c1em(b.pst);if(c1!=null){const d=pL-c1;fr.push(`No 1º turno, nesta mesma altura da apuração, Lula tinha ${F(c1,1)}% dos votos dados aos dois; hoje tem ${F(pL,1)}%, <b>${d>=0?'+':''}${F(d,1)} p.p.</b>`)}
-  // o que falta
-  const R={};Object.entries(md.UP).forEach(([u,x])=>{const r=RUF[u];(R[r]=R[r]||{rem:0,rl:0}).rem+=x.rem;R[r].rl+=x.rem*x.pRem});
-  const rt=Object.entries(R).sort((a,b)=>b[1].rem-a[1].rem);const tot=rt.reduce((s,x)=>s+x[1].rem,0);
-  if(tot>0&&b.pst<99.5){const top=rt[0];const pr=100*top[1].rl/top[1].rem;const lr=100*rt.reduce((s,x)=>s+x[1].rl,0)/tot;
-    fr.push(`O que falta pende para <b>${lr>=50?'Lula':'Flávio'}</b> (pela conta, ${F(lr>=50?lr:100-lr,0)}% para ele), e ${F(100*top[1].rem/tot,0)}% do que falta está no ${top[0]}, onde o esperado é ${pr>=50?'Lula':'Flávio'} com ${F(pr>=50?pr:100-pr,0)}%.`)}
-  const s=Object.values(M).filter(r=>r.ok&&(r.vir||Math.abs(r.z)>=2)).sort((a,b)=>b.forca-a.forca)[0];
-  if(s)fr.push(`Maior surpresa até aqui: <b>${cap(s.nm)} (${s.uf.toUpperCase()})</b>, ${s.vir?'que virou para '+(s.s>=.5?'Lula':'Flávio'):(s.s>s.ex?'Lula acima':'Flávio acima')+' do esperado'}: ${F(100*s.s,0)}% de Lula contra ${F(100*s.ex,0)}% esperados.`);
-  if(b.pst<99.9)fr.push(`Projeção do painel: <b>Lula ${F(md.pL,1)}%</b>, faixa de ${F(md.pL-1.64*md.sdp,1)}% a ${F(md.pL+1.64*md.sdp,1)}%.`);
-  document.getElementById('narra').innerHTML=fr.join(' ');
+function c1em(pst,uf='br'){let best=null;for(const p of (C1[uf]||[])){if(p[0]<=pst+0.01)best=p;else break}return best?best[1]:null}
+function narra(){
+  const b=PR.br,md=MD,n=b.L+b.F;if(!n){$('narra').innerHTML='Aguardando os primeiros votos.';return}
+  const pL=100*b.L/n,lid=pL>=50?'Lula':'Flávio',fr=[];const st=estadoApur();
+  if(st.k==='pausa')fr.push(`A divulgação está <b>pausada desde ${b.hg.slice(0,5)}</b>: o STF prorrogou a votação até 19h. Os números são de ${F(b.pst,2)}% das seções, cedo demais para tirar conclusão.`);
+  else fr.push(`Com <b>${F(b.pst,1)}% das urnas</b> apuradas, <b>${lid}</b> lidera com ${F(Math.max(pL,100-pL),2)}% dos votos válidos.`);
+  const c1=c1em(b.pst);if(c1!=null&&b.pst>1)fr.push(`No 1º turno, nesta mesma altura, Lula tinha ${F(c1,1)}% dos votos dados aos dois; hoje tem ${F(pL,1)}%.`);
+  const ss=Object.values(md.UP).filter(x=>x.u!=='zz'&&x.s.k!=='agu');
+  if(ss.length){const c={sup:0,dec:0,exp:0};ss.forEach(x=>c[x.s.k]++);fr.push(`Flávio supera o 1º turno em <b>${c.sup}</b> estado${c.sup===1?'':'s'}, decepciona em <b>${c.dec}</b> e está na expectativa em <b>${c.exp}</b>.`)}
+  const R={};Object.values(md.UP).forEach(x=>{const r=RUF[x.u];(R[r]=R[r]||{rem:0,rl:0}).rem+=x.rem;R[r].rl+=x.rem*x.pRem});
+  const tot=Object.values(R).reduce((s,x)=>s+x.rem,0);
+  if(tot>0&&b.pst<99.5){const top=Object.entries(R).sort((a,b)=>b[1].rem-a[1].rem)[0];const lr=100*Object.values(R).reduce((s,x)=>s+x.rl,0)/tot;
+    fr.push(`O que falta pende para <b>${lr>=50?'Lula':'Flávio'}</b>; ${F(100*top[1].rem/tot,0)}% do que falta está no ${top[0]}.`)}
+  if(b.pst<99.9)fr.push(`Projeção do painel: Lula <b>${F(md.pL,1)}%</b>, numa faixa de ${F(md.pL-1.64*md.sdp,1)}% a ${F(md.pL+1.64*md.sdp,1)}%.`);
+  $('narra').innerHTML=fr.join(' ');
 }
-function grafico(b,pL){
-  const H=((MUN.hist||{}).br||[]).map(p=>[p[0],100*p[1]/(p[1]+p[2])]);
-  if(b.L+b.F)H.push([b.pst,pL]);LIVE.forEach(p=>H.push(p));H.sort((a,b)=>a[0]-b[0]);
-  const c1=(C1&&C1.br)||[];const W=640,Hh=300,ml=34,mr=10,mt=12,mb=26;
-  const ys=H.map(p=>p[1]).concat(c1.filter(p=>p[0]>1).map(p=>p[1]),[MD.pL+1.64*MD.sdp,MD.pL-1.64*MD.sdp,50]);
-  let y0=Math.floor(Math.min(...ys)-1),y1=Math.ceil(Math.max(...ys)+1);if(y1-y0<6){y0-=3;y1+=3}
+
+/* ---------- gráfico ---------- */
+function grafico(){
+  const b=PR.br;const pts=new Map();
+  ((MUN.hist||{}).br||[]).forEach(p=>{if(p[1]+p[2])pts.set(p[0],100*p[1]/(p[1]+p[2]))});
+  LIVE.forEach(p=>pts.set(p[0],p[1]));
+  const H=[...pts.entries()].sort((a,b)=>a[0]-b[0]);
+  const W=760,Hh=330,ml=40,mr=70,mt=20,mb=30;
+  const c1=(C1.br||[]).filter(p=>p[0]>.5);
+  const pr=b.pst<99.9&&H.length?MD.pL:null;
+  const ys=[44,56].concat(H.map(p=>p[1]),H.map(p=>100-p[1]),c1.map(p=>p[1]),pr!=null?[pr,100-pr]:[]);
+  const y0=Math.floor(Math.min(...ys)-2),y1=Math.ceil(Math.max(...ys)+2);
   const X=x=>ml+(W-ml-mr)*x/100,Y=y=>mt+(Hh-mt-mb)*(1-(y-y0)/(y1-y0));
   const path=a=>a.map((p,i)=>(i?'L':'M')+X(p[0]).toFixed(1)+','+Y(p[1]).toFixed(1)).join('');
-  let g='';for(let y=Math.ceil(y0);y<=y1;y+=Math.max(1,Math.round((y1-y0)/6))){g+=`<text x="${ml-6}" y="${Y(y)+4}" text-anchor="end">${y}</text><line x1="${ml}" x2="${W-mr}" y1="${Y(y)}" y2="${Y(y)}" stroke="#ffffff10"/>`}
-  for(let x=0;x<=100;x+=25)g+=`<text x="${X(x)}" y="${Hh-6}" text-anchor="middle">${x}%</text>`;
-  const lx=b.pst,ly=pL;let cone='';
-  if(b.pst<99.9&&H.length){cone=`<path d="M${X(lx)},${Y(ly)}L${X(100)},${Y(MD.pL+1.64*MD.sdp)}L${X(100)},${Y(MD.pL-1.64*MD.sdp)}Z" fill="#ffffff1c"/><line x1="${X(lx)}" y1="${Y(ly)}" x2="${X(100)}" y2="${Y(MD.pL)}" stroke="#fff" stroke-dasharray="5 4" stroke-width="2"/><circle cx="${X(100)}" cy="${Y(MD.pL)}" r="5" fill="#fff"/><text x="${X(100)-6}" y="${Y(MD.pL)-9}" text-anchor="end" style="fill:#fff;font-weight:600">projeção ${F(MD.pL,1)}%</text>`}
-  document.getElementById('graf').innerHTML=`<svg viewBox="0 0 ${W} ${Hh}" width="100%">${g}
-   <line x1="${ml}" x2="${W-mr}" y1="${Y(50)}" y2="${Y(50)}" stroke="var(--ouro)" stroke-width="1.5"/><text x="${W-mr}" y="${Y(50)-5}" text-anchor="end" style="fill:var(--ouro)">50%: quem passa daqui vence</text>
-   <path d="${path(c1.filter(p=>p[0]>.5))}" fill="none" stroke="#8391B8" stroke-width="2" stroke-dasharray="2 4"/>
-   ${cone}<path d="${path(H.filter(p=>p[0]>0))}" fill="none" stroke="var(--lula)" stroke-width="3.5"/>
-   ${H.length?`<circle cx="${X(lx)}" cy="${Y(ly)}" r="6" fill="var(--lula)" stroke="#fff" stroke-width="2"/>`:''}</svg>`;
-  document.getElementById('legC').innerHTML='<span style="color:var(--lula)">━ hoje</span> &nbsp;<span style="color:#8391B8">┅ 1º turno na mesma altura</span> &nbsp;<span>╌ projeção</span>';
+  let g='';const st=Math.max(2,Math.round((y1-y0)/6));
+  for(let y=Math.ceil(y0/st)*st;y<=y1;y+=st)g+=`<line x1="${ml}" x2="${W-mr}" y1="${Y(y)}" y2="${Y(y)}" stroke="#1E2A50"/><text x="${ml-8}" y="${Y(y)+4}" text-anchor="end">${y}%</text>`;
+  for(let x=0;x<=100;x+=25)g+=`<text x="${X(x)}" y="${Hh-8}" text-anchor="middle">${x}%</text>`;
+  g+=`<text x="${(ml+W-mr)/2}" y="${Hh+12}" text-anchor="middle" style="fill:#5B6590">urnas apuradas</text>`;
+  let s=`<svg viewBox="0 0 ${W} ${Hh+16}" role="img" aria-label="Gráfico da apuração">${g}<defs><clipPath id="cc"><circle r="15" cx="0" cy="0"/></clipPath></defs>`;
+  if(c1.length)s+=`<path d="${path(c1)}" fill="none" stroke="#5B6590" stroke-width="1.5" stroke-dasharray="2 3"/>`;
+  if(H.length){const last=H[H.length-1];
+    if(pr!=null)s+=`<path d="M${X(last[0])},${Y(last[1])}L${X(100)},${Y(pr)}" stroke="var(--lula2)" stroke-width="1.6" stroke-dasharray="4 4" fill="none"/><path d="M${X(last[0])},${Y(100-last[1])}L${X(100)},${Y(100-pr)}" stroke="var(--flav2)" stroke-width="1.6" stroke-dasharray="4 4" fill="none"/>
+      <circle cx="${X(100)}" cy="${Y(pr)}" r="3.5" fill="var(--lula2)"/><circle cx="${X(100)}" cy="${Y(100-pr)}" r="3.5" fill="var(--flav2)"/>
+      <text x="${X(100)+8}" y="${Y(pr)+4}" style="fill:var(--lula2)">${F(pr,1)}%</text><text x="${X(100)+8}" y="${Y(100-pr)+4}" style="fill:var(--flav2)">${F(100-pr,1)}%</text>`;
+    s+=`<path d="${path(H)}" fill="none" stroke="var(--lula)" stroke-width="3" stroke-linejoin="round"/><path d="${path(H.map(p=>[p[0],100-p[1]]))}" fill="none" stroke="var(--flav)" stroke-width="3" stroke-linejoin="round"/>`;
+    const yl=Y(last[1]),yf=Y(100-last[1]);let dl=0;if(Math.abs(yl-yf)<40)dl=(40-Math.abs(yl-yf))/2*(yl<yf?-1:1);
+    const ponta=(x,y,dy,img,cor,v,onc)=>`<g class="clk" onclick="abre('cand','${onc}')"><line x1="${X(x)}" y1="${y}" x2="${X(x)}" y2="${y+dy}" stroke="${cor}"/><g transform="translate(${X(x)},${y+dy})"><circle r="17.5" fill="${cor}"/><image href="${img}" x="-15" y="-15" width="30" height="38" clip-path="url(#cc)" preserveAspectRatio="xMidYMin slice"/></g><text x="${X(x)+24}" y="${y+dy+5}" style="fill:#fff;font-family:Montserrat;font-weight:800;font-size:15px">${F(v,1)}%</text></g>`;
+    s+=ponta(last[0],yl,dl,'fotos/lula.webp','var(--lula)',last[1],'13')+ponta(last[0],yf,-dl,'fotos/flavio.webp','var(--flav)',100-last[1],'22');
+  }else s+=`<text x="${(ml+W-mr)/2}" y="${Hh/2}" text-anchor="middle" style="font-size:13px">Aguardando os primeiros votos</text>`;
+  $('graf').innerHTML=s+'</svg>';
 }
-function projBox(){
-  const md=MD,lv=md.pL>=50;const lo=md.pL-1.64*md.sdp,hi=md.pL+1.64*md.sdp;const sc=x=>Math.max(0,Math.min(100,(x-40)/20*100));
-  const pv=Math.round(md.prob*10);
-  document.getElementById('projBox').innerHTML=`<div style="font-size:13px;color:var(--tinta2)">Resultado final projetado (conta do painel)</div>
-   <div class="big" style="color:${lv?'var(--lula2)':'var(--flav2)'};margin-top:6px">${lv?'Lula':'Flávio'} ${F(lv?md.pL:100-md.pL,1)}%</div>
-   <div style="font-size:14px;color:var(--tinta2);margin-top:4px">Lula entre ${F(lo,1)}% e ${F(hi,1)}% dos votos válidos</div>
-   <div class="faixa"><div class="band" style="left:${sc(lo)}%;width:${sc(hi)-sc(lo)}%"></div><div class="c50"></div><div class="pt" style="left:calc(${sc(md.pL)}% - 2px)"></div><span class="lb" style="left:4px">40%</span><span class="lb" style="right:4px">60%</span></div>
-   <div style="margin-top:16px;font-family:Montserrat;font-weight:800;font-size:18px">De cada 10 cenários da conta, Lula vence em ${pv} e Flávio em ${10-pv}</div>
-   <div class="cen">${Array.from({length:10},(_,i)=>`<i style="background:${i<pv?'var(--lula)':'var(--flav)'}"></i>`).join('')}</div>
-   <div style="font-size:13px;color:var(--tinta2);margin-top:14px;line-height:1.5">Ainda faltam cerca de <b style="color:#fff">${N(md.remTot)}</b> votos dados aos dois, pela conta. O movimento geral até aqui: Lula <b style="color:#fff">${md.dNat>=0?'+':''}${F(100*md.dNat,1)} p.p.</b> em relação ao 1º turno, nos mesmos municípios.</div>`;
-}
-function regioes(){
-  const R={};Object.entries(MD.UP).forEach(([u,x])=>{const r=RUF[u];const o=R[r]=R[r]||{rem:0,rl:0,L:0,F:0,ts:0,st:0};o.rem+=x.rem;o.rl+=x.rem*x.pRem;o.L+=x.L;o.F+=x.F;const p=PR[u];if(p){o.ts+=p.ts;o.st+=p.st}});
-  document.getElementById('reg').innerHTML=Object.keys(REG).map(r=>{const o=R[r]||{};const a=o.ts?100*o.st/o.ts:0;const pr=o.rem?100*o.rl/o.rem:50;const at=(o.L+o.F)?100*o.L/(o.L+o.F):null;
-    return `<div class="rg"><h4>${r}</h4><div class="bar"><i style="width:${a}%"></i></div><small><b style="color:#fff">${F(a,0)}%</b> apurado</small>
-    <small>Agora: ${at==null?'sem votos':`<span class="lean" style="background:${mixc(at/100)}">${at>=50?'Lula':'Flávio'} ${F(Math.max(at,100-at),0)}%</span>`}</small>
-    <small>O que falta: ${o.rem>1000?`<span class="lean" style="background:${mixc(pr/100)}">${pr>=50?'Lula':'Flávio'} ${F(Math.max(pr,100-pr),0)}%</span><br>${N(o.rem)} votos`:'quase nada'}</small></div>`}).join('');
-}
-function roteiro(){
-  document.getElementById('roteiro').innerHTML=`<div><b>${N(MD.dentro)}</b><small>municípios dentro do esperado</small></div><div><b style="color:var(--ouro)">${N(MD.fora)}</b><small>fora do esperado</small></div><div><b style="color:var(--ouro)">${N(MD.vir)}</b><small>viradas contra o 1º turno</small></div>`;
-  const ch=[['todas','Todas'],['vir','Só viradas'],['lula','Lula acima'],['flav','Flávio acima'],['peq','Cidades pequenas'],['cap','Capitais']];
-  document.getElementById('chipsS').innerHTML=ch.map(([k,t])=>`<button class="${sFiltro===k?'on':''}" onclick="sFiltro='${k}';feed();roteiro()">${t}</button>`).join('');
-}
-function cardMun(r){
-  const quem=r.s>=.5?'Lula':'Flávio',ql=r.s>r.ex;
-  const tag=r.vir?`<span class="tag" style="background:var(--ouro);color:var(--campo)">Virou para ${quem}</span>`:`<span class="tag" style="background:${ql?'var(--lula)':'var(--flav)'}">${ql?'Lula':'Flávio'} acima do esperado</span>`;
-  return `<div class="sp ${r.vir?'vir':''}" onclick="abreMun('${r.k}')">${tag}<span class="forca">${F(r.forca,1)}</span><h4>${esc(cap(r.nm))}</h4><div class="uf2">${UFN[r.uf]}${r.cap?', capital':''}, ${N(r.vv)} votos válidos no 1º turno</div>
-   <div class="cmp"><div>Esperado<b>${F(100*r.ex,0)}% Lula</b></div><div>Agora<b style="color:${r.s>=.5?'var(--lula2)':'var(--flav2)'}">${F(100*r.s,0)}% Lula</b></div></div>
-   <div class="ap">1º turno: ${F(100*r.e1,0)}% Lula entre os dois, apurado ${F(r.pst,0)}% (${N(r.n)} votos)</div></div>`;
-}
-function feed(){
-  let L=Object.values(M).filter(r=>r.ok&&(r.vir||Math.abs(r.z)>=2));
-  if(sFiltro==='vir')L=L.filter(r=>r.vir);if(sFiltro==='lula')L=L.filter(r=>r.s>r.ex);if(sFiltro==='flav')L=L.filter(r=>r.s<r.ex);
-  if(sFiltro==='peq')L=L.filter(r=>r.vv<15000);if(sFiltro==='cap')L=Object.values(M).filter(r=>r.cap&&r.ok);
-  L.sort((a,b)=>b.forca-a.forca);
-  document.getElementById('feed').innerHTML=L.length?L.slice(0,36).map(r=>sFiltro==='cap'&&!(r.vir||Math.abs(r.z)>=2)?cardMun(r).replace(/<span class="tag"[^>]*>[^<]*<\/span>/,'<span class="tag" style="background:#ffffff22">Dentro do esperado</span>'):cardMun(r)).join(''):'<p style="color:var(--tinta2)">Nada fora do esperado ainda. A lista se acende quando os municípios tiverem votos suficientes.</p>';
-}
+
+/* ---------- mapa ---------- */
+const OFF={rn:[935,236],pb:[935,282],pe:[935,328],al:[935,374],se:[935,420],es:[862,604],rj:[818,688],df:[692,452]};
+function corUF(x){if(!x||!x.n)return '#2C3657';const m=Math.min(1,Math.abs(x.L-x.F)/x.n/0.22);const a=[44,54,87];
+  const b=x.F>x.L?[245,196,0]:[58,123,255];const q=.3+.7*m;return `rgb(${a.map((v,i)=>Math.round(v+(b[i]-v)*q)).join(',')})`}
 function mapa(){
-  const cells=Array(7*8).fill('');
-  UFS.forEach(u=>{const [x,y]=GRID[u];const x2=MD.UP[u];const s=x2&&x2.sAt!=null?x2.sAt:null;
-    const sur=Object.values(M).some(r=>r.uf===u&&r.ok&&r.vir&&r.vv>20000)||(x2&&x2.sAt!=null&&x2.a>.1&&Math.abs(x2.sAt-clip(x2.eU+MD.dNat))>.04);
-    cells[y*8+x]=`<div class="uf ${ufSel===u?'sel':''}" style="background:${s==null?'#26304f':mixc(s)}" onclick="abreUF('${u}')">${sur?'<i class="sur"></i>':''}<b>${u.toUpperCase()}</b><span>${s==null?'—':F(100*Math.max(s,1-s),0)+'%'}</span><span>${x2?F(100*x2.a,0)+'% ap.':''}</span></div>`});
-  document.getElementById('mapa').innerHTML=cells.map(c=>c||'<div></div>').join('');
-  const L=UFS.map(u=>({u,...MD.UP[u],ex:clip(MD.UP[u].eU+MD.dNat)})).filter(x=>x.sAt!=null&&x.a>.05).map(x=>({...x,dv:x.sAt-x.ex})).sort((a,b)=>Math.abs(b.dv)-Math.abs(a.dv)).slice(0,8);
-  document.getElementById('ufLista').innerHTML=`<h3 class="mont" style="font-size:18px;margin-bottom:10px">Estados mais longe do esperado</h3>`+(L.length?`<table><tr><th>Estado</th><th class="r">Esperado</th><th class="r">Agora</th><th class="r">Apurado</th></tr>${L.map(x=>`<tr style="cursor:pointer" onclick="abreUF('${x.u}')"><td>${UFN[x.u]}</td><td class="r">${F(100*x.ex,0)}% L</td><td class="r" style="color:${x.dv>0?'var(--lula2)':'var(--flav2)'}">${F(100*x.sAt,1)}% L</td><td class="r">${F(100*x.a,0)}%</td></tr>`).join('')}</table><p class="rot-c">Esperado: 1º turno do estado mais o movimento geral da apuração. "L" = votos de Lula entre os dois.</p>`:'<p style="color:var(--tinta2)">Aguardando votos.</p>');
+  if(!MAPA)return;const el=$('mapa');
+  if(!el.dataset.ok){let s=`<svg viewBox="0 0 1040 ${MAPA.h+30}" role="img" aria-label="Mapa do Brasil por estado">`;
+    for(const u in MAPA.uf)s+=`<path id="m-${u}" d="${MAPA.uf[u].d}" data-u="${u}"/>`;
+    for(const u in MAPA.uf){const m=MAPA.uf[u],o=OFF[u];if(o)s+=`<line class="ld" x1="${m.cx}" y1="${m.cy}" x2="${o[0]-6}" y2="${o[1]-5}"/>`;
+      const [x,y]=o||[m.cx,m.cy];const big=m.a>20000;
+      s+=`<text id="t-${u}" x="${x}" y="${o?y:y-8}" text-anchor="${o?'start':'middle'}"><tspan font-size="${o?19:big?26:19}">${u.toUpperCase()}</tspan><tspan class="v" x="${x}" dy="${o?19:big?24:19}" font-size="${o?16:big?19:15}" font-weight="600" font-family="IBM Plex Mono"></tspan></text>`}
+    el.innerHTML=s+'</svg>';el.dataset.ok=1;
+    const hov=matchMedia('(hover:hover)');
+    el.querySelectorAll('path').forEach(p=>{const u=p.dataset.u;
+      p.addEventListener('mousemove',e=>{if(hov.matches)tipUF(u,e.clientX,e.clientY,false)});
+      p.addEventListener('mouseleave',()=>{if(hov.matches)tipOff()});
+      p.addEventListener('click',e=>{e.stopPropagation();if(hov.matches){tipOff();abre('uf',u)}else tipUF(u,e.clientX,e.clientY,true)})})}
+  for(const u in MAPA.uf){const x=MD.UP[u];$('m-'+u).setAttribute('fill',corUF(x));const t=$('t-'+u);
+    const o=OFF[u];const forte=x&&x.n&&Math.abs(x.L-x.F)/x.n>.04;t.style.fill=o?'#C3CBE3':(x&&x.n&&x.F>x.L&&forte?'#1a1400':'#fff');
+    t.querySelector('.v').textContent=x&&x.n?(x.F>x.L?'F ':'L ')+F(100*Math.max(x.F,x.L)/x.n,0)+'%':''}
+  const c={sup:0,dec:0,exp:0,agu:0};UFS.forEach(u=>c[MD.UP[u].s.k]++);
+  $('resumo').innerHTML=[['sup','Flávio superando','o 1º turno','var(--flav)'],['exp','Flávio na expectativa','','#E4E8F5'],['dec','Flávio decepcionando','abaixo do 1º turno','var(--lula2)'],['agu','aguardando apuração','','var(--tx3)']].map(([k,t,s,cor])=>`<div class="rs clk" onclick="filtraSelo()"><b class="num q" style="color:${cor}">${c[k]}</b><span>estado${c[k]===1?'':'s'} com <b style="color:var(--tx)">${t}</b> ${s}</span></div>`).join('');
+  const b=PR.br;$('proj').innerHTML=b.pst<99.9&&b.L+b.F?`Projeção do painel para o fim: <b>Lula ${F(MD.pL,1)}%</b> e <b>Flávio ${F(100-MD.pL,1)}%</b>, com Lula numa faixa de ${F(MD.pL-1.64*MD.sdp,1)}% a ${F(MD.pL+1.64*MD.sdp,1)}%. Supõe que o que falta vota como votou no 1º turno, corrigido pelo movimento da apuração.`:b.pst>=99.9?'Apuração concluída.':'A projeção aparece quando houver votos.';
 }
-function tabMun(arr){return `<table><tr><th>Município</th><th class="r">1º t.</th><th class="r">Esperado</th><th class="r">Agora</th><th class="r">Ap.</th></tr>${arr.map(r=>`<tr style="cursor:pointer" onclick="abreMun('${r.k}')"><td>${esc(cap(r.nm))}${r.vir?' <span class="esp" style="background:var(--ouro);color:var(--campo)">virou</span>':''}</td><td class="r">${F(100*r.e1,0)}%</td><td class="r">${F(100*r.ex,0)}%</td><td class="r" style="color:${r.s==null?'':r.s>=.5?'var(--lula2)':'var(--flav2)'}">${r.s==null?'—':F(100*r.s,1)+'%'}</td><td class="r">${r.pst==null?'0':F(r.pst,0)}%</td></tr>`).join('')}</table><p class="rot-c">Porcentagens: votos de Lula entre os dois.</p>`}
-function abreUF(u){
-  ufSel=u;const x=MD.UP[u],p=PR[u];const ms=Object.values(M).filter(r=>r.uf===u);
-  const sur=ms.filter(r=>r.ok&&(r.vir||Math.abs(r.z)>=2)).sort((a,b)=>b.forca-a.forca);
-  const g=GOV.includes(u)?`<p style="margin:10px 0"><a href="#gov" onclick="fecha()" style="color:var(--ouro)">Este estado tem 2º turno para governador →</a></p>`:'';
-  document.getElementById('detC').innerHTML=`<h2 class="sec-t" style="margin-top:6px">${UFN[u]}</h2>${g}
-   <div class="roteiro" style="margin-top:12px"><div><b style="color:var(--lula2)">${p&&(p.L+p.F)?F(100*p.L/(p.L+p.F),1):'—'}%</b><small>Lula agora</small></div><div><b style="color:var(--flav2)">${p&&(p.L+p.F)?F(100*p.F/(p.L+p.F),1):'—'}%</b><small>Flávio agora</small></div><div><b>${p?F(p.pst,0):0}%</b><small>apurado</small></div></div>
-   <p style="color:var(--tinta2);font-size:14px;line-height:1.5">1º turno: Lula ${F(100*x.eU,1)}% entre os dois. Esperado hoje, com o movimento geral: ${F(100*clip(x.eU+MD.dNat),1)}%. Projeção para o estado: Lula ${F(100*x.projL/(x.projL+x.projF||1),1)}%.</p>
-   <h3 class="mont" style="margin:18px 0 8px">Surpresas no estado</h3>${sur.length?`<div class="feed">${sur.slice(0,8).map(cardMun).join('')}</div>`:'<p style="color:var(--tinta2)">Nenhuma até agora.</p>'}
-   <h3 class="mont" style="margin:18px 0 8px">Maiores municípios</h3>${tabMun(ms.sort((a,b)=>b.vv-a.vv).slice(0,40))}`;
-  document.getElementById('det').classList.add('on');mapa();
+function tipUF(u,x,y,toque){const d=MD.UP[u];if(!d)return;const tip=$('tip');
+  tip.innerHTML=`<h4>${UFN[u]}</h4><div style="margin-bottom:8px">${seloH(d.s)}</div>
+   <div class="l2"><span style="color:var(--lula2)">Lula</span><b>${d.n?F(100*d.L/d.n,1)+'%':'—'}</b></div>
+   <div class="l2"><span style="color:var(--flav)">Flávio</span><b>${d.n?F(100*d.F/d.n,1)+'%':'—'}</b></div>
+   <div class="l2" style="color:var(--tx3)"><span>Flávio no 1º turno</span><span>${F(100*d.f1,1)}%</span></div>
+   <div class="l2" style="color:var(--tx3)"><span>Apurado</span><span>${F(100*d.a,1)}%</span></div>${toque?`<button class="bt" onclick="tipOff();abre('uf','${u}')">Abrir ${UFN[u]}</button>`:''}`;
+  tip.classList.add('on');tip.classList.toggle('toque',toque);
+  const w=230,h=tip.offsetHeight;tip.style.left=Math.min(innerWidth-w-10,Math.max(10,x+14))+'px';tip.style.top=Math.min(innerHeight-h-10,Math.max(60,y+14))+'px';
+  document.querySelectorAll('.mapa path.hl').forEach(p=>p.classList.remove('hl'));$('m-'+u).classList.add('hl')}
+function tipOff(){$('tip').classList.remove('on');document.querySelectorAll('.mapa path.hl').forEach(p=>p.classList.remove('hl'))}
+document.addEventListener('click',e=>{const t=$('tip');if(t.classList.contains('toque')&&!t.contains(e.target))tipOff()});
+
+/* ---------- o que falta ---------- */
+function falta(){
+  const R={};Object.values(MD.UP).forEach(x=>{const r=RUF[x.u];const o=R[r]=R[r]||{L:0,F:0,rem:0,rl:0,ts:0,st:0};o.L+=x.L;o.F+=x.F;o.rem+=x.rem;o.rl+=x.rem*x.pRem;o.ts+=x.ts;o.st+=x.st});
+  const mx=Math.max(...Object.values(R).map(o=>o.L+o.F+o.rem));
+  $('falta').innerHTML=Object.keys(REG).map(r=>{const o=R[r];if(!o)return '';const t=o.L+o.F+o.rem||1,a=o.ts?100*o.st/o.ts:0,pl=o.rem?o.rl/o.rem:.5;
+    return `<div class="fr" onclick="filtraReg('${r}')"><h4>${r}<small>${F(a,0)}% apurado</small></h4>
+     <div><div class="fb" style="width:${Math.max(6,100*t/mx)}%"><i style="width:${100*o.L/t}%;background:var(--lula)"></i><i style="width:${100*o.F/t}%;background:var(--flav)"></i><i class="rest" style="width:${100*o.rem/t}%;background-color:${pl>=.5?'var(--lulaE)':'var(--flavE)'}"></i></div></div>
+     <div class="q">${o.rem>1000?`Faltam <b>${MI(o.rem)}</b> votos, que pendem para <b style="color:${pl>=.5?'var(--lula2)':'var(--flav)'}">${pl>=.5?'Lula':'Flávio'} (${F(100*Math.max(pl,1-pl),0)}%)</b>`:'Praticamente tudo apurado'}</div></div>`}).join('');
 }
-function abreMun(k){
-  const r=M[k];if(!r)return;const g=MUN.g[k];
-  document.getElementById('detC').innerHTML=`<h2 class="sec-t" style="margin-top:6px">${esc(cap(r.nm))}</h2><p style="color:var(--tinta2)">${UFN[r.uf]}${r.cap?', capital':''}</p>
-   <div class="roteiro" style="margin-top:14px"><div><b style="color:var(--lula2)">${r.s==null?'—':F(100*r.s,1)+'%'}</b><small>Lula agora (${N(r.L2)})</small></div><div><b style="color:var(--flav2)">${r.s==null?'—':F(100-100*r.s,1)+'%'}</b><small>Flávio agora (${N(r.F2)})</small></div><div><b>${r.pst==null?0:F(r.pst,0)}%</b><small>apurado</small></div></div>
-   <table><tr><td>1º turno: Lula</td><td class="r">${N(r.L)} votos</td></tr><tr><td>1º turno: Flávio</td><td class="r">${N(r.F)} votos</td></tr><tr><td>1º turno: Lula entre os dois</td><td class="r">${F(100*r.e1,1)}%</td></tr><tr><td>Esperado hoje (conta do painel)</td><td class="r">${F(100*r.ex,1)}%</td></tr>${r.z!=null?`<tr><td>Força da surpresa</td><td class="r">${F(r.forca,1)} de 10</td></tr>`:''}</table>
-   ${g?`<h3 class="mont" style="margin:18px 0 8px">Governador</h3><table>${Object.entries(g[0]).sort((a,b)=>b[1]-a[1]).map(([n,v])=>{const c=(GV[r.uf]&&GV[r.uf].cs.find(c=>c.n===n))||{nm:n};return `<tr><td>${esc(cap(c.nm))}</td><td class="r">${N(v)}</td><td class="r">${F(g[1]?100*v/g[1]:0,1)}%</td></tr>`}).join('')}</table>`:''}`;
-  document.getElementById('det').classList.add('on');
+
+/* ---------- destrinchamento ---------- */
+const TB={uf:{ord:'te',dir:-1},mun:{ord:'vv',dir:-1,lim:50,uf:'',selo:'',porte:'',q:'',reg:''}};
+const SORD={sup:0,exp:1,dec:2,agu:3};
+function val(x,k){switch(k){case 'nm':return x.u?UFN[x.u]:sem(x.nm);case 'te':return x.te;case 'vv':return x.vv;case 'pst':return x.u?x.a:x.pst;
+  case 'fAt':return x.fAt==null?-1:x.fAt;case 'lAt':return x.fAt==null?-1:1-x.fAt;case 'f1':return x.f1;case 'dif':return x.fAt==null?-9:x.fAt-x.f1;case 'selo':return SORD[x.s.k]}}
+function th(t,k,cls,tab){const o=TB[tab];return `<th class="${cls||''} ${o.ord===k?'on':''}" onclick="ordena('${tab}','${k}')">${t}${o.ord===k?`<span class="ar">${o.dir<0?'↓':'↑'}</span>`:''}</th>`}
+function ordena(tab,k){const o=TB[tab];if(o.ord===k)o.dir*=-1;else{o.ord=k;o.dir=(k==='nm'||k==='selo')?1:-1}tab==='uf'?tabUF():munTab()}
+function srt(arr,tab){const o=TB[tab];return arr.sort((a,b)=>{const A=val(a,o.ord),B=val(b,o.ord);return (A>B?1:A<B?-1:0)*o.dir})}
+function cel(x){const pst=x.u?100*x.a:x.pst,ok=x.fAt!=null,d=ok?100*(x.fAt-x.f1):0;
+  return `<td class="r"><span class="mb"><i style="width:${Math.min(100,pst)}%"></i></span>${F(pst,0)}%</td>
+  <td class="r" style="color:var(--flav)">${ok?F(100*x.fAt,1)+'%':'—'}</td><td class="r" style="color:var(--lula2)">${ok?F(100-100*x.fAt,1)+'%':'—'}</td>
+  <td class="r">${F(100*x.f1,1)}%</td><td class="r dif ${ok?(d>0?'p':'n'):''}">${ok?(d>0?'+':'')+F(d,1):'—'}</td><td>${seloH(x.s)}${x.vir?' <span class="selo vir">Virou</span>':''}</td>`}
+const CAB=tab=>`${th('Apurado','pst','r',tab)}${th('Flávio','fAt','r',tab)}${th('Lula','lAt','r',tab)}${th('Flávio no 1º t.','f1','r',tab)}${th('Dif. p.p.','dif','r',tab)}${th('Sinal','selo','',tab)}`;
+function tabUF(){const L=srt(UFS.map(u=>MD.UP[u]),'uf');
+  $('desUF').innerHTML=`<div class="tw"><table><thead><tr>${th('Estado','nm','','uf')}${th('Eleitores','te','r','uf')}${CAB('uf')}</tr></thead><tbody>
+   ${L.map(x=>`<tr onclick="abre('uf','${x.u}')"><td><b style="font-weight:600">${UFN[x.u]}</b><span class="sub">${x.u.toUpperCase()}</span></td><td class="r">${MI(x.te)}</td>${cel(x)}</tr>`).join('')}</tbody></table></div>`}
+function munFiltro(){const o=TB.mun;let A=Object.values(M);
+  if(o.uf)A=A.filter(x=>x.uf===o.uf);if(o.reg)A=A.filter(x=>RUF[x.uf]===o.reg);
+  if(o.selo==='vir')A=A.filter(x=>x.vir);else if(o.selo)A=A.filter(x=>x.s.k===o.selo);
+  if(o.porte){const [a,b]=o.porte.split('-').map(Number);A=A.filter(x=>x.vv>=a&&x.vv<b)}
+  if(o.q){const q=sem(o.q);A=A.filter(x=>sem(x.nm).includes(q))}return A}
+function munTab(){
+  const o=TB.mun,el=$('desMun');
+  if(!el.dataset.ok){el.innerHTML=`<div class="filtros"><input id="fQ" placeholder="Buscar cidade" autocomplete="off">
+    <select id="fUF"><option value="">Todos os estados</option>${UFS.slice().sort((a,b)=>UFN[a].localeCompare(UFN[b])).map(u=>`<option value="${u}">${UFN[u]}</option>`).join('')}</select>
+    <select id="fReg"><option value="">Todas as regiões</option>${Object.keys(REG).filter(r=>r!=='Exterior').map(r=>`<option>${r}</option>`).join('')}</select>
+    <select id="fSelo"><option value="">Todos os sinais</option><option value="sup">Superando</option><option value="exp">Na expectativa</option><option value="dec">Decepcionando</option><option value="vir">Virou</option><option value="agu">Aguardando</option></select>
+    <select id="fPorte"><option value="">Todos os portes</option><option value="200000-1e9">Mais de 200 mil votos</option><option value="50000-200000">50 a 200 mil</option><option value="10000-50000">10 a 50 mil</option><option value="0-10000">Até 10 mil</option></select></div>
+    <p class="cont" id="mCont"></p><div class="tw"><table id="mTab"></table></div><button class="mais" id="mMais">Mostrar mais 50</button>`;el.dataset.ok=1;
+    const on=(id,ev,f)=>$(id).addEventListener(ev,e=>{f(e.target.value);o.lim=50;munTab()});
+    on('fQ','input',v=>o.q=v);on('fUF','change',v=>o.uf=v);on('fReg','change',v=>o.reg=v);on('fSelo','change',v=>o.selo=v);on('fPorte','change',v=>o.porte=v);
+    $('mMais').onclick=()=>{o.lim+=50;munTab()}}
+  $('fUF').value=o.uf;$('fReg').value=o.reg;$('fSelo').value=o.selo;
+  const A=srt(munFiltro(),'mun');
+  $('mCont').textContent=`${N(A.length)} cidade${A.length===1?'':'s'}${A.length>o.lim?`, mostrando ${N(o.lim)}`:''}. Tamanho medido pelos votos válidos do 1º turno.`;
+  $('mTab').innerHTML=`<thead><tr>${th('Cidade','nm','','mun')}${th('Votos 1º t.','vv','r','mun')}${CAB('mun')}</tr></thead><tbody>
+   ${A.slice(0,o.lim).map(x=>`<tr onclick="abre('mun','${x.k}')"><td><b style="font-weight:600">${esc(cap(x.nm))}</b><span class="sub">${x.uf.toUpperCase()}${x.cap?', capital':''}</span></td><td class="r">${MI(x.vv)}</td>${cel(x)}</tr>`).join('')}</tbody>`;
+  $('mMais').style.display=A.length>o.lim?'block':'none';
 }
-function fecha(){document.getElementById('det').classList.remove('on');ufSel=null;if(MD)mapa()}
+function aba(v){document.querySelectorAll('#segD button').forEach(b=>b.classList.toggle('on',b.dataset.v===v));$('desUF').style.display=v==='uf'?'':'none';$('desMun').style.display=v==='mun'?'':'none'}
+document.querySelectorAll('#segD button').forEach(b=>b.onclick=()=>aba(b.dataset.v));
+const vaiDes=()=>$('s-des').scrollIntoView({behavior:'smooth'});
+function filtraReg(r){Object.assign(TB.mun,{reg:r==='Exterior'?'':r,uf:'',selo:'',lim:50});aba('mun');munTab();vaiDes()}
+function filtraSelo(){TB.uf.ord='selo';TB.uf.dir=1;aba('uf');tabUF();vaiDes()}
+
+/* ---------- governadores ---------- */
+function fotoGov(c,u){return FOTO[c.sq]?`fotos/${FOTO[c.sq]}.webp`:`${TSE}/6260/fotos/${u}/${c.sq}.jpeg`}
+function govProj(u,g){const [a,b]=g.cs;const t=a.v+b.v,sh=t?a.v/t:.5;let pa=0,pb=0;
+  for(const k in BASE.mun){const bm=BASE.mun[k];if(bm.uf!==u)continue;const gm=(MUN.g||{})[k];const pm=gm?gm[2]/100:0;const rem=bm.vv*(MD?MD.rho:.97)*(1-pm);
+    let s=sh;if(gm){const va=gm[0][a.n]||0,vb=gm[0][b.n]||0;if(va+vb>30)s=va/(va+vb)}pa+=rem*s;pb+=rem*(1-s)}
+  return 100*(a.v+pa)/(t+pa+pb||1)}
 function govs(){
-  document.getElementById('govs').innerHTML=GOV.map(u=>{const g=GV[u];if(!g||g.cs.length<2)return '';const [a,b]=g.cs;const t=a.v+b.v;
-    // projeção: falta vota como o já apurado no município; sem apurado, média do estado
-    let pa=0,pb=0;const sh=t?a.v/t:.5;for(const k in BASE.mun){const bm=BASE.mun[k];if(bm.uf!==u)continue;const gm=MUN.g[k];const pm=gm?gm[2]/100:0;const rem=bm.vv*(MD?MD.rho:.97)*(1-pm);
-      let s=sh;if(gm){const va=gm[0][a.n]||0,vb=gm[0][b.n]||0;if(va+vb>30)s=va/(va+vb)}pa+=rem*s;pb+=rem*(1-s)}
-    const prA=100*(a.v+pa)/(t+pa+pb||1);
-    const g1=GV1[u];const t1=g1?(g1[a.n]||0)+(g1[b.n]||0):0;
-    const pA=t?100*a.v/t:0,pB=t?100*b.v/t:0;const cor=['#F28C28','#7B61FF'];
-    const im=c=>`${TSE}/6260/fotos/${u}/${c.sq}.jpeg`;
-    return `<div class="gv" onclick="abreUF('${u}')"><div class="hd"><span>${UFN[u]}</span><small>${F(g.pst,1)}% apurado</small></div>
-     <div class="par" style="margin-top:10px">${[a,b].map((c,i)=>`<div class="c" style="background:${cor[i]}"><img loading="lazy" src="${im(c)}" alt="" onerror="this.remove()"><div class="veu"></div><div class="t"><div class="n">${esc(cap(c.nm))}</div><div class="s">${c.n}, ${esc(c.sg)}</div><div class="p">${t?F(i?pB:pA,1)+'%':'—'}</div><div class="s">${N(c.v)} votos</div></div></div>`).join('')}</div>
-     <div class="bb"><div style="width:${t?pA:50}%;background:${cor[0]}"></div><div style="width:${t?pB:50}%;background:${cor[1]}"></div></div>
-     <div class="ft">${t?`<b>${esc(cap(a.nm))}</b> à frente por ${N(a.v-b.v)} votos.`:'Aguardando votos.'}${t1?` No 1º turno: ${esc(cap(a.nm))} ${F(100*(g1[a.n]||0)/t1,0)}% e ${esc(cap(b.nm))} ${F(100*(g1[b.n]||0)/t1,0)}% (entre os dois).`:''}${t&&g.pst<99.9?` Projeção do painel: ${esc(cap(prA>=50?a.nm:b.nm))} com ${F(Math.max(prA,100-prA),1)}%.`:''}</div></div>`}).join('');
+  $('govs').innerHTML=GOV.map(u=>{const g=GV[u];if(!g||g.cs.length<2)return '';
+    const [a,b]=g.cs;const t=a.v+b.v,pA=t?100*a.v/t:50,pB=t?100-pA:50;
+    const g1=GV1[u],t1=g1?(g1[a.n]||0)+(g1[b.n]||0):0,m1=t1?100*(g1[a.n]||0)/t1:null;
+    const pj=t&&g.pst<99.9?govProj(u,g):null;
+    return `<div class="gv" onclick="abre('uf','${u}')"><div class="hd"><h3>${UFN[u]}</h3><span>${F(g.pst,1)}% apurado</span></div>
+     <div class="pr"><div class="gc"><img loading="lazy" src="${fotoGov(a,u)}" alt=""><div><div class="n">${esc(cap(a.nm))}</div><div class="p">${a.n}, ${esc(a.sg)}</div></div></div>
+      <div class="gc b"><img loading="lazy" src="${fotoGov(b,u)}" alt=""><div><div class="n">${esc(cap(b.nm))}</div><div class="p">${b.n}, ${esc(b.sg)}</div></div></div></div>
+     <div class="gb"><div class="pcts"><b class="num">${t?F(pA,1)+'%':'—'}</b><b class="num" style="color:var(--tx3)">${t?F(pB,1)+'%':'—'}</b></div>
+      <div class="bar"><i style="width:${pA}%;background:#E3E8F7"></i><i style="width:${pB}%;background:#56618C"></i></div>${m1!=null?`<span class="m1" style="left:calc(${m1}% - 1px)"></span>`:''}</div>
+     <div class="ft">${t?`${esc(cap(a.nm))} à frente por ${N(a.v-b.v)} votos.`:'Aguardando votos.'}${m1!=null?` No 1º turno, entre os dois: ${F(m1,0)}% a ${F(100-m1,0)}%.`:''}${pj!=null?` Projeção do painel: ${esc(cap(pj>=50?a.nm:b.nm))} com ${F(Math.max(pj,100-pj),1)}%.`:''}</div></div>`}).join('');
 }
-function busca(){
-  const q=document.getElementById('bus').value.normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase().trim();
-  if(q.length<2){document.getElementById('busR').innerHTML='';return}
-  const L=Object.values(M).filter(r=>r.nm.normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase().includes(q)).sort((a,b)=>b.vv-a.vv).slice(0,30);
-  document.getElementById('busR').innerHTML=L.length?tabMun(L).replace(/<td>/,'<td>'):'<p style="color:var(--tinta2)">Nenhum município encontrado.</p>';
+
+/* ---------- detalhe ---------- */
+let detAtual=null;
+function cmpBars(fAt,f1){return `<div class="cmp"><div><div class="lb"><span>1º turno (a régua)</span><span>Flávio ${F(100*f1,1)}%</span></div><div class="bar"><i style="width:${100*f1}%;background:var(--flavE)"></i><i style="width:${100-100*f1}%;background:var(--lulaE)"></i></div></div>
+  <div><div class="lb"><span>Agora</span><span>${fAt==null?'aguardando':'Flávio '+F(100*fAt,1)+'%'}</span></div><div class="bar">${fAt==null?'':`<i style="width:${100*fAt}%;background:var(--flav)"></i><i style="width:${100-100*fAt}%;background:var(--lula)"></i>`}</div></div></div>`}
+function mini(pts,ref){const W=560,H=120,X=x=>W*x/100;const ys=pts.map(p=>p[1]).concat(ref);const y0=Math.min(...ys)-3,y1=Math.max(...ys)+3,Y=y=>H-8-(H-16)*(y-y0)/(y1-y0);
+  return `<svg viewBox="0 0 ${W} ${H}" style="width:100%;height:auto"><line x1="0" x2="${W}" y1="${Y(ref)}" y2="${Y(ref)}" stroke="#5B6590" stroke-dasharray="3 3"/><text x="${W}" y="${Y(ref)-5}" text-anchor="end" style="font:11px 'IBM Plex Mono';fill:#8590B3">1º turno ${F(ref,1)}%</text>
+   <path d="${pts.map((p,i)=>(i?'L':'M')+X(p[0]).toFixed(1)+','+Y(p[1]).toFixed(1)).join('')}" fill="none" stroke="var(--flav)" stroke-width="2.5"/></svg>`}
+function govDet(u){const g=GV[u];const [a,b]=g.cs;const t=a.v+b.v;return `<h3>Governador, ${F(g.pst,1)}% apurado</h3><div class="tw"><table><tbody>${[a,b].map(c=>`<tr><td><img src="${fotoGov(c,u)}" style="width:28px;height:35px;object-fit:cover;border-radius:3px;vertical-align:middle;margin-right:10px" alt="">${esc(cap(c.nm))}<span class="sub">${esc(c.sg)}</span></td><td class="r">${N(c.v)}</td><td class="r">${t?F(100*c.v/t,1)+'%':'—'}</td></tr>`).join('')}</tbody></table></div>`}
+function munGov(k){const g=(MUN.g||{})[k];const u=k.slice(0,2);if(!g||!GV[u])return '';const t=Object.values(g[0]).reduce((s,v)=>s+v,0);
+  return `<h3>Governador na cidade</h3><div class="tw"><table><tbody>${GV[u].cs.map(c=>`<tr><td>${esc(cap(c.nm))}</td><td class="r">${N(g[0][c.n]||0)}</td><td class="r">${t?F(100*(g[0][c.n]||0)/t,1)+'%':'—'}</td></tr>`).join('')}</tbody></table></div>`}
+function abre(tipo,id,semHash){
+  if(!MD)return;let h='';
+  if(tipo==='uf'){const x=MD.UP[id];if(!x)return;$('detK').textContent='Estado';
+    const ms=Object.values(M).filter(r=>r.uf===id).sort((a,b)=>b.vv-a.vv);const c={sup:0,exp:0,dec:0,agu:0};ms.forEach(r=>c[r.s.k]++);
+    const hist=((MUN.hist||{})[id]||[]).filter(p=>p[1]+p[2]).map(p=>[p[0],100*p[2]/(p[1]+p[2])]);
+    h=`<h2>${UFN[id]}</h2><div class="ss">${seloH(x.s)}&nbsp; ${F(100*x.a,1)}% apurado, ${MI(x.te)} eleitores</div>
+     <div class="dpl"><div><b class="num" style="color:var(--lula2)">${x.n?F(100*x.L/x.n,1)+'%':'—'}</b><span>Lula, ${N(x.L)} votos</span></div><div><b class="num" style="color:var(--flav)">${x.n?F(100*x.F/x.n,1)+'%':'—'}</b><span>Flávio, ${N(x.F)} votos</span></div></div>
+     <h3>Flávio agora contra o 1º turno</h3>${cmpBars(x.fAt,x.f1)}
+     ${hist.length>1?`<h3>Flávio ao longo da apuração</h3>${mini(hist,100*x.f1)}`:''}
+     <p class="nota">Projeção do painel para o estado: Lula ${F(100*x.projL/(x.projL+x.projF||1),1)}%, Flávio ${F(100*x.projF/(x.projL+x.projF||1),1)}%.</p>
+     ${GOV.includes(id)&&GV[id]?govDet(id):''}
+     <h3>Cidades: ${c.sup} superando, ${c.exp} na expectativa, ${c.dec} decepcionando, ${c.agu} aguardando</h3>
+     <div class="tw"><table><thead><tr><th>Cidade</th><th class="r">Apurado</th><th class="r">Flávio</th><th class="r">1º t.</th><th>Sinal</th></tr></thead><tbody>
+     ${ms.slice(0,60).map(r=>`<tr onclick="abre('mun','${r.k}')"><td>${esc(cap(r.nm))}</td><td class="r">${F(r.pst,0)}%</td><td class="r" style="color:var(--flav)">${r.fAt==null?'—':F(100*r.fAt,1)+'%'}</td><td class="r">${F(100*r.f1,1)}%</td><td>${seloH(r.s)}</td></tr>`).join('')}</tbody></table></div>
+     ${ms.length>60?`<button class="mais" onclick="fecha();Object.assign(TB.mun,{uf:'${id}',reg:'',selo:'',q:'',lim:100});aba('mun');munTab();vaiDes()">Ver as ${N(ms.length)} cidades na tabela</button>`:''}`}
+  else if(tipo==='mun'){const r=M[id];if(!r)return;$('detK').textContent='Cidade';
+    h=`<h2>${esc(cap(r.nm))}</h2><div class="ss">${seloH(r.s)}${r.vir?' <span class="selo vir">Virou</span>':''}&nbsp; <a class="clk" style="text-decoration:underline" onclick="abre('uf','${r.uf}')">${UFN[r.uf]}</a>${r.cap?', capital':''}, ${F(r.pst,0)}% apurado</div>
+     <div class="dpl"><div><b class="num" style="color:var(--lula2)">${r.n?F(100*r.L/r.n,1)+'%':'—'}</b><span>Lula, ${N(r.L)} votos</span></div><div><b class="num" style="color:var(--flav)">${r.n?F(100*r.F/r.n,1)+'%':'—'}</b><span>Flávio, ${N(r.F)} votos</span></div></div>
+     <h3>Flávio agora contra o 1º turno</h3>${cmpBars(r.fAt,r.f1)}
+     <p class="nota">1º turno na cidade: Lula ${N(r.L1)} votos, Flávio ${N(r.F1)}, de ${N(r.vv)} votos válidos.</p>${munGov(id)}`}
+  else if(tipo==='cand'){const b=PR.br;const eL=id==='13';$('detK').textContent='Candidato';
+    const L=UFS.map(u=>MD.UP[u]).filter(x=>x.n).sort((a,b)=>eL?(b.L/b.n-a.L/a.n):(b.F/b.n-a.F/a.n));
+    h=`<div style="display:flex;gap:16px;align-items:center"><img src="fotos/${eL?'lula':'flavio'}.webp" style="width:84px;height:105px;object-fit:cover;border-radius:4px" alt=""><div><h2>${eL?'Lula':'Flávio Bolsonaro'}</h2><div class="ss">${eL?'13, PT':'22, PL'}</div></div></div>
+     <div class="dpl"><div><b class="num" style="color:${eL?'var(--lula2)':'var(--flav)'}">${b.L+b.F?F(100*(eL?b.L:b.F)/(b.L+b.F),2)+'%':'—'}</b><span>${N(eL?b.L:b.F)} votos</span></div><div><b class="num">${F(b.pst,1)}%</b><span>urnas apuradas</span></div></div>
+     <h3>Melhores estados até agora</h3><div class="tw"><table><tbody>${L.slice(0,10).map(x=>`<tr onclick="abre('uf','${x.u}')"><td>${UFN[x.u]}</td><td class="r">${F(100*(eL?x.L:x.F)/x.n,1)}%</td><td>${seloH(x.s)}</td></tr>`).join('')||'<tr><td>Aguardando votos.</td></tr>'}</tbody></table></div>`}
+  detAtual=[tipo,id];$('detC').innerHTML=h;$('det').classList.add('on');document.body.style.overflow='hidden';
+  if(!semHash)history.replaceState(null,'','#'+tipo+'='+id);
 }
-document.getElementById('bus').addEventListener('input',busca);
-document.querySelectorAll('nav.tabs a').forEach(a=>a.addEventListener('click',()=>{document.querySelectorAll('nav.tabs a').forEach(b=>b.classList.remove('on'));a.classList.add('on')}));
-document.addEventListener('keydown',e=>{if(e.key==='Escape')fecha()});
-document.getElementById('det').addEventListener('click',e=>{if(e.target.id==='det')fecha()});
+function fecha(){$('det').classList.remove('on');document.body.style.overflow='';detAtual=null;history.replaceState(null,'',location.pathname+location.search)}
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){fecha();tipOff()}});
+function rotaHash(){const m=location.hash.match(/^#(uf|mun|cand)=([a-z0-9]+)/);if(m)abre(m[1],m[2],true)}
+addEventListener('hashchange',rotaHash);
 
-
-/* ---------------- coluna de notícias ---------------- */
-const TG={circ:['O que circula','#FFC800','#0B1530'],stf:['STF e TSE','#B08AF0','#0B1530'],apur:['Apuração','#56D68B','#0B1530'],gov:['Governos','#F28C28','#0B1530'],chec:['Checagem','#FF8A7A','#0B1530'],redes:['Redes','#4FA8F5','#0B1530'],ext:['Exterior','#8391B8','#0B1530'],geral:['Eleição','#C4CDE6','#0B1530']};
-const TC={Polêmica:'#FF8A7A',Dúvida:'#4FA8F5',Contexto:'#C4CDE6',Risco:'#F28C28',Falso:'#E8333B',Exterior:'#8391B8'};
-let NEWS=null,CTX=null,fcF='tudo',vistos=new Set(),rolY=0,rolH=0;
+/* ---------- coluna de notícias ---------- */
+const TG={stf:'STF e TSE',apur:'Apuração',gov:'Governos',chec:'Checagem',redes:'Redes',ext:'Exterior',geral:'Eleição'};
+let NEWS=null,CTX=null,fcF='tudo',vistos=null;const frescas=new Set();
 const ago=ts=>{const m=Math.max(0,Math.round((Date.now()/1000-ts)/60));return m<1?'agora':m<60?'há '+m+' min':'há '+Math.floor(m/60)+'h'+(m%60?String(m%60).padStart(2,'0'):'')};
+const UFX={ba:'Salvador|baian',pe:'Recife|pernambuc',ce:'Fortaleza|cearense',sp:'paulista',rj:'carioca|fluminense',mg:'mineir|Belo Horizonte',rs:'gaúch|Porto Alegre',am:'Manaus|amazonense',pa:'Belém|paraense',df:'Brasília|\\bDF\\b',es:'capixaba|Vitória',rn:'potiguar|Natal\\b',to:'tocantinense|Palmas',ac:'acrean|Rio Branco'};
+const UFRX=UFS.map(u=>[u,new RegExp('\\b'+UFN[u]+'\\b'+(UFX[u]?'|'+UFX[u]:''),'i')]);
 function fcRender(){
-  // alerta: estado da apuração vem do próprio TSE; o texto curado entra como contexto
-  {const b=PR.br,el=document.getElementById('alerta');let t,x,u='https://resultados.tse.jus.br/',fo='TSE';
-   if(b){const hgm=+b.hg.slice(0,2)*60+ +b.hg.slice(3,5),ag=new Date().getHours()*60+new Date().getMinutes();
-     if(b.pst>=99.99){t='Apuração concluída';x=`O TSE totalizou ${F(b.pst,2)}% das seções.`}
-     else if(ag-hgm>=10&&ag<19*60+20){t='Votação prorrogada até 19h e apuração pausada';x=CTX?CTX.alerta.x:'';u=CTX?CTX.alerta.u:u;fo=CTX?CTX.alerta.s:fo}
-     else{t=`Apuração em andamento: ${F(b.pst,2)}% das seções`;x=`Última atualização do TSE às ${b.hg.slice(0,5)}. ${(b.L>=b.F?'Lula':'Flávio')} à frente por ${N(Math.abs(b.L-b.F))} votos.`}}
-   else if(CTX){t=CTX.alerta.t;x=CTX.alerta.x;u=CTX.alerta.u;fo=CTX.alerta.s}
-   if(t){el.href=u;el.innerHTML=`<b>⚠ ${esc(t)}</b><p>${esc(x)}</p><p style="margin-top:4px;font-weight:600">${esc(fo)} ↗</p>`}}
-  if(false){const a=CTX.alerta;const el=document.getElementById('alerta');el.href=a.u;el.innerHTML=`<b>⚠ ${esc(a.t)}</b><p>${esc(a.x)}</p><p style="margin-top:4px;font-weight:600">${esc(a.s)} ↗</p>`}
-  const tabs=[['tudo','Tudo'],['circ','O que circula'],['stf','STF e TSE'],['apur','Apuração'],['gov','Governos'],['chec','Checagem'],['redes','Redes'],['ext','Exterior']];
-  document.getElementById('fcTabs').innerHTML=tabs.map(([k,t])=>`<button class="${fcF===k?'on':''}" onclick="fcF='${k}';fcRender()">${t}</button>`).join('');
-  let html='';
-  if(NEWS&&NEWS.temas&&(fcF==='tudo'||fcF==='circ')){const mx=Math.max(1,...NEWS.temas.map(t=>t.h1));
-    html+=`<div class="it cur" style="cursor:default"><div class="m"><span class="tg" style="background:var(--ouro);color:#0B1530">Termômetro</span><span>assuntos mais falados na última hora, por número de veículos</span></div>${NEWS.temas.filter(t=>t.tot).slice(0,6).map(t=>`<div style="margin-top:8px"><div style="display:flex;justify-content:space-between;font-size:12.5px;font-weight:600"><span>${esc(t.n)}</span><span class="mono" style="color:var(--tinta3)">${t.fontes} veíc.</span></div><div style="height:6px;background:var(--funda);margin-top:3px"><i style="display:block;height:100%;width:${100*t.h1/mx}%;background:var(--ouro)"></i></div>${t.ult[0]?`<a href="${esc(t.ult[0].u)}" target="_blank" rel="noopener" style="display:block;color:var(--tinta2);font-size:12px;margin-top:3px;text-decoration:none">${esc(t.ult[0].t)} (${esc(t.ult[0].s)}, ${ago(t.ult[0].ts)})</a>`:''}</div>`).join('')}</div>`}
-  if(CTX&&(fcF==='tudo'||fcF==='circ'))html+=CTX.circula.map(c=>`<a class="it cur" href="${esc(c.u)}" target="_blank" rel="noopener"><div class="m"><span class="tg" style="background:${TC[c.tipo]||'#fff'};color:#0B1530">${esc(c.tipo)}</span><span>${esc(c.s)}</span><span>curadoria ${esc(CTX.h)}</span></div><div class="t">${esc(c.t)}</div><div class="x">${esc(c.x)}</div></a>`).join('');
-  if(NEWS&&fcF!=='circ')html+=NEWS.itens.filter(x=>fcF==='tudo'||x.tags.includes(fcF)).map(x=>{const tg=TG[x.tags.find(t=>t!=='geral')||'geral'];const nv=!vistos.has(x.u)&&vistos.size>0;
-    return `<a class="it" href="${esc(x.u)}" target="_blank" rel="noopener"><div class="m"><span class="tg" style="background:${tg[1]};color:${tg[2]}">${tg[0]}</span><span>${esc(x.s)}</span><span class="${nv?'novo':''}">${nv?'novo, ':''}${ago(x.ts)}</span></div><div class="t">${esc(x.t)}</div></a>`}).join('');
-  const tr=document.getElementById('trilho');tr.innerHTML=html+html;rolH=tr.scrollHeight/2;
-  if(NEWS)NEWS.itens.forEach(x=>vistos.add(x.u));
-  document.getElementById('fcH').textContent=`Notícias, checagens e o que circula. Atualizado ${NEWS?NEWS.h:''}. Passe o dedo ou o mouse para pausar.`;
+  if(NEWS&&NEWS.temas){const T=NEWS.temas.filter(t=>t.tot).slice(0,6),mx=Math.max(1,...T.map(t=>t.h1));
+    $('term').innerHTML=T.map(t=>`<div class="tm"><div class="l"><b style="font-weight:600">${esc(t.n)}</b><span>${t.fontes} veículo${t.fontes===1?'':'s'}</span></div><div class="b"><i style="width:${100*t.h1/mx}%"></i></div></div>`).join('')+'<p class="nota" style="margin-top:10px">Veículos que publicaram sobre o tema na última hora, pelo Google Notícias.</p>'}
+  if(CTX)$('ctx').innerHTML=CTX.circula.map(c=>`<a class="cx" href="${esc(c.u)}" target="_blank" rel="noopener"><div class="k">${esc(c.tipo)}, ${esc(c.s)}</div><div class="t">${esc(c.t)}</div><div class="x">${esc(c.x)}</div></a>`).join('')+`<p class="nota">Curadoria do painel, ${esc(CTX.h)}.</p>`;
+  $('chips').innerHTML=[['tudo','Tudo']].concat(Object.entries(TG).filter(([k])=>k!=='geral')).map(([k,t])=>`<button class="${fcF===k?'on':''}" onclick="fcF='${k}';fcRender()">${t}</button>`).join('');
+  if(!NEWS)return;
+  const L=NEWS.itens.filter(x=>fcF==='tudo'||x.tags.includes(fcF)).slice().sort((a,b)=>b.ts-a.ts);
+  $('itens').innerHTML=L.map(x=>{const uf=UFRX.find(([u,r])=>r.test(x.t));const tg=TG[x.tags.find(t=>t!=='geral')||'geral'];
+    return `<a class="ni ${frescas.has(x.u)?'fresca':''}" href="${esc(x.u)}" target="_blank" rel="noopener"><div class="m"><b>${esc(x.s)}</b><span>${ago(x.ts)}</span><span>${tg}</span></div><div class="t">${esc(x.t)}</div>${uf?`<span class="uf" onclick="event.preventDefault();event.stopPropagation();abre('uf','${uf[0]}')">${UFN[uf[0]]} no painel →</span>`:''}</a>`}).join('');
+  $('fhH').textContent=`Mais recente no topo, atualizado às ${NEWS.h}`;
 }
-async function fcCiclo(){try{NEWS=await pega('t2_news.json')}catch(e){}try{CTX=await pega('t2_contexto.json')}catch(e){}fcRender()}
-let pausa=false;const rolo=document.getElementById('rolo');
-rolo.addEventListener('mouseenter',()=>pausa=true);rolo.addEventListener('mouseleave',()=>pausa=false);
-rolo.addEventListener('touchstart',()=>pausa=true,{passive:true});rolo.addEventListener('touchend',()=>setTimeout(()=>pausa=false,4000));
-rolo.addEventListener('wheel',e=>{rolY=(rolY+e.deltaY+rolH)%rolH;e.preventDefault()},{passive:false});
-let ty=null;rolo.addEventListener('touchmove',e=>{const y=e.touches[0].clientY;if(ty!=null)rolY=(rolY+(ty-y)+rolH)%rolH;ty=y;e.preventDefault()},{passive:false});rolo.addEventListener('touchend',()=>ty=null);
-(function anda(){if(!pausa&&rolH)rolY=(rolY+0.25)%rolH;document.getElementById('trilho').style.transform=`translateY(${-rolY}px)`;requestAnimationFrame(anda)})();
-fcCiclo();setInterval(fcCiclo,30000);
+async function fcCiclo(){
+  try{const n=await pega('t2_news.json');
+    if(vistos){const nov=n.itens.filter(x=>!vistos.has(x.u));nov.forEach(x=>frescas.add(x.u));
+      if(nov.length&&$('lista').scrollTop>80){$('novas').textContent=`${nov.length} nova${nov.length>1?'s':''} no topo`;$('novas').classList.add('on')}
+      if(nov.length)setTimeout(()=>{nov.forEach(x=>frescas.delete(x.u));document.querySelectorAll('.ni.fresca').forEach(e=>e.classList.remove('fresca'))},6000)}
+    vistos=new Set(n.itens.map(x=>x.u));NEWS=n}catch(e){}
+  try{CTX=await pega('t2_contexto.json')}catch(e){}
+  fcRender();
+}
+$('lista').addEventListener('scroll',()=>{if($('lista').scrollTop<40)$('novas').classList.remove('on')});
 
-/* ---------------- ciclo ---------------- */
-async function ciclo(){
-  const urls=[['br','br']].concat(UFS.map(u=>[u,u]),[['zz','zz']]);
-  await Promise.all(urls.map(async([k,u])=>{try{PR[k]=lerPres(await pega(`${TSE}/6258/dados/${u}/${u}-c0001-e006258-u.json`))}catch(e){}}));
-  await Promise.all(GOV.map(async u=>{try{GV[u]=lerGov(await pega(`${TSE}/6260/dados/${u}/${u}-c0003-e006260-u.json`))}catch(e){}}));
-  try{const m=await pega('t2_mun.json');MUN=m;mescla()}catch(e){}
-  const b=PR.br;if(b&&b.L+b.F){const p=[b.pst,100*b.L/(b.L+b.F)];if(!LIVE.length||LIVE[LIVE.length-1][0]!==p[0])LIVE.push(p)}
-  render();
-}
-/* municípios direto do TSE: lê o resumo de cada UF e baixa só os que andaram */
+/* ---------- cidades direto do TSE ---------- */
 const LP={},LG={};let munOcup=false;
 function mescla(){MUN.p=MUN.p||{};MUN.g=MUN.g||{};for(const k in LP)if(!MUN.p[k]||MUN.p[k][3]<LP[k][3])MUN.p[k]=LP[k];for(const k in LG)if(!MUN.g[k]||MUN.g[k][2]<LG[k][2])MUN.g[k]=LG[k]}
 async function munVivo(){
   if(munOcup||!BASE)return;munOcup=true;
-  try{
-    const fila=[];
-    const abs=UFS.map(u=>['6258',1,u]).concat(GOV.map(u=>['6260',3,u]));
-    await Promise.all(abs.map(async([e,c,u])=>{try{const d=await pega(`${TSE}/${e}/dados/${u}/${u}-e00${e}-ab.json`);
-      d.abr.forEach(a=>{if(a.tpabr!=='mun')return;const pst=num(a.s.pst);if(!pst)return;const k=u+a.cdabr;const tem=e==='6258'?(MUN.p&&MUN.p[k]?MUN.p[k][3]:-1):(MUN.g&&MUN.g[k]?MUN.g[k][2]:-1);
-        if(pst>tem)fila.push([e,c,u,a.cdabr,k])})}catch(x){}}));
-    fila.splice(250);
-    let i=0;await Promise.all(Array.from({length:10},async()=>{while(i<fila.length){const [e,c,u,cd,k]=fila[i++];try{const d=await pega(`${TSE}/${e}/dados/${u}/${u}${cd}-c000${c}-e00${e}-u.json`);
+  try{const fila=[];
+    await Promise.all(UFS.map(u=>['6258',1,u]).concat(GOV.map(u=>['6260',3,u])).map(async([e,c,u])=>{try{const d=await pega(`${TSE}/${e}/dados/${u}/${u}-e00${e}-ab.json`);
+      d.abr.forEach(a=>{if(a.tpabr!=='mun')return;const pst=num(a.s.pst);if(!pst)return;const k=u+a.cdabr;const tem=e==='6258'?(MUN.p[k]?MUN.p[k][3]:-1):(MUN.g[k]?MUN.g[k][2]:-1);if(pst>tem)fila.push([e,c,u,a.cdabr,k])})}catch(x){}}));
+    fila.splice(250);let i=0;
+    await Promise.all(Array.from({length:10},async()=>{while(i<fila.length){const [e,c,u,cd,k]=fila[i++];try{const d=await pega(`${TSE}/${e}/dados/${u}/${u}${cd}-c000${c}-e00${e}-u.json`);
       const v={};d.carg[0].agr.forEach(a=>a.par.forEach(p=>p.cand.forEach(x=>v[x.n]=+x.vap)));const pst=num(d.s.pst),vv=+d.v.vv;
       if(e==='6258')LP[k]=[v['13']||0,v['22']||0,vv,pst];else LG[k]=[v,vv,pst]}catch(x){}}}));
     if(fila.length){mescla();render()}
   }finally{munOcup=false}
 }
+
+/* ---------- ciclo ---------- */
+function render(){if(!PR.br||!BASE)return;MD=modelo();placar();narra();grafico();mapa();falta();tabUF();munTab();govs();
+  if(detAtual&&$('det').classList.contains('on')){const p=document.querySelector('.det .pn'),sc=p.scrollTop;abre(detAtual[0],detAtual[1],true);p.scrollTop=sc}}
+async function ciclo(){
+  await Promise.all(['br'].concat(UFS,['zz']).map(async u=>{try{PR[u]=lerPres(await pega(`${TSE}/6258/dados/${u}/${u}-c0001-e006258-u.json`))}catch(e){}}));
+  await Promise.all(GOV.map(async u=>{try{GV[u]=lerGov(await pega(`${TSE}/6260/dados/${u}/${u}-c0003-e006260-u.json`))}catch(e){}}));
+  try{MUN=await pega('t2_mun.json');mescla()}catch(e){}
+  const b=PR.br;if(b&&b.L+b.F){const p=[b.pst,100*b.L/(b.L+b.F)];if(!LIVE.length||LIVE[LIVE.length-1][0]!==p[0])LIVE.push(p)}
+  render();
+}
+function rodape(){$('rodape').innerHTML=`<p><b style="color:var(--tx2)">Fontes.</b> Números: TSE, <a href="https://resultados.tse.jus.br/" target="_blank" rel="noopener">resultados.tse.jus.br</a> (Presidente, eleição 6258; Governador, 6260; 1º turno, 6257 e 6259), lidos direto pelo seu navegador a cada 20 segundos, e as cidades a cada 45 segundos. O TSE renova os próprios arquivos mais ou menos a cada minuto. Mapa: malha de estados do IBGE. Notícias: Google Notícias.</p>
+ <p style="margin-top:10px"><b style="color:var(--tx2)">Contas do painel.</b> Sinal, projeção e faixa não são do TSE. A régua é o 1º turno de 2026 no mesmo lugar; não há dado de 2022 por município no servidor do TSE.</p>
+ <p style="margin-top:10px"><b style="color:var(--tx2)">Fotos</b> (Wikimedia Commons): ${CRED.map(([n,c,f])=>`<a href="https://commons.wikimedia.org/wiki/File:${f}" target="_blank" rel="noopener">${n}</a> (${c})`).join(', ')}.</p>`}
 (async()=>{
-  [BASE,C1]=await Promise.all([pega('t2_base.json'),pega('t2_curva1.json').catch(()=>({}))]);
+  if(innerWidth<980)$('bTerm').open=false;
+  rodape();fcCiclo();setInterval(fcCiclo,30000);
+  [BASE,C1,MAPA]=await Promise.all([pega('t2_base.json'),pega('t2_curva1.json').catch(()=>({})),pega('t2_mapa.json').catch(()=>null)]);
   await Promise.all(GOV.map(async u=>{try{const d=await pega(`${TSE}/6259/dados/${u}/${u}-c0003-e006259-u.json`);const v={};d.carg[0].agr.forEach(a=>a.par.forEach(p=>p.cand.forEach(c=>v[c.n]=+c.vap)));GV1[u]=v}catch(e){}}));
-  await ciclo();setInterval(ciclo,20000);munVivo();setInterval(munVivo,45000);
+  await ciclo();rotaHash();setInterval(ciclo,20000);munVivo();setInterval(munVivo,45000);
 })();
 </script>
 </body>
