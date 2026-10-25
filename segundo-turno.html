@@ -462,7 +462,7 @@ rolo.addEventListener('mouseenter',()=>pausa=true);rolo.addEventListener('mousel
 rolo.addEventListener('touchstart',()=>pausa=true,{passive:true});rolo.addEventListener('touchend',()=>setTimeout(()=>pausa=false,4000));
 rolo.addEventListener('wheel',e=>{rolY=(rolY+e.deltaY+rolH)%rolH;e.preventDefault()},{passive:false});
 let ty=null;rolo.addEventListener('touchmove',e=>{const y=e.touches[0].clientY;if(ty!=null)rolY=(rolY+(ty-y)+rolH)%rolH;ty=y;e.preventDefault()},{passive:false});rolo.addEventListener('touchend',()=>ty=null);
-(function anda(){if(!pausa&&rolH)rolY=(rolY+0.35)%rolH;document.getElementById('trilho').style.transform=`translateY(${-rolY}px)`;requestAnimationFrame(anda)})();
+(function anda(){if(!pausa&&rolH)rolY=(rolY+0.25)%rolH;document.getElementById('trilho').style.transform=`translateY(${-rolY}px)`;requestAnimationFrame(anda)})();
 fcCiclo();setInterval(fcCiclo,60000);
 
 /* ---------------- ciclo ---------------- */
