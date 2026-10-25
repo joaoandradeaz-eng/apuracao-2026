@@ -575,8 +575,8 @@ function govs(){
     const g1=GV1[u],t1=g1?(g1[a.n]||0)+(g1[b.n]||0):0,m1=t1?100*(g1[a.n]||0)/t1:null;
     const pj=t&&g.pst<99.9?govProj(u,g):null;
     return `<div class="gv" onclick="abre('uf','${u}')"><div class="hd"><h3>${UFN[u]}</h3><span>${F(g.pst,1)}% apurado</span></div>
-     <div class="pr"><div class="gc"><img loading="lazy" src="${fotoGov(a,u)}" alt=""><div><div class="n">${esc(cap(a.nm))}</div><div class="p">${a.n}, ${esc(a.sg)}, ${na}</div></div></div>
-      <div class="gc b"><img loading="lazy" src="${fotoGov(b,u)}" alt=""><div><div class="n">${esc(cap(b.nm))}</div><div class="p">${b.n}, ${esc(b.sg)}, ${nb}</div></div></div></div>
+     <div class="pr"><div class="gc"><img src="${fotoGov(a,u)}" alt=""><div><div class="n">${esc(cap(a.nm))}</div><div class="p">${a.n}, ${esc(a.sg)}, ${na}</div></div></div>
+      <div class="gc b"><img src="${fotoGov(b,u)}" alt=""><div><div class="n">${esc(cap(b.nm))}</div><div class="p">${b.n}, ${esc(b.sg)}, ${nb}</div></div></div></div>
      <div class="gb"><div class="pcts"><b class="num" style="color:${ca}">${t?F(pA,1)+'%':'—'}</b><b class="num" style="color:${cb}">${t?F(pB,1)+'%':'—'}</b></div>
       <div class="bar"><i style="width:${pA}%;background:${ca}"></i><i style="width:${pB}%;background:${cb}"></i></div>${m1!=null?`<span class="m1" style="left:calc(${m1}% - 1px)"></span>`:''}</div>
      <div class="ft">${t?`${esc(cap(a.nm))} à frente por ${N(a.v-b.v)} votos.`:'Aguardando votos.'}${m1!=null?` No 1º turno, entre os dois: ${F(m1,0)}% a ${F(100-m1,0)}%.`:''}${pj!=null?` Projeção do painel: ${esc(cap(pj>=50?a.nm:b.nm))} com ${F(Math.max(pj,100-pj),1)}%.`:''}</div></div>`}).join('');
